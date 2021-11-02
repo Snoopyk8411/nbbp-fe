@@ -1,0 +1,4 @@
+**/.eslintrc.js
+**/*.json
+**/*.txt
+**/__mocks__/*
