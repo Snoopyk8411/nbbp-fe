@@ -12,11 +12,6 @@
     "prepare": "husky install",
     "prettify": "prettier --write \"src/**/*.ts{,x}\""
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test && npm run prettify && git add -A ."
-    }
-  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
     "axios": "^0.24.0",
