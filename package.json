@@ -7,12 +7,14 @@
     "build": "next build",
     "start:ssr": "next build && next start",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prepare": "husky install",
     "prettify": "prettier --write \"src/**/*.ts{,x}\""
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run jest && npm run prettify && git add -A ."
+      "pre-commit": "npm run test && npm run prettify && git add -A ."
     }
   },
   "dependencies": {

@@ -39,11 +39,11 @@ export const welcomePageSlice = createSlice({
       state.counter = action.payload;
     },
 
-    setCounterIncrement: (state) => {
+    setCounterIncrement: state => {
       state.counter += 1;
     },
 
-    setCounterDecrement: (state) => {
+    setCounterDecrement: state => {
       state.counter -= 1;
     },
 
