@@ -1,5 +1,5 @@
 import { RefObject, useEffect, useState } from 'react';
-import useDebounce from './useDebounce';
+import useDebounce from './use-debounce';
 
 const calculateHeight = (ref: RefObject<HTMLElement>, additionalRef?: RefObject<HTMLElement>) => {
   return (ref.current?.clientHeight || 0) - (additionalRef?.current?.clientHeight || 0);
