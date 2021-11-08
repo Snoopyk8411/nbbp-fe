@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 0.5rem 2rem;
+}
+
+.header_title {
+  font-size: calc(10px + 1vmin);
+  border: none;
+  background: white;
+  text-decoration: none;
+  color: black;
+}
+.header_title:hover {
+  text-decoration: underline;
+}

@@ -33,6 +33,7 @@ const jestConfig = {
     '^.+\\.module\\.(css|sass|scss)$',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  moduleDirectories: ["node_modules", "src"]
 };
 
 export default jestConfig;
