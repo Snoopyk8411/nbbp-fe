@@ -10,18 +10,18 @@ import Layout from 'layout/gleb/components/layout/Layout';
 import styles from './picture.module.css';
 
 const Picture = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getPicture());
-  // }, []);
+  useEffect(() => {
+    dispatch(getPicture());
+  }, []);
 
   const picture = useSelector((state: RootState) => state.picture);
   const date = picture.date.toString();
   return (
     <div>
       <div className={styles.main}>
-        <h1>Astronomy picture of the day</h1>
+        <h1 data-testid='title'>Astronomy picture of the day</h1>
         <div>{date}</div>
         {picture.media_type !== 'video' ? (
           <img src={picture.url} alt={picture.title} className={styles.picture} />
@@ -40,10 +40,6 @@ Picture.getLayout = function getLayout(page: typeof Picture) {
 };
 
 export const getStaticProps = () => {
-  const dispatch = useDispatch();
-
-  dispatch(getPicture());
-
   const picture = useSelector((state: RootState) => state.picture);
   const initialState = picture;
 

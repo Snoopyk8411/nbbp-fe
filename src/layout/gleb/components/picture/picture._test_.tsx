@@ -1,5 +1,8 @@
 import renderer from 'react-test-renderer';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
+import '@testing-library/react';
 import createSagaMiddleware from 'redux-saga';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
@@ -37,16 +40,12 @@ describe('Picture Component', () => {
   // });
 
   it('successfully rendered', () => {
-    render(
+    const component = render(
       <Provider store={mockStore}>
         <Picture />
       </Provider>,
     );
 
-    const title = screen.getByRole('h1', {
-      name: /Astronomy picture of the day/i,
-    });
-
-    expect(title).toBeInTheDocument();
+    expect(component).getByTestId('title').textContent.toBe('Astronomy picture of the day');
   });
 });
