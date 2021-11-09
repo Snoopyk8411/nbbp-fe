@@ -18,13 +18,20 @@ const Picture = () => {
 
   const picture = useSelector((state: RootState) => state.picture);
   const date = picture.date.toString();
+
+  const image = picture.url ? (
+    <Image loader={imageLoader} unoptimized src={picture.url} alt={picture.title} width='500px' height='500px' />
+  ) : (
+    <img src={picture.url} alt={picture.title} className={styles.picture} />
+  );
+
   return (
     <div>
       <div className={styles.main}>
         <h1 data-testid='title'>Astronomy picture of the day</h1>
         <div>{date}</div>
         {picture.media_type !== 'video' ? (
-          <img src={picture.url} alt={picture.title} className={styles.picture} />
+          image
         ) : (
           <iframe id='video' title='video' loading='lazy' width='500' height='500' src={picture.url}></iframe>
         )}
@@ -39,13 +46,13 @@ Picture.getLayout = function getLayout(page: typeof Picture) {
   return <Layout>{page}</Layout>;
 };
 
-export const getStaticProps = () => {
-  const picture = useSelector((state: RootState) => state.picture);
-  const initialState = picture;
+// export const getStaticProps = () => {
+//   const picture = useSelector((state: RootState) => state.picture);
+//   const initialState = picture;
 
-  return {
-    props: initialState,
-  };
-};
+//   return {
+//     props: initialState,
+//   };
+// };
 
 export default Picture;
