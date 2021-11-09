@@ -36,7 +36,7 @@ const CreateNote: React.FC<Props> = ({ addNote }) => {
           rows={3}
           value={title}
           onChange={onChangeNote}
-          placeholder='Add new note'
+          placeholder='Write new note'
           onKeyPress={handleKeypress}
           className={styles.input}
         />
@@ -60,5 +60,20 @@ const CreateNote: React.FC<Props> = ({ addNote }) => {
     </div>
   );
 };
+
+{
+  /* <div class="container my-3">
+<h1>Welcome To Online Notes</h1>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Add a note</h5>
+        <div class="form-group">
+            <textarea class="form-control" id="addTxt" rows="3" placeholder="Write some notes.."></textarea>
+        </div>
+        <button class="btn btn-primary" id="addBtn" onclick="relode()">Add Note</button>
+        <button class="btn btn-primary" id="ClearAll" onclick="ClearAll()">Clear All</button>
+    </div>
+</div> */
+}
 
 export default CreateNote;

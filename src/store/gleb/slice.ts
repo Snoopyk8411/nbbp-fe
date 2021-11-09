@@ -12,6 +12,10 @@ const initialState: IPicture = {
   url: '',
 };
 
+export interface INoteState {
+  todos: string[];
+}
+
 export const pictureSlice = createSlice({
   name: 'picture',
   initialState: initialState,
@@ -23,7 +27,5 @@ export const pictureSlice = createSlice({
     },
   },
 });
-
 export const { getPicture, setPicture } = pictureSlice.actions;
-
 export default pictureSlice.reducer;

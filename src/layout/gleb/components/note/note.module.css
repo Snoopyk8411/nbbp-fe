@@ -1,6 +1,6 @@
 .notes {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
   height:100%
 }
@@ -9,14 +9,4 @@
   margin-left: 1.5rem
 }
 
-.input {
-  background-color: rgb(229, 231, 235);
-  border-color: rgb(209, 213, 219);
-  border-width: 2px;
-  outline: none;
-  padding: 0.5rem 1rem;
-  color: #1f2937;
-}
-.input:focus {
-  background-color: darkgrey;
-}
+

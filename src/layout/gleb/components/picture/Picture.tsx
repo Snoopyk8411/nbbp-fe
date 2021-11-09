@@ -1,11 +1,11 @@
 import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getPicture } from 'store/gleb/slice';
-import { RootState } from 'store/reducers';
-import store from 'store/index';
-import imageLoader from 'layout/gleb/components/imageLoader';
+import { useAppSelector } from 'hooks/use-app-selector';
+import { selectPicture } from 'store/gleb/selectors';
+import imageLoader from 'layout/gleb/components/picture/imageLoader';
 import Layout from 'layout/gleb/components/layout/Layout';
 import styles from './picture.module.css';
 
@@ -16,7 +16,7 @@ const Picture = () => {
     dispatch(getPicture());
   }, []);
 
-  const picture = useSelector((state: RootState) => state.picture);
+  const picture = useAppSelector(selectPicture);
   const date = picture.date.toString();
 
   const image = picture.url ? (
