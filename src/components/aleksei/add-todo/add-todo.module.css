@@ -1,0 +1,15 @@
+.addTodo {
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.addTodoForm {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.header {
+    margin-top: 0;
+}
