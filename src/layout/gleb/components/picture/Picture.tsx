@@ -53,6 +53,6 @@ Picture.getLayout = function getLayout(page: typeof Picture) {
 //   return {
 //     props: initialState,
 //   };
-// };
+// }
 
 export default Picture;
