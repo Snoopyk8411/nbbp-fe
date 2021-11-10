@@ -2,7 +2,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 import { recipesAction } from './actions';
 import { IRecipeData } from './interfaces';
 
-import RECIPES_INIT_MOCK_DATA from '../cookbook-recipes-data-mock.json';
+import RECIPES_INIT_MOCK_DATA from 'store/cookbook-recipes-data-mock.json';
 
 export default function* recipesLoadInitDataWatcher() {
   yield takeEvery(recipesAction.loadInitData, recipesLoadInitDataFlow);

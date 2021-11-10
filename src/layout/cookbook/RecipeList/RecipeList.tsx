@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import * as React from 'react';
 import { IRecipe } from 'store/cookbookRecipes/interfaces';
 import { RootState } from 'store/reducers';
-import { RecipeCard } from '../RecipeCard';
+import { RecipeCard } from 'layout/cookbook/RecipeCard';
 
 import styles from './recipeList.module.css';
 import { getRecipes } from 'store/cookbookRecipes/selectors';

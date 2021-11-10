@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RootState } from '../reducers';
+import { RootState } from 'store/reducers';
 import { IProductsData } from './interfaces';
 import { IProductsStore } from './slice';
 

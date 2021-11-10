@@ -3,7 +3,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 import { IProductsData } from './interfaces';
 import { productsActions } from './actions';
 
-import PRODUCTS_INIT_MOCK_DATA from '../cookbook-products-data-mock.json';
+import PRODUCTS_INIT_MOCK_DATA from 'store/cookbook-products-data-mock.json';
 
 export default function* productsLoadInitDataWatcher(): Generator {
   yield takeEvery(productsActions.loadInitData, productsLoadInitDataFlow);

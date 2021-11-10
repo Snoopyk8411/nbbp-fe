@@ -7,10 +7,10 @@ import { IProduct } from 'store/cookbookProducts/interfaces';
 import { recipesAction } from 'store/cookbookRecipes/actions';
 import { IRecipe, IRecipeIngridient } from 'store/cookbookRecipes/interfaces';
 
-import { ProductsSelector } from '../ProductsSelector';
+import { ProductsSelector } from 'layout/cookbook/ProductsSelector';
 
 import styles from './recipeCreate.module.css';
-import { RecipeCard } from '../RecipeCard';
+import { RecipeCard } from 'layout/cookbook/RecipeCard';
 
 type Props = {
   addRecipe?: (recipe: IRecipe) => void;
