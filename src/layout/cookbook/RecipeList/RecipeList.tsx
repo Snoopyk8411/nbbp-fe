@@ -5,6 +5,7 @@ import { RootState } from 'store/reducers';
 import { RecipeCard } from '../RecipeCard';
 
 import styles from './recipeList.module.css';
+import { getRecipes } from 'store/cookbookRecipes/selectors';
 
 type Props = {
   recipes?: IRecipe[];
@@ -16,6 +17,6 @@ const RecipeList: React.FC<Props> = ({ recipes }) => (
   </div>
 );
 
-const mapStateToProps = (state: RootState) => ({ recipes: state.recipes.data });
+const mapStateToProps = (state: RootState) => ({ recipes: getRecipes(state) });
 
 export default connect(mapStateToProps, null)(RecipeList);
