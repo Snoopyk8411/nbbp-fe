@@ -1,4 +1,4 @@
-import RecipeCreate from './RecipeCreate/RecipeCreate';
+import { RecipeCreate } from './RecipeCreate';
 import { RecipeList } from './RecipeList';
 
 import styles from './index.module.css';
