@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Note Component Note snapshot 1`] = `
+<div>
+  <div
+    className="header"
+    data-test="headerComponent"
+  >
+    <button
+      className="header_title"
+      data-testid="HeaderTitle"
+      onClick={[Function]}
+    >
+      Go to the Picture
+    </button>
+  </div>
+  Component
+</div>
+`;

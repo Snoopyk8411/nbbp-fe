@@ -2,7 +2,7 @@ import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import styles from './create-note.module.css';
 
 type Props = {
-  addNote: (title: string) => void;
+  addNote: (note: string) => void;
 };
 
 const CreateNote: React.FC<Props> = ({ addNote }) => {
@@ -60,20 +60,5 @@ const CreateNote: React.FC<Props> = ({ addNote }) => {
     </div>
   );
 };
-
-{
-  /* <div class="container my-3">
-<h1>Welcome To Online Notes</h1>
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Add a note</h5>
-        <div class="form-group">
-            <textarea class="form-control" id="addTxt" rows="3" placeholder="Write some notes.."></textarea>
-        </div>
-        <button class="btn btn-primary" id="addBtn" onclick="relode()">Add Note</button>
-        <button class="btn btn-primary" id="ClearAll" onclick="ClearAll()">Clear All</button>
-    </div>
-</div> */
-}
 
 export default CreateNote;
