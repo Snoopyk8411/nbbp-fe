@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "tomatoes"
+  },
+  {
+    "id": 2,
+    "name": "potatoes"
+  },
+  {
+    "id": 3,
+    "name": "olive oil"
+  },
+  {
+    "id": 4,
+    "name": "shrimps"
+  },
+  {
+    "id": 5,
+    "name": "beef"
+  },
+  {
+    "id": 6,
+    "name": "salad leafs"
+  },
+  {
+    "id": 7,
+    "name": "spaghetti"
+  },
+  {
+    "id": 8,
+    "name": "soar creame"
+  },
+  {
+    "id": 9,
+    "name": "chicken fillet"
+  },
+  {
+    "id": 10,
+    "name": "oyster"
+  }
+]

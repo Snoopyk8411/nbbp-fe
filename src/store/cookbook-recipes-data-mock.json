@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "ingridients": [
+      {
+        "product": {
+          "id": 1,
+          "name": "tomato"
+        },
+        "amount": 10
+      }
+    ]
+  }
+]
