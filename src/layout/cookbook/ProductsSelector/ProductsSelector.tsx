@@ -44,6 +44,8 @@ export const ProductsSelector: React.FC<Props> = ({ products = [], loadProducts 
 
 const mapStateToProps = (state: RootState) => ({ products: getProducts(state) });
 
-const mapDispatchToProps = (dispatch: typeof store.dispatch) => ({ loadProducts: () => dispatch(productsActions.loadInitData([])) });
+const mapDispatchToProps = (dispatch: typeof store.dispatch) => ({
+  loadProducts: () => dispatch(productsActions.loadInitData([])),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsSelector);

@@ -26,7 +26,11 @@ const hasDifference = (
   return hasDiffInValues;
 };
 
-export const isObjectsEqual = (object1: any | null | undefined, object2?: any | null | undefined, comparementField?: string): boolean => {
+export const isObjectsEqual = (
+  object1: any | null | undefined,
+  object2?: any | null | undefined,
+  comparementField?: string,
+): boolean => {
   const isObject1Nullish = isNullish(object1);
   const isObject2Nullish = isNullish(object2);
   if (isObject1Nullish || isObject2Nullish) return object1 === object2;
@@ -40,7 +44,10 @@ export const isObjectsEqual = (object1: any | null | undefined, object2?: any | 
   const hasDiffLength = object1Length !== object2Length;
   const hasSameLength = !hasDiffLength;
 
-  if (hasDiffLength || (hasSameLength && hasDifference(object1, object2, object1Length, object2Length, comparementField))) {
+  if (
+    hasDiffLength ||
+    (hasSameLength && hasDifference(object1, object2, object1Length, object2Length, comparementField))
+  ) {
     return false;
   }
   return true;
