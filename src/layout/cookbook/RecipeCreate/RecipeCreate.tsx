@@ -19,6 +19,7 @@ type Props = {
 const RecipeCreate: React.FC<Props> = ({ addRecipe }) => {
   const [curIngridients, setCurIngridients] = React.useState<IRecipeIngridient[]>([]);
   const [curProduct, setCurProduct] = React.useState<IProduct>();
+  const [curName, setCurName] = React.useState('');
   const [curAmount, setCurAmount] = React.useState(0);
 
   const clear = React.useCallback(() => {
@@ -55,14 +56,15 @@ const RecipeCreate: React.FC<Props> = ({ addRecipe }) => {
       </div>
       <div>
         <h2>Your recipe</h2>
+        <input placeholder='enter name' value={curName} onChange={e => setCurName(e.target.value)} />
         <RecipeCard recipe={{ id: 0, ingridients: curIngridients }} />
         <button onClick={clear} disabled={!curIngridients.length}>
           Clear
         </button>
         <button
-          disabled={!curIngridients.length}
+          disabled={!(curIngridients.length && curName)}
           onClick={() => {
-            addRecipe?.({ id: 1, name: 'recipe', ingridients: curIngridients });
+            addRecipe?.({ id: 1, name: curName, ingridients: curIngridients });
             clear();
           }}
         >
