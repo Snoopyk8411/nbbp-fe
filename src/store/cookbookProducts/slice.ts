@@ -4,14 +4,12 @@ import { IProductsData } from './interfaces';
 export interface IProductsStore {
   error: Error | undefined;
   isLoading: boolean;
-  counter: number;
   data: IProductsData;
 }
 
 const initialState: IProductsStore = {
   error: undefined,
   isLoading: false,
-  counter: 0,
   data: [],
 };
 
@@ -33,18 +31,6 @@ export const productsSlice = createSlice({
 
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
-    },
-
-    setCounter: (state, action: PayloadAction<number>) => {
-      state.counter = action.payload;
-    },
-
-    setCounterIncrement: state => {
-      state.counter += 1;
-    },
-
-    setCounterDecrement: state => {
-      state.counter -= 1;
     },
 
     deleteError: state => {
