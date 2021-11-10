@@ -16,3 +16,11 @@
   gap: 2rem;
   flex-wrap: wrap;
 }
+
+.error {
+  color: black;
+  background-color: lightsalmon;
+  font-size: 20px;
+  text-align: center;
+  padding: 2rem;
+}

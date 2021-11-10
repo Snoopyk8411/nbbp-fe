@@ -16,7 +16,8 @@
   transition: transform 0.4s ease;
 }
 
-.card:hover .card:focus-within {
+.card:hover,
+.card:focus-within {
   transform: scale(1.05);
 }
 

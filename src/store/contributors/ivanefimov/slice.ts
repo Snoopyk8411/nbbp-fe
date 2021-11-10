@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { IPhoto } from 'layout/contributors/ivanefimov/interfaces';
 
 export interface IGalleryPageData {
-  error: Error | undefined;
+  error: Error | null;
   isLoading: boolean;
   photos: IPhoto[];
   page: number;
@@ -10,10 +11,10 @@ export interface IGalleryPageData {
 }
 
 const initialState: IGalleryPageData = {
-  error: undefined,
+  error: null,
   isLoading: false,
   photos: [],
-  page: 1,
+  page: 2,
   hasMore: true,
 };
 

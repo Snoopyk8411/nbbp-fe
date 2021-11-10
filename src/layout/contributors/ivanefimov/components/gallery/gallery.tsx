@@ -3,16 +3,22 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import useVisibility from 'hooks/use-visibility';
 import { actions } from 'store/contributors/ivanefimov/slice';
-import { isLoadingSelector, photosSelector } from 'store/contributors/ivanefimov/selectors';
+import { selectError, selectIsLoading, selectPhotos } from 'store/contributors/ivanefimov/selectors';
 import { Card } from '../card/card';
 import { Loader } from '../loader/loader';
+import { IPhoto } from '../../interfaces';
 import styles from './gallery.module.css';
 
-const Gallery = () => {
+type Props = {
+  initialPhotos: IPhoto[];
+};
+
+const Gallery = ({ initialPhotos }: Props) => {
   const [isVisible, endRef] = useVisibility<HTMLDivElement>();
   const dispatch = useDispatch();
-  const photos = useSelector(photosSelector);
-  const isLoading = useSelector(isLoadingSelector);
+  const photos = useSelector(selectPhotos);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     if (!isLoading && (isVisible || !photos.length)) {
@@ -24,8 +30,9 @@ const Gallery = () => {
     <>
       <div className={styles.container}>
         <h1 className={styles.heading}>Lorem Picsum Gallery</h1>
+        {error && <p className={styles.error}>{error.message}</p>}
         <div className={styles.cards}>
-          {photos.map(photo => (
+          {[...initialPhotos, ...photos].map(photo => (
             <Card key={photo.id} photo={photo} />
           ))}
           {isLoading && <Loader />}

@@ -1,16 +1,21 @@
-import { IPhoto } from 'layout/contributors/ivanefimov/interfaces';
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, SagaReturnType, select, takeEvery } from 'redux-saga/effects';
+
 import { galleryPageActions } from './actions';
 import { apiLoadPhotos } from './api-load-photos';
+import { selectPage } from './selectors';
 
-export default function* ieLoadPhotosPageWatcher(): Generator {
-  yield takeEvery(galleryPageActions.fetchPage, ieLoadPhotosPageFlow);
+export default function* gpLoadPhotosPageWatcher(): Generator {
+  yield takeEvery(galleryPageActions.fetchPage, gpLoadPhotosPageFlow);
 }
 
-function* ieLoadPhotosPageFlow() {
+type PhotosSagaReturn = SagaReturnType<typeof apiLoadPhotos>;
+type PageSelectorReturn = SagaReturnType<typeof selectPage>;
+
+function* gpLoadPhotosPageFlow() {
   try {
     yield put(galleryPageActions.setIsLoading(true));
-    const photos = (yield call(apiLoadPhotos)) as IPhoto[];
+    const page: PageSelectorReturn = yield select(selectPage);
+    const photos: PhotosSagaReturn = yield call(apiLoadPhotos, page);
     if (photos.length) {
       yield put(galleryPageActions.setNextPage());
       yield put(galleryPageActions.addPage(photos));
