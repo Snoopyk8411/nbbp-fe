@@ -6,7 +6,7 @@ export interface IRecipeIngridient {
 }
 
 export interface IRecipe {
-  id: number;
+  id?: number;
   name?: string;
   ingridients: IRecipeIngridient[];
 }

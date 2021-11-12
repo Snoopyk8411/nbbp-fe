@@ -64,7 +64,7 @@ const RecipeCreate: React.FC<Props> = ({ addRecipe }) => {
         <button
           disabled={!(curIngridients.length && curName)}
           onClick={() => {
-            addRecipe?.({ id: 1, name: curName, ingridients: curIngridients });
+            addRecipe?.({ name: curName, ingridients: curIngridients });
             clear();
           }}
         >

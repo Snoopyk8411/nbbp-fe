@@ -3,12 +3,14 @@ import { IRecipe, IRecipeData } from './interfaces';
 
 export interface IRecipesStore {
   error?: Error;
+  counter: number;
   loading: boolean;
   data: IRecipeData;
 }
 
 const initialState: IRecipesStore = {
   loading: false,
+  counter: 0,
   data: [],
 };
 
@@ -25,7 +27,7 @@ export const recipesSlice = createSlice({
     },
 
     addRecipe: (state, action: PayloadAction<IRecipe>) => {
-      state.data.push(action.payload);
+      state.data.push({ ...action.payload, id: (state.counter += 1) });
     },
   },
 });
