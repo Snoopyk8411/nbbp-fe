@@ -5,7 +5,11 @@ import { IPhoto } from '../../interfaces';
 import { getUrlById } from '../../helpers';
 import styles from './card.module.css';
 
-export const Card = ({ photo }: { photo: IPhoto }) => {
+interface ICardProps {
+  photo: IPhoto;
+}
+
+export const Card = ({ photo }: ICardProps): JSX.Element => {
   const router = useRouter();
   return (
     <div className={styles.card} style={{ backgroundImage: getUrlById(photo.id) }}>

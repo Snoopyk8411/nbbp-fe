@@ -4,18 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import useVisibility from 'hooks/use-visibility';
 import { actions } from 'store/contributors/ivanefimov/slice';
 import { selectError, selectIsLoading, selectPhotos } from 'store/contributors/ivanefimov/selectors';
-import { Card } from '../card/card';
-import { Loader } from '../loader/loader';
-import { IPhoto } from '../../interfaces';
+import { Card } from './components/card/card';
+import { Loader } from './components/loader/loader';
+import { IPhoto } from './interfaces';
 import styles from './gallery.module.css';
 
-type Props = {
+interface IGalleryProps {
   initialPhotos: IPhoto[];
-};
+}
 
-const Gallery = ({ initialPhotos }: Props) => {
+const Gallery = ({ initialPhotos }: IGalleryProps): JSX.Element => {
   const [isVisible, endRef] = useVisibility<HTMLDivElement>();
+
   const dispatch = useDispatch();
+
   const photos = useSelector(selectPhotos);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);

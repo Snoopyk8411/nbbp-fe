@@ -1,16 +1,17 @@
 .card {
   --clr-neutral-900: hsl(207, 19%, 9%);
+  --clr-neutral-200: hsl(0, 0%, 85%);
   --clr-neutral-100: hsl(0, 0%, 100%);
   --clr-accent-400: hsl(142, 90%, 61%);
 
-  background-color: #fff;
+  background-color: var(--clr-neutral-100);
   color: var(--clr-neutral-100);
   font-family: Tahoma, sans-serif;
   background-size: cover;
-  padding: 10rem 0 0;
+  padding: 160px 0 0;
   width: 240px;
   height: 360px;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   overflow: hidden;
 
   transition: transform 0.4s ease;
@@ -22,10 +23,48 @@
 }
 
 .content {
-  --padding: 1rem;
+  --padding: 16px;
   padding: var(--padding);
-  padding-bottom: 1.5rem;
+  padding-bottom: 24px;
   background: linear-gradient(hsl(0 0% 0% / 0), hsl(20 0% 0% / 0.3) 20%, hsl(0 0% 0% / 1));
+}
+
+.heading {
+  position: relative;
+  width: max-content;
+}
+
+.heading::after {
+  content: '';
+  position: absolute;
+  height: 4px;
+  background-color: var(--clr-accent-400);
+  left: calc(var(--padding) * -1);
+  bottom: -4px;
+  width: calc(100% + var(--padding));
+
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.description {
+  color: var(--clr-neutral-200);
+}
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  text-transform: capitalize;
+  font-weight: 700;
+  color: var(--clr-neutral-900);
+  background-color: var(--clr-accent-400);
+  padding: 10px 25px;
+  border-radius: 5px;
+}
+
+.button:active {
+  transform: scale(0.95);
 }
 
 @media (hover) {
@@ -54,51 +93,17 @@
     transition-delay: 0.65s;
   }
 
+  .card:hover .heading::after,
+  .card:focus-within .heading::after {
+    transform: scaleX(1);
+  }
+
   .heading::after {
     transform: scaleX(0);
   }
-}
 
-.heading {
-  position: relative;
-  width: max-content;
-}
-
-.heading::after {
-  content: '';
-  position: absolute;
-  height: 4px;
-  background-color: var(--clr-accent-400);
-  left: calc(var(--padding) * -1);
-  bottom: -4px;
-  width: calc(100% + var(--padding));
-
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.card:hover .heading::after,
-.card:focus-within .heading::after {
-  transform: scaleX(1);
-}
-
-.description {
-  color: rgb(255 255 225 0.85);
-}
-
-.button {
-  cursor: pointer;
-  display: inline-block;
-  text-decoration: none;
-  text-transform: capitalize;
-  font-weight: 700;
-  color: var(--clr-neutral-900);
-  background-color: var(--clr-accent-400);
-  padding: 0.5em 1.25em;
-  border-radius: 0.25em;
-}
-
-.button:hover,
-.button.focus {
-  background-color: var(--clr-neutral-100);
+  .button:hover,
+  .button.focus {
+    background-color: var(--clr-neutral-100);
+  }
 }

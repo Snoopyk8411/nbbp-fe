@@ -1,19 +1,19 @@
-import Gallery from 'layout/contributors/ivanefimov/components/gallery/gallery';
+import Gallery from 'layout/contributors/ivanefimov/gallery';
 import { IPhoto } from 'layout/contributors/ivanefimov/interfaces';
-import { apiLoadPhotos } from 'store/contributors/ivanefimov/api-load-photos';
+import { apiGetPhotos } from 'store/contributors/ivanefimov/api-get-photos';
 
-type Props = {
+interface IIndexPageProps {
   initialPhotos: IPhoto[];
-};
+}
 
-const Index = ({ initialPhotos }: Props) => {
+const IndexPage = ({ initialPhotos }: IIndexPageProps): JSX.Element => {
   return <Gallery initialPhotos={initialPhotos} />;
 };
 
-export default Index;
+export default IndexPage;
 
 export const getServerSideProps = async () => {
-  const initialPhotos = await apiLoadPhotos();
+  const initialPhotos = await apiGetPhotos();
   return {
     props: { initialPhotos },
   };

@@ -1,21 +1,21 @@
 import { call, put, SagaReturnType, select, takeEvery } from 'redux-saga/effects';
 
 import { galleryPageActions } from './actions';
-import { apiLoadPhotos } from './api-load-photos';
+import { apiGetPhotos } from './api-get-photos';
 import { selectPage } from './selectors';
 
-export default function* gpLoadPhotosPageWatcher(): Generator {
-  yield takeEvery(galleryPageActions.fetchPage, gpLoadPhotosPageFlow);
+export default function* gpFetchPageWatcher(): Generator {
+  yield takeEvery(galleryPageActions.fetchPage, gpFetchPageFlow);
 }
 
-type PhotosSagaReturn = SagaReturnType<typeof apiLoadPhotos>;
+type PhotosSagaReturn = SagaReturnType<typeof apiGetPhotos>;
 type PageSelectorReturn = SagaReturnType<typeof selectPage>;
 
-function* gpLoadPhotosPageFlow() {
+function* gpFetchPageFlow() {
   try {
     yield put(galleryPageActions.setIsLoading(true));
     const page: PageSelectorReturn = yield select(selectPage);
-    const photos: PhotosSagaReturn = yield call(apiLoadPhotos, page);
+    const photos: PhotosSagaReturn = yield call(apiGetPhotos, page);
     if (photos.length) {
       yield put(galleryPageActions.setNextPage());
       yield put(galleryPageActions.addPage(photos));

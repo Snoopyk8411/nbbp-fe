@@ -27,7 +27,7 @@ export const galleryPageSlice = createSlice({
     },
 
     addPage: (state, action: PayloadAction<IPhoto[]>) => {
-      state.photos = [...state.photos, ...action.payload];
+      state.photos.push(...action.payload);
     },
 
     setNextPage: (state, _action: PayloadAction<void>) => {

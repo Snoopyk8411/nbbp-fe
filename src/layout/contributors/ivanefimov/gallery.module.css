@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 2rem;
+  gap: 30px;
   flex-wrap: wrap;
 }
 
@@ -22,5 +22,5 @@
   background-color: lightsalmon;
   font-size: 20px;
   text-align: center;
-  padding: 2rem;
+  padding: 30px;
 }

@@ -1,10 +1,10 @@
-.ring {
+.loader {
   --clr-accent-400: hsl(142, 90%, 61%);
   display: inline-block;
   width: 80px;
   height: 80px;
 }
-.ring:after {
+.loader:after {
   content: ' ';
   display: block;
   width: 64px;
@@ -13,9 +13,9 @@
   border-radius: 50%;
   border: 6px solid var(--clr-accent-400);
   border-color: var(--clr-accent-400) transparent var(--clr-accent-400) transparent;
-  animation: ring 1.2s linear infinite;
+  animation: loader 1.2s linear infinite;
 }
-@keyframes ring {
+@keyframes loader {
   0% {
     transform: rotate(0deg);
   }
