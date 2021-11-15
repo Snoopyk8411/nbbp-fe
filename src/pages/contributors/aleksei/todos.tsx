@@ -2,15 +2,12 @@ import Todo from 'components/aleksei/todo/todo';
 import { NextPage } from 'next';
 import AddTodo from 'components/aleksei/add-todo/add-todo';
 import { useSelector } from 'react-redux';
-import { todosSelector } from 'store/aleksei/todos/selectors';
-import { useMemo } from 'react';
+import { selectDoneTodos, selectRemainingTodos } from 'store/aleksei/todos/selectors';
 import todoListPageStyles from './todos.module.css';
 
 const TodoListPage: NextPage = () => {
-  const todos = useSelector(todosSelector);
-
-  const remainingTodos = useMemo(() => todos.filter(todo => !todo.isDone), [todos]);
-  const doneTodos = useMemo(() => todos.filter(todo => todo.isDone), [todos]);
+  const remainingTodos = useSelector(selectRemainingTodos);
+  const doneTodos = useSelector(selectDoneTodos);
 
   return (
     <div className={todoListPageStyles.container}>
