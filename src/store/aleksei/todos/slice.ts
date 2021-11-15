@@ -7,20 +7,17 @@ export interface ITodosPageState {
 }
 
 const initialState: ITodosPageState = {
-  todos: {
-    1: {
-      id: 1,
-      name: 'Get a coffee',
-      description: 'Order cappuccino for friends',
-      isDone: false,
-    },
-  },
+  todos: {},
 };
 
 export const todosPageSlice = createSlice({
   name: 'todosPage',
   initialState: initialState,
   reducers: {
+    loadTodos: (state, action: PayloadAction<ITodo[]>) => {
+      const todos = action.payload;
+      todos.forEach(todo => (state.todos[todo.id] = todo));
+    },
     addTodo: (state, action: PayloadAction<ITodo>) => {
       const todosIds = Object.keys(state.todos);
       const nextId = getNextId(todosIds);

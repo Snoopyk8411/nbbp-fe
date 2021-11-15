@@ -1,13 +1,26 @@
 import Todo from 'components/aleksei/todo/todo';
 import { NextPage } from 'next';
 import AddTodo from 'components/aleksei/add-todo/add-todo';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectDoneTodos, selectRemainingTodos } from 'store/aleksei/todos/selectors';
 import todoListPageStyles from './todos.module.css';
+import { mockTodos } from 'mock-data/aleksei/todos';
+import { ITodo } from 'tools/types/aleksei/models';
+import { useEffect } from 'react';
+import { todosActions } from 'store/aleksei/todos/actions';
 
-const TodoListPage: NextPage = () => {
+interface ITodoListPageProps {
+  todos: ITodo[];
+}
+
+const TodoListPage: NextPage<ITodoListPageProps> = ({ todos }: ITodoListPageProps) => {
   const remainingTodos = useSelector(selectRemainingTodos);
   const doneTodos = useSelector(selectDoneTodos);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(todosActions.loadTodos(todos));
+  }, [todos]);
 
   return (
     <div className={todoListPageStyles.container}>
@@ -42,5 +55,9 @@ const TodoListPage: NextPage = () => {
     </div>
   );
 };
+
+export const getStaticProps = async () => ({
+  props: { todos: mockTodos },
+});
 
 export default TodoListPage;
