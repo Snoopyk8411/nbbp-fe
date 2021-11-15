@@ -1,13 +1,13 @@
-.addTodo {
+.container {
     border: 1px solid gray;
-    border-radius: 8px;
-    padding: 16px;
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
-.addTodoForm {
+.form {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.25rem;
 }
 
 .header {
