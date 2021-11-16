@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import store from 'store';
 import { productsActions } from 'store/cookbookProducts/actions';
 import { IProduct, IProductsData } from 'store/cookbookProducts/interfaces';
-import { getProducts } from 'store/cookbookProducts/selectors';
+import { getProducts, getIsLoading } from 'store/cookbookProducts/selectors';
 import { RootState } from 'store/reducers';
 
 import styles from './productsSelector.module.css';
@@ -36,13 +36,16 @@ export const ProductsSelector: React.FC<Props> = ({ products = [], loadProducts 
           ))}
         </select>
       ) : (
-        <div>loading...</div>
+        <div>no products available</div>
       )}
     </div>
   );
 };
 
-const mapStateToProps = (state: RootState) => ({ products: getProducts(state) });
+const mapStateToProps = (state: RootState) => ({
+  products: getProducts(state),
+  isLoading: getIsLoading(state),
+});
 
 const mapDispatchToProps = (dispatch: typeof store.dispatch) => ({
   loadProducts: () => dispatch(productsActions.loadInitData([])),

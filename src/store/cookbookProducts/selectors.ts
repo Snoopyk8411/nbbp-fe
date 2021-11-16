@@ -6,3 +6,5 @@ import { IProductsStore } from './slice';
 const getProductsStore = (state: RootState) => state.products;
 
 export const getProducts = createSelector(getProductsStore, (products: IProductsStore): IProductsData => products.data);
+
+export const getIsLoading = createSelector(getProductsStore, (products: IProductsStore): boolean => products.isLoading);
