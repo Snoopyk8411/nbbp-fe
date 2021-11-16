@@ -1,4 +1,3 @@
-import Todo from 'components/aleksei/todo/todo';
 import { NextPage } from 'next';
 import AddTodo from 'components/aleksei/add-todo/add-todo';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +7,7 @@ import { mockTodos } from 'mock-data/aleksei/todos';
 import { ITodo } from 'tools/types/aleksei/models';
 import { useEffect } from 'react';
 import { todosActions } from 'store/aleksei/todos/actions';
+import ToDoList from 'components/aleksei/todo-list/todo-list';
 
 interface ITodoListPageProps {
   todos: ITodo[];
@@ -27,30 +27,8 @@ const TodoListPage: NextPage<ITodoListPageProps> = ({ todos }: ITodoListPageProp
       <AddTodo />
       <h2>Todos</h2>
       <main>
-        <h3>Remaining:</h3>
-        {remainingTodos.length > 0 ? (
-          <ul className={todoListPageStyles.todo_list}>
-            {remainingTodos.map(todo => (
-              <li key={todo.id}>
-                <Todo {...todo}></Todo>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div>Nothing is remaining</div>
-        )}
-        <h3>Done:</h3>
-        {doneTodos.length > 0 ? (
-          <ul className={todoListPageStyles.todoList}>
-            {doneTodos.map(todo => (
-              <li key={todo.id}>
-                <Todo {...todo}></Todo>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <div>Nothing is done yet</div>
-        )}
+        <ToDoList title={'Remaining'} list={remainingTodos} emptyListTitle={'Nothing is remaining'} />
+        <ToDoList title={'Done'} list={doneTodos} emptyListTitle={'Nothing is done yet'} />
       </main>
     </div>
   );
