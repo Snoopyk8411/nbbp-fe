@@ -48,4 +48,4 @@ export const galleryPageSlice = createSlice({
   },
 });
 
-export const { actions } = galleryPageSlice;
+export const { fetchPage, addPage, setNextPage, setHasMore, setError, setIsLoading } = galleryPageSlice.actions;

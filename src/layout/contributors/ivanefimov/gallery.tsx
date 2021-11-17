@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useVisibility from 'hooks/use-visibility';
-import { actions } from 'store/contributors/ivanefimov/slice';
+import { fetchPage } from 'store/contributors/ivanefimov/slice';
 import { selectError, selectHasMore, selectIsLoading, selectPhotos } from 'store/contributors/ivanefimov/selectors';
 import { TITLE } from 'store/contributors/ivanefimov/constants';
 import { Card } from './components/card/card';
@@ -27,7 +27,7 @@ const Gallery = ({ initialPhotos }: IGalleryProps): JSX.Element => {
 
   useEffect(() => {
     if (!isLoading && hasMore && isEndOfPage) {
-      dispatch(actions.fetchPage());
+      dispatch(fetchPage());
     }
   }, [isEndOfPage]);
 
