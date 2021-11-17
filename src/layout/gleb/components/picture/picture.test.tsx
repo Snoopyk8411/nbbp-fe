@@ -1,3 +1,4 @@
+import type { GetStaticProps, NextPage } from 'next';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import createSagaMiddleware from 'redux-saga';

@@ -2,7 +2,7 @@ import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 import Error from 'layout/gleb/components/error/Error';
 import { MAX_TITLE_LENGTH, MIN_TITLE_LENGTH, TEXTAREA_ROWS, PLACEHOLDER, ADD_NOTE_BTN_TEXT } from './constants';
-import { ENTER_BUTTON, EMPTY_STRING } from '../../../../constants';
+import { ENTER_BUTTON, EMPTY_STRING } from 'constants/constants';
 
 import styles from './create-note.module.css';
 

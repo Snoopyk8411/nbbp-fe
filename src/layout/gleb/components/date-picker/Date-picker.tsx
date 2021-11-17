@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, createRef, RefObject } from 'react';
+import { useState, useEffect, useRef, createRef, RefObject } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'hooks/use-app-selector';
 import { setData } from 'store/gleb/slice';
@@ -12,16 +12,16 @@ type DateProps = {
   onChange: (e: string) => void;
 };
 
-export function DatePicker<T extends HTMLElement>(props: DateProps) {
+export function DatePicker(props: DateProps) {
   const dispatch = useDispatch();
   const date = useAppSelector(selectNewDateFromDatePicker);
 
-  const el: any = useRef<T>(null);
+  const el = useRef<HTMLInputElement>(null);
   const inputRef: RefObject<HTMLInputElement> = createRef();
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   const addBackDrop = (e: MouseEvent) => {
-    if (showDatePicker && el && !el.current.contains(e.target)) {
+    if (showDatePicker && el && !(el as any).current.contains(e.target)) {
       setShowDatePicker(false);
     }
   };

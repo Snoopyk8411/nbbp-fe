@@ -11,9 +11,7 @@ const Layout = ({ children }: { children: ReactNode | NextPage }) => {
 
   const isNotesRoute: boolean = router.pathname === NOTES_ROUTE;
 
-  const handleClickNavigation = () => {
-    isNotesRoute ? router.push(MAIN_ROUTE) : router.push(NOTES_ROUTE);
-  };
+  const handleClickNavigation = () => (isNotesRoute ? router.push(MAIN_ROUTE) : router.push(NOTES_ROUTE));
 
   return (
     <div>

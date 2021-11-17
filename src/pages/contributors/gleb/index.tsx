@@ -1,15 +1,16 @@
 import type { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { getPicture } from 'store/gleb/slice';
 import { useAppSelector } from 'hooks/use-app-selector';
-import { pictureSelector } from 'store/gleb/selectors';
+
 import imageLoader from 'layout/gleb/components/picture/imageLoader';
 import Layout from 'layout/gleb/components/layout/Layout';
+import { getPicture } from 'store/gleb/slice';
+import { pictureSelector } from 'store/gleb/selectors';
 import { DatePicker } from 'layout/gleb/components/date-picker/Date-picker';
 import { IPicture } from 'store/gleb/interfaces';
-import { VIDEO, PICTURE_PAGE_TITLE } from 'layout/gleb/components/picture/constants';
+import { VIDEO, PICTURE_PAGE_TITLE, API_URL } from 'layout/gleb/components/picture/constants';
 
 import styles from 'layout/gleb/components/picture/picture.module.css';
 
@@ -17,7 +18,11 @@ type PicturePageProps = {
   todayPicture: IPicture;
 };
 
-const PicturePage: NextPage<PicturePageProps> = ({ todayPicture }) => {
+type IPicturePageType = NextPage<PicturePageProps> & {
+  getLayout: (page: NextPage) => JSX.Element;
+};
+
+const PicturePage: IPicturePageType = ({ todayPicture }) => {
   const dispatch = useDispatch();
 
   const pictureFromStore = useAppSelector(pictureSelector);
@@ -61,12 +66,10 @@ const PicturePage: NextPage<PicturePageProps> = ({ todayPicture }) => {
   );
 };
 
-(PicturePage as any).getLayout = function getLayout(page: typeof PicturePage) {
-  return <Layout>{page}</Layout>;
-};
+PicturePage.getLayout = (page: NextPage) => <Layout>{page}</Layout>;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=musopXnASrDXLrAcjqs4aSU3Fd9pXF9nYnFsCh5a`);
+  const res = await fetch(API_URL);
   const todayPicture = await res.json();
 
   return {

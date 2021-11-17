@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, ReactNode } from 'react';
 
 import CreateNote from 'layout/gleb/components/create-note/Create-note';
 import Note from 'layout/gleb/components/note/Note';
@@ -6,7 +6,11 @@ import Layout from 'layout/gleb/components/layout/Layout';
 
 import styles from './note-list.module.css';
 
-const NoteList = () => {
+type INoteListType = ReactNode & {
+  getLayout: (page: ReactNode) => JSX.Element;
+};
+
+const NoteList: INoteListType = () => {
   const [noteList, setNoteList] = useState<string[]>([]);
 
   const addNote = (note: string) => {
@@ -28,8 +32,6 @@ const NoteList = () => {
   );
 };
 
-NoteList.getLayout = function getLayout(page: typeof NoteList) {
-  return <Layout>{page}</Layout>;
-};
+NoteList.getLayout = (page: ReactNode) => <Layout>{page}</Layout>;
 
 export default NoteList;
