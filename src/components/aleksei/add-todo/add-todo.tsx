@@ -14,10 +14,8 @@ const AddTodo: React.FC = () => {
   const addTodo = () =>
     dispatch(
       todosActions.addTodo({
-        id: 0,
-        name: name,
-        description: description,
-        isDone: false,
+        name,
+        description,
       }),
     );
 

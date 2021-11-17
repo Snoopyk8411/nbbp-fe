@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { todosActions } from 'store/aleksei/todos/actions';
-import * as models from 'tools/types/aleksei/models';
+import { models } from 'tools/types/aleksei/index';
 import todoStyles from './todo.module.css';
 
 type ITodoProps = models.ITodo;
@@ -9,8 +9,8 @@ const Todo: React.FC<models.ITodo> = (todo: ITodoProps) => {
   const { name, description, isDone } = todo;
   const dispatch = useDispatch();
 
-  const handleDoneClick = () => dispatch(todosActions.markDone(todo));
-  const handleDeleteClick = () => dispatch(todosActions.removeTodo(todo));
+  const handleDoneClick = () => todo.id && dispatch(todosActions.markDone({ id: todo.id }));
+  const handleDeleteClick = () => todo.id && dispatch(todosActions.removeTodo({ id: todo.id }));
 
   return (
     <article className={todoStyles.container}>

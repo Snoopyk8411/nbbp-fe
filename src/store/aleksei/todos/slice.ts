@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getNextId } from 'tools/aleksei/getNextId';
-import { ITodo } from 'tools/types/aleksei/models';
+import { ITodo, Todo } from 'tools/types/aleksei/models';
 
 export interface ITodosPageState {
   todos: { [id: number]: ITodo };
@@ -16,19 +16,23 @@ export const todosPageSlice = createSlice({
   reducers: {
     loadTodos: (state, action: PayloadAction<ITodo[]>) => {
       const todos = action.payload;
-      todos.forEach(todo => (state.todos[todo.id] = todo));
+      todos.forEach(todo => todo.id && (state.todos[todo.id] = todo));
     },
-    addTodo: (state, action: PayloadAction<ITodo>) => {
+    addTodo: (state, action: PayloadAction<{ name: string; description: string }>) => {
+      const { name, description } = action.payload;
       const todosIds = Object.keys(state.todos);
       const nextId = getNextId(todosIds);
-      const todo = { ...action.payload, id: nextId };
+      const todo = new Todo(name, description);
+      todo.id = nextId;
       state.todos[nextId] = todo;
     },
-    removeTodo: (state, action: PayloadAction<ITodo | { id: number }>) => {
-      delete state.todos[action.payload.id];
+    removeTodo: (state, action: PayloadAction<{ id: number }>) => {
+      const id = action.payload.id;
+      id && delete state.todos[id];
     },
-    markDone: (state, action: PayloadAction<ITodo | { id: number }>) => {
-      const todo = state.todos[action.payload.id];
+    markDone: (state, action: PayloadAction<{ id: number }>) => {
+      const id = action.payload.id;
+      const todo = id && state.todos[id];
       todo && (todo.isDone = true);
     },
   },
