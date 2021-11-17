@@ -3,6 +3,10 @@ const jestConfig = {
     '**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
     '!**/node_modules/**',
+    '!**/.next/**',
+    '!**/coverage/**',
+    '!**/public/**',
+    '!**/.**'
   ],
   moduleNameMapper: {
     /* Handle CSS imports (with CSS modules)
@@ -33,7 +37,7 @@ const jestConfig = {
     '^.+\\.module\\.(css|sass|scss)$',
   ],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  moduleDirectories: ["node_modules", "src"]
+  moduleDirectories: ["node_modules", "src"] // node_modules is default option
 };
 
 export default jestConfig;

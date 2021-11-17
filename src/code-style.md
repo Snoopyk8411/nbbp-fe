@@ -18,6 +18,7 @@ React.js - is used for a view (preferable to use functional components here)
 Redux - is used for a model (store)
 Redux Slice is used for reduce boilerplate with reducers and actions. See detailes guide here:
 https://redux-toolkit.js.org/api/createSlice
+Please, use useAppSelector hook from hooks/use-app-selector instead of useSelector as it correctly typed utility.
 
 Redux Saga is used for the async actions implemetation
 Axios is in use for the fetching data from the server (please, use services/common/axious-request instance to make requests)

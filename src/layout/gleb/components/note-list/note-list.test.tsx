@@ -2,14 +2,14 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import NoteList from 'layout/gleb/components/note-list/Note-list';
+import { IMockStore } from 'layout/gleb/components/interfaces';
 
-let mockStore: any;
+let mockStore: IMockStore;
 const mockStoreConf = configureStore();
 
 const mockData = {};
 
 describe('NoteList Component', () => {
-  let props: { note: string };
   beforeEach(() => {
     mockStore = mockStoreConf(mockData);
   });

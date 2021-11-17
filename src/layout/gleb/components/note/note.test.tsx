@@ -2,8 +2,9 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import Note from 'layout/gleb/components/note/Note';
+import { IMockStore } from 'layout/gleb/components/interfaces';
 
-let mockStore: any;
+let mockStore: IMockStore;
 const mockStoreConf = configureStore();
 const mockData = {};
 

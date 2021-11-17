@@ -14,3 +14,10 @@ a {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --background-gray: rgb(229, 231, 235);
+  --background-blue:rgb(40, 171, 214);
+  --background-lightblue:rgb(108, 188, 214);
+  --border-gray: rgb(209, 213, 219);
+}

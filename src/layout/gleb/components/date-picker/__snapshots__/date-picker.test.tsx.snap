@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePicker Component DatePicker snapshot 1`] = `
+<div
+  className="MyDatePicker"
+>
+  <div
+    className="mdp_input"
+    onClick={[Function]}
+  >
+    <input
+      data-testid="inputRef"
+      onChange={[Function]}
+      type="date"
+    />
+  </div>
+</div>
+`;

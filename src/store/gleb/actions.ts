@@ -1,3 +1,3 @@
 import { pictureSlice } from './slice';
 
-export const pictureActions = { ...pictureSlice.actions };
+export const picturePageActions = { ...pictureSlice.actions };

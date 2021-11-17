@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Note Component Note snapshot 1`] = `
+exports[`Layout Component Layout snapshot 1`] = `
 <div>
   <div
     className="header"
@@ -8,10 +8,10 @@ exports[`Note Component Note snapshot 1`] = `
   >
     <button
       className="header_title"
-      data-testid="HeaderTitle"
+      data-testid="NavigationButton"
       onClick={[Function]}
     >
-      Go to the Picture
+      Go to Notes
     </button>
   </div>
   Component

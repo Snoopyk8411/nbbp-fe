@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { IPicture } from './interfaces';
 
-export function requestGetPicture(): Promise<IPicture> {
+const apiKey = process.env.apiKey;
+
+export function requestGetPicture(newDate: string) {
   return axios
-    .request<IPicture>({
-      method: 'get',
-      url: 'https://api.nasa.gov/planetary/apod?api_key=musopXnASrDXLrAcjqs4aSU3Fd9pXF9nYnFsCh5a',
+    .request({
+      method: 'GET',
+      url: `https://api.nasa.gov/planetary/apod?date=${newDate}&api_key=${apiKey}`,
     })
     .then(res => res.data);
 }

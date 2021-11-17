@@ -1,10 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Picture Component Picture snapshot 1`] = `
+exports[`PicturePage Component PicturePage snapshot 1`] = `
 <div>
   <div
-    className="main"
+    className="content"
   >
+    <div
+      className="MyDatePicker"
+    >
+      <div
+        className="mdp_input"
+        onClick={[Function]}
+      >
+        <input
+          data-testid="inputRef"
+          onChange={[Function]}
+          type="date"
+        />
+      </div>
+    </div>
     <h1
       data-testid="title"
     >
@@ -50,7 +64,7 @@ exports[`Picture Component Picture snapshot 1`] = `
         <img
           alt=""
           aria-hidden={true}
-          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
+          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4="
           style={
             Object {
               "background": "none",
@@ -131,7 +145,9 @@ exports[`Picture Component Picture snapshot 1`] = `
     >
       The Cat's Eye Nebula in Optical and X-ray
     </div>
-    <div>
+    <div
+      className="explanation"
+    >
       To some it looks like a cat's eye.
     </div>
   </div>

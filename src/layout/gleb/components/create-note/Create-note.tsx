@@ -1,31 +1,40 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+
+import Error from 'layout/gleb/components/error/Error';
+import { MAX_TITLE_LENGTH, MIN_TITLE_LENGTH, TEXTAREA_ROWS, PLACEHOLDER, ADD_NOTE_BTN_TEXT } from './constants';
+import { ENTER_BUTTON, EMPTY_STRING } from '../../../../constants';
+
 import styles from './create-note.module.css';
 
-type Props = {
+type CreateNoteProps = {
   addNote: (note: string) => void;
 };
 
-const CreateNote: React.FC<Props> = ({ addNote }) => {
-  const [title, setTitle] = useState('');
-  const [error, setError] = useState(false);
+const CreateNote: React.FC<CreateNoteProps> = ({ addNote }) => {
+  const [title, setTitle] = useState(EMPTY_STRING);
+  const [isError, setIsError] = useState(false);
 
-  const onChangeNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangeNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
-    setError(false);
+    setIsError(false);
   };
 
-  const onClickaddNote = () => {
-    if (title.length <= 20 && title.length >= 3) {
+  const titleLength = title.length;
+  const isTitleLengthValid = titleLength <= MAX_TITLE_LENGTH && titleLength >= MIN_TITLE_LENGTH;
+
+  const handleClickAddNote = () => {
+    if (isTitleLengthValid) {
       addNote(title);
-      setError(false);
+      setIsError(false);
+      setTitle(EMPTY_STRING);
     } else {
-      setError(true);
+      setIsError(true);
     }
   };
 
   const handleKeypress = (e: KeyboardEvent): void => {
-    if (e.key === 'Enter') {
-      onClickaddNote();
+    if (e.key === ENTER_BUTTON) {
+      handleClickAddNote();
     }
   };
 
@@ -33,30 +42,26 @@ const CreateNote: React.FC<Props> = ({ addNote }) => {
     <div className={styles.create_note}>
       <div className={styles.create_note_form}>
         <textarea
-          rows={3}
+          rows={TEXTAREA_ROWS}
           value={title}
-          onChange={onChangeNote}
-          placeholder='Write new note'
+          onChange={handleChangeNote}
+          placeholder={PLACEHOLDER}
           onKeyPress={handleKeypress}
           className={styles.input}
+          data-testid='AddNoteInputField'
         />
-        {error ? (
-          <button type='button' onClick={onClickaddNote} className={styles.addNoteButton__disabled} disabled>
-            add
-          </button>
-        ) : (
-          <button type='button' onClick={onClickaddNote} className={styles.addNoteButton}>
-            add
-          </button>
-        )}
+
+        <button
+          type='button'
+          onClick={handleClickAddNote}
+          className={styles.add_note_button}
+          disabled={isError}
+          data-testid='AddNoteButton'
+        >
+          {ADD_NOTE_BTN_TEXT}
+        </button>
       </div>
-      {error && (
-        <div className={styles.error}>
-          <div>The note length must not be shorter than 3 characters</div>
-          <div>and</div>
-          <div>must not exceed 20 characters.</div>
-        </div>
-      )}
+      <Error error={isError} />
     </div>
   );
 };

@@ -1,20 +1,23 @@
-import { call, put, takeLatest, SagaReturnType } from 'redux-saga/effects';
+import { call, put, select, takeLatest, SagaReturnType } from 'redux-saga/effects';
 import { TypeToGenerator } from 'tools/types/generator-types';
-import { setPicture, getPicture } from './slice';
+import { setPicture, getPicture, setError } from './slice';
 import { requestGetPicture } from './request';
 import { IPicture } from './interfaces';
+import { selectDate, selectNewDateFromDatePicker } from './selectors';
 
 export default function* mtLoadDataWatcher(): Generator {
   yield takeLatest(getPicture.type, handleGetPicture);
 }
 
-type Data = SagaReturnType<typeof requestGetPicture>;
+type DataSagaReturn = SagaReturnType<typeof requestGetPicture>;
+type DateSelectorReturn = SagaReturnType<typeof String>;
 
 function* handleGetPicture(): TypeToGenerator<IPicture> {
   try {
-    const data: Data = yield call(requestGetPicture);
+    const newDate: DateSelectorReturn = yield select(selectDate);
+    const data: DataSagaReturn = yield call(requestGetPicture, newDate);
     yield put(setPicture({ ...data }));
   } catch (error: any) {
-    console.log(error);
+    yield put(setError(error));
   }
 }

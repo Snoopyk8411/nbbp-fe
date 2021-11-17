@@ -1,5 +1,3 @@
-const imageLoader = ({ src }: { src: string }) => {
-  return src;
-};
+const imageLoader = ({ src }: { src: string }) => src || '';
 
 export default imageLoader;

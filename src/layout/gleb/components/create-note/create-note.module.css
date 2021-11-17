@@ -8,43 +8,33 @@
 .create_note_form {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 1rem 0;
 }
 
 .input {
-  background-color: rgb(229, 231, 235);
-  border-color: rgb(209, 213, 219);
+  background-color: var(--background-gray);
+  border-color: var(--border-gray);
   border-width: 2px;
   outline: none;
   padding: 0.5rem 1rem;
-  color: #1f2937;
 }
 .input:focus {
   background-color: white
 }
 
-.addNoteButton {
-  margin-left: 10px;
+.add_note_button {
+  margin-left: 0.5rem;
   color: white;
-  background: rgb(40, 171, 214);
-  padding: 5px 10px;
+  background: var(--background-blue);
+  padding: 0.3rem 0.6rem;
   border: none;
 }
-.addNoteButton:hover {
-  background-color: rgb(108, 188, 214);
+.add_note_button:hover {
+  background-color: var(--background-lightblue);
 }
 
-.addNoteButton__disabled {
-  margin-left: 10px;
-  color: white;
-  background: rgb(40, 171, 214);
-  padding: 5px 10px;
+.add_note_button:disabled {
   opacity: 0.5;
 }
 
-.error {
-  color: red;
-  padding-top: 1rem;
-  text-align: center;
-  margin: auto;
-}
+

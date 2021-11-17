@@ -20,6 +20,7 @@ exports[`NoteList Component NoteList snapshot 1`] = `
     >
       <textarea
         className="input"
+        data-testid="AddNoteInputField"
         onChange={[Function]}
         onKeyPress={[Function]}
         placeholder="Write new note"
@@ -27,13 +28,16 @@ exports[`NoteList Component NoteList snapshot 1`] = `
         value=""
       />
       <button
-        className="addNoteButton"
+        className="add_note_button"
+        data-testid="AddNoteButton"
+        disabled={false}
         onClick={[Function]}
         type="button"
       >
-        add
+        Add
       </button>
     </div>
+    <div />
   </div>
 </div>
 `;

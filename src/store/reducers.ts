@@ -5,7 +5,7 @@ import { pictureSlice } from './gleb/slice';
 
 export const rootReducer = combineReducers({
   welcomePage: welcomePageSlice.reducer,
-  picture: pictureSlice.reducer,
+  picturePage: pictureSlice.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

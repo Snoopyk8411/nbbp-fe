@@ -1,21 +1,25 @@
 import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
+import type { NextPage } from 'next';
+
+import { MAIN_ROUTE, NOTES_ROUTE, GO_TO_PICTURE, GO_TO_NOTES } from './constants';
+
 import styles from './layout.module.css';
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children }: { children: ReactNode | NextPage }) => {
   const router = useRouter();
 
-  const isNotesroute: boolean = router.pathname === '/contributors/gleb/notes';
+  const isNotesRoute: boolean = router.pathname === NOTES_ROUTE;
 
-  const onClickNavigation = () => {
-    isNotesroute ? router.push(`/contributors/gleb`) : router.push(`/contributors/gleb/notes`);
+  const handleClickNavigation = () => {
+    isNotesRoute ? router.push(MAIN_ROUTE) : router.push(NOTES_ROUTE);
   };
 
   return (
     <div>
       <div className={styles.header} data-test='headerComponent'>
-        <button className={styles.header_title} data-testid='HeaderTitle' onClick={onClickNavigation}>
-          {isNotesroute ? 'Go to the Picture' : 'Go to Notes'}
+        <button className={styles.header_title} data-testid='NavigationButton' onClick={handleClickNavigation}>
+          {isNotesRoute ? GO_TO_PICTURE : GO_TO_NOTES}
         </button>
       </div>
       {children}
