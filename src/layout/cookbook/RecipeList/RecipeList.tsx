@@ -1,5 +1,6 @@
+import { FC } from 'react';
+
 import { connect } from 'react-redux';
-import * as React from 'react';
 import { IRecipe } from 'store/cookbookRecipes/interfaces';
 import { RootState } from 'store/reducers';
 import { RecipeCard } from 'layout/cookbook/RecipeCard';
@@ -7,11 +8,11 @@ import { RecipeCard } from 'layout/cookbook/RecipeCard';
 import styles from './recipeList.module.css';
 import { getRecipes } from 'store/cookbookRecipes/selectors';
 
-type Props = {
+type RecipeListProps = {
   recipes?: IRecipe[];
 };
 
-const RecipeList: React.FC<Props> = ({ recipes }) => (
+const RecipeList: FC<RecipeListProps> = ({ recipes }) => (
   <div className={styles.wrapper}>
     {recipes?.length ? recipes?.map((recipe, idx) => <RecipeCard key={idx} recipe={recipe} />) : 'no recipes found'}
   </div>

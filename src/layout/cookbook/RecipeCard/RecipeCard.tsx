@@ -1,16 +1,16 @@
-import * as React from 'react';
+import { FC } from 'react';
 
 import { IRecipe } from 'store/cookbookRecipes/interfaces';
 
-type Props = {
+type RecipeCardProps = {
   recipe: IRecipe;
 };
 
-export const RecipeCard: React.FC<Props> = ({ recipe }) => (
+export const RecipeCard: FC<RecipeCardProps> = ({ recipe }) => (
   <div>
     <h3>{recipe.name}</h3>
-    {recipe.ingridients.length
-      ? recipe.ingridients.map((recipe, idx) => <div key={idx}>{`${recipe.product.name} - ${recipe.amount}`}</div>)
-      : 'no ingridients'}
+    {recipe.ingredients.length
+      ? recipe.ingredients.map((recipe, idx) => <div key={idx}>{`${recipe.product.name} - ${recipe.amount}`}</div>)
+      : 'no ingredients'}
   </div>
 );

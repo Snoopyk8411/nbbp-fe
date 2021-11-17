@@ -1,6 +1,6 @@
 import { IProduct } from 'store/cookbookProducts/interfaces';
 
-export interface IRecipeIngridient {
+export interface IRecipeIngredient {
   product: IProduct;
   amount: number;
 }
@@ -8,7 +8,7 @@ export interface IRecipeIngridient {
 export interface IRecipe {
   id?: number;
   name?: string;
-  ingridients: IRecipeIngridient[];
+  ingredients: IRecipeIngredient[];
 }
 
 export type IRecipeData = IRecipe[];

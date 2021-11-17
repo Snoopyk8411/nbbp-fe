@@ -1,14 +1,17 @@
 import { RecipeCreate } from './RecipeCreate';
 import { RecipeList } from './RecipeList';
 
-import styles from './index.module.css';
+import { COOKBOOK_TITLE, RECIPES_TITLE } from './constants';
 
-export const Cookbook = () => (
-  <div className={styles.wrapper}>
-    <h1>COOKBOOK</h1>
+import cookbookStyles from './index.module.css';
+import { FC } from 'react';
+
+export const Cookbook: FC = () => (
+  <div className={cookbookStyles.wrapper}>
+    <h1>{COOKBOOK_TITLE}</h1>
     <RecipeCreate />
     <br />
-    <h2>Your recipes</h2>
+    <h2>{RECIPES_TITLE}</h2>
     <RecipeList />
   </div>
 );
