@@ -21,7 +21,6 @@ const RecipeCreate: FC<RecipeCreateProps> = ({ addRecipe }) => {
   const [curProduct, setCurProduct] = useState<IProduct>();
   const [curName, setCurName] = useState('');
   const [curAmount, setCurAmount] = useState(0);
-
   const clear = useCallback(() => {
     setCuringredients([]);
   }, []);

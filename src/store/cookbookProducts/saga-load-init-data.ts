@@ -20,7 +20,7 @@ function* productsLoadInitDataFlow(): TypeToGenerator<IProductsData | Boolean | 
     yield put(productsActions.setData(data));
 
     yield put(productsActions.setIsLoading(false));
-  } catch (error: any) {
+  } catch (error) {
     yield put(productsActions.setError(error as Error));
     yield put(productsActions.setIsLoading(false));
   }
