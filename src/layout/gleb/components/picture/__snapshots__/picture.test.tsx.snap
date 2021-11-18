@@ -5,9 +5,7 @@ exports[`PicturePage Component PicturePage snapshot 1`] = `
   <div
     className="content"
   >
-    <div
-      className="MyDatePicker"
-    >
+    <div>
       <div
         className="mdp_input"
         onClick={[Function]}

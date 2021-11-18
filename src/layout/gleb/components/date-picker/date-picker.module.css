@@ -1,13 +1,6 @@
-.MyDatePicker {
-    float: left;
-    position: relative;
-}
-
 .mdp_input{
-    float: left;
     width: 10rem;
     height: 2.5rem;
-    overflow: hidden;
 }
 
 .mdp_input:focus{

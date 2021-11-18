@@ -77,7 +77,7 @@ export function DatePicker(props: DateProps) {
   const handleClick = () => setShowDatePicker(true);
 
   return (
-    <div ref={el} className={styles.MyDatePicker}>
+    <div ref={el}>
       <div className={styles.mdp_input} onClick={handleClick}>
         <input type='date' data-testid='inputRef' ref={inputRef} onChange={updateDateFromInput} />
       </div>
