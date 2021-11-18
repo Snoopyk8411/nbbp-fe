@@ -1,6 +1,6 @@
-import * as Redux from 'redux';
+import { AnyAction, Action, Store, Middleware } from 'redux';
 
-export interface IMockStore<S = any, A extends Redux.Action = Redux.AnyAction> extends Redux.Store<S, A> {
+export interface IMockStore<S = any, A extends Action = AnyAction> extends Store<S, A> {
   getActions(): any[];
   clearActions(): void;
 }
@@ -11,7 +11,7 @@ export type MockStoreCreator<S = {}, DispatchExts = {}> = (
   state?: S | MockGetState<S>,
 ) => MockStoreEnhanced<S, DispatchExts>;
 
-export type MockGetState<S = {}> = (actions: Redux.AnyAction[]) => S;
+export type MockGetState<S = {}> = (actions: AnyAction[]) => S;
 
 /**
  * Create Mock Store returns a function that will create a mock store from a state
@@ -21,8 +21,6 @@ export type MockGetState<S = {}> = (actions: Redux.AnyAction[]) => S;
  * @template S The type of state to be held by the store.
  * @template DispatchExts The additional Dispatch signatures for the middlewares applied.
  */
-declare function createMockStore<S, DispatchExts = {}>(
-  middlewares?: Redux.Middleware[],
-): MockStoreCreator<S, DispatchExts>;
+declare function createMockStore<S, DispatchExts = {}>(middlewares?: Middleware[]): MockStoreCreator<S, DispatchExts>;
 
 export default createMockStore;
