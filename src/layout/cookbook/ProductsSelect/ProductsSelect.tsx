@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { IProduct, IProductsData } from 'store/cookbookProducts/interfaces';
 import { getProducts, getIsLoading } from 'store/cookbookProducts/selectors';
 import { RootState } from 'store/reducers';
+import { NO_PRODUCTS } from './constants';
 
 import styles from './productsSelect.module.css';
 
@@ -30,7 +31,7 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], onChang
           ))}
         </select>
       ) : (
-        <div>no products available</div>
+        <div>{NO_PRODUCTS}</div>
       )}
     </div>
   );

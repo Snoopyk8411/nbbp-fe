@@ -1,0 +1,8 @@
+.amount {
+  display: flex;
+  flex-flow: column;
+}
+
+.amount > * {
+  margin: 1rem 0;
+}

@@ -1,82 +1,41 @@
-import { FC, useState, useCallback } from 'react';
-
-import { connect } from 'react-redux';
-import { Dispatch } from '@reduxjs/toolkit';
-
-import { IProduct } from 'store/cookbookProducts/interfaces';
-import { recipesAction } from 'store/cookbookRecipes/actions';
+import { ChangeEvent, FC, useState } from 'react';
 import { IRecipe, IRecipeIngredient } from 'store/cookbookRecipes/interfaces';
+import { RecipeCard } from '../RecipeCard';
+import { CLEAR, CREATE_RECIPE, NAME_FIELD_PLACEHOLDER } from './constants';
 
-import { ProductsSelect } from 'layout/cookbook/ProductsSelect';
-
-import styles from './recipeCreate.module.css';
-import { RecipeCard } from 'layout/cookbook/RecipeCard';
+const INITIAL_NAME = '';
 
 type RecipeCreateProps = {
-  addRecipe?: (recipe: IRecipe) => void;
+  ingredients: IRecipeIngredient[];
+  onClear: () => void;
+  onCreate: (recipe: IRecipe) => void;
 };
 
-const RecipeCreate: FC<RecipeCreateProps> = ({ addRecipe }) => {
-  const [curingredients, setCuringredients] = useState<IRecipeIngredient[]>([]);
-  const [curProduct, setCurProduct] = useState<IProduct>();
-  const [curName, setCurName] = useState('');
-  const [curAmount, setCurAmount] = useState(0);
-  const clear = useCallback(() => {
-    setCuringredients([]);
-  }, []);
+export const RecipeCreate: FC<RecipeCreateProps> = ({ ingredients, onClear, onCreate }) => {
+  const [name, setName] = useState(INITIAL_NAME);
+
+  const isReady = () => ingredients.length && name;
+
+  const changeNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const { target: { value = INITIAL_NAME } = {} } = e || {};
+    setName(value);
+  };
+
+  const createRecipeHandler = () => {
+    onCreate({ name: name, ingredients: ingredients });
+    onClear();
+    setName(INITIAL_NAME);
+  };
   return (
-    <div className={styles.wrapper}>
-      <div>
-        <h2>Select Ingredient</h2>
-        <ProductsSelect onChange={setCurProduct} />
-      </div>
-      <div>
-        <h2>Specify amount</h2>
-        <div className={styles.amount}>
-          <div>{curProduct?.name}</div>
-          <input
-            value={curAmount || ''}
-            name='amount'
-            placeholder='Amount'
-            onChange={e => {
-              setCurAmount(Number(e.target.value));
-            }}
-          />
-          <button
-            disabled={!(curProduct && curAmount)}
-            onClick={() => {
-              curProduct && setCuringredients([...curingredients, { product: curProduct, amount: curAmount }]);
-            }}
-          >
-            Add Ingredient
-          </button>
-        </div>
-      </div>
-      <div>
-        <h2>Your recipe</h2>
-        <input placeholder='enter name' value={curName} onChange={e => setCurName(e.target.value)} />
-        <RecipeCard recipe={{ id: 0, ingredients: curingredients }} />
-        <button onClick={clear} disabled={!curingredients.length}>
-          Clear
-        </button>
-        <button
-          disabled={!(curingredients.length && curName)}
-          onClick={() => {
-            addRecipe?.({ name: curName, ingredients: curingredients });
-            clear();
-          }}
-        >
-          submit recipe
-        </button>
-      </div>
-    </div>
+    <>
+      <input placeholder={NAME_FIELD_PLACEHOLDER} value={name} onChange={changeNameHandler} />
+      <RecipeCard recipe={{ ingredients }} />
+      <button onClick={onClear} disabled={!ingredients.length}>
+        {CLEAR}
+      </button>
+      <button disabled={!isReady()} onClick={createRecipeHandler}>
+        {CREATE_RECIPE}
+      </button>
+    </>
   );
 };
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  addRecipe: (recipe: IRecipe) => {
-    dispatch(recipesAction.addRecipe(recipe));
-  },
-});
-
-export default connect(null, mapDispatchToProps)(RecipeCreate);
