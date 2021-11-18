@@ -14,14 +14,14 @@ type RecipeCreateProps = {
 export const RecipeCreate: FC<RecipeCreateProps> = ({ ingredients, onClear, onCreate }) => {
   const [name, setName] = useState(INITIAL_NAME);
 
-  const isReady = () => ingredients.length && name;
+  const isReady = (): Boolean => !!(ingredients.length && name);
 
-  const changeNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const changeNameHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     const { target: { value = INITIAL_NAME } = {} } = e || {};
     setName(value);
   };
 
-  const createRecipeHandler = () => {
+  const createRecipeHandler = (): void => {
     onCreate({ name: name, ingredients: ingredients });
     onClear();
     setName(INITIAL_NAME);

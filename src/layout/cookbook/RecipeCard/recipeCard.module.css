@@ -1,3 +1,11 @@
-.wrapper {
+.recipe {
+  margin: 1rem;
   padding: 2rem;
+  border: 1px solid var(--secondary-ui-color);
+  border-radius: 1rem;  
+}
+
+.recipe:hover {
+  background-color: var(--secondary-ui-color);
+  cursor: auto;
 }

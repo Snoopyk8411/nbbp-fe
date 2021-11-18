@@ -22,10 +22,10 @@ const RecipeWizard: FC<RecipeWizardProps> = ({ addRecipe }) => {
   const [ingredients, setIngredients] = useState<IRecipeIngredient[]>([]);
   const [product, setProduct] = useState<IProduct>();
 
-  const clearHandler = useCallback(() => {
+  const clearHandler = useCallback((): void => {
     setIngredients([]);
   }, []);
-  const recipeCreateHandler = useCallback((recipe: IRecipe) => {
+  const recipeCreateHandler = useCallback((recipe: IRecipe): void => {
     addRecipe(recipe);
     setIngredients([]);
   }, []);

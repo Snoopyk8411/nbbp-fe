@@ -1,0 +1,7 @@
+.cookbook-theme {
+  --secondary-font-color: white;
+  --main-bg-color: rgb(255, 255, 255);
+  --main-ui-color: rgb(31, 158, 126);
+  --main-ui-active-color: rgb(32, 236, 124);
+  --secondary-ui-color: rgb(220, 243, 238);
+}
