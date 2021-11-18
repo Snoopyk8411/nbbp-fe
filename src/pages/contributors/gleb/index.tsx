@@ -39,14 +39,12 @@ const PicturePage: IPicturePageType = ({ todayPicture }) => {
   const picture = isToday ? todayPicture : pictureFromStore;
 
   const image = picture.url ? (
-    <Image loader={imageLoader} unoptimized src={picture.url} alt={picture.title} width='600px' height='600px' />
+    <Image loader={imageLoader} unoptimized src={picture.url} alt={picture.title} width='800px' height='600px' />
   ) : (
     <img src={picture.url} alt={picture.title} className={styles.picture_image} />
   );
 
-  function onChange(newDate: string) {
-    setDate(newDate);
-  }
+  const onChange = (newDate: string) => setDate(newDate);
 
   return (
     <div>

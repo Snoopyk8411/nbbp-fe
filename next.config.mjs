@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-// import { IMAGE_LOAD_DOMAINS } from 'constants/constants';
-
 const nextConfig = {
   reactStrictMode: true,
   env: {
