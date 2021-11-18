@@ -45,7 +45,9 @@ export function DatePicker(props: DateProps) {
   }, [showDatePicker]);
 
   const setDate = (dateData: IDateData) => {
-    const selectedDay: any = new Date(dateData.year, dateData.month - 1, dateData.date + 1).toISOString().slice(0, 10);
+    const selectedDay: string = new Date(dateData.year, dateData.month - 1, dateData.date + 1)
+      .toISOString()
+      .slice(0, 10);
     dispatch(setData(selectedDay));
     /** Pass data to parent */
     props.onChange(selectedDay);
