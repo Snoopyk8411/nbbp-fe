@@ -25,8 +25,10 @@ const Gallery = ({ initialPhotos }: IGalleryProps): JSX.Element => {
   const error = useSelector(selectError);
   const hasMore = useSelector(selectHasMore);
 
+  const isFetchNextPageRequired = !isLoading && hasMore && isEndOfPage;
+
   useEffect(() => {
-    if (!isLoading && hasMore && isEndOfPage) {
+    if (isFetchNextPageRequired) {
       dispatch(fetchPage());
     }
   }, [isEndOfPage]);
@@ -37,7 +39,10 @@ const Gallery = ({ initialPhotos }: IGalleryProps): JSX.Element => {
         <h1 className={styles.heading}>{TITLE}</h1>
         {error && <p className={styles.error}>{error.message}</p>}
         <div className={styles.cards}>
-          {[...initialPhotos, ...photos].map(photo => (
+          {initialPhotos.map(photo => (
+            <Card key={photo.id} photo={photo} />
+          ))}
+          {photos.map(photo => (
             <Card key={photo.id} photo={photo} />
           ))}
           {isLoading && <Loader />}

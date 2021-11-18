@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
 
 import { Card } from './card';
-import { IPhoto } from '../../interfaces';
+import { IPhoto } from 'layout/contributors/ivanefimov/interfaces';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require('next/router'), 'useRouter');
