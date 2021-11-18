@@ -21,7 +21,7 @@ export function DatePicker(props: DateProps) {
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   const addBackDrop = (e: MouseEvent) => {
-    if (showDatePicker && el && !(el as any).current.contains(e.target)) {
+    if (showDatePicker && !el.current?.contains(e.target as Node)) {
       setShowDatePicker(false);
     }
   };
@@ -53,10 +53,10 @@ export function DatePicker(props: DateProps) {
     props.onChange(selectedDay);
   };
 
-  const getDateFromDateString = (dateValue: any) => {
-    const dateData = dateValue.split('-').map((d: string) => parseInt(d, 10));
+  const getDateFromDateString = (dateValue: string) => {
+    const dateData = dateValue?.split('-').map((d: string) => parseInt(d, 10));
 
-    if (dateData.length < 3) {
+    if (dateData.length < 3 || !dateData[0] || !dateData[1] || !dateData[2]) {
       return null;
     }
 
@@ -68,9 +68,12 @@ export function DatePicker(props: DateProps) {
 
   const updateDateFromInput = () => {
     const dateValue = inputRef.current?.value;
-    const dateData = getDateFromDateString(dateValue);
-    if (dateData !== null) {
-      setDate(dateData);
+
+    if (dateValue) {
+      const dateData = getDateFromDateString(dateValue);
+      if (dateData !== null) {
+        setDate(dateData);
+      }
     }
   };
 
