@@ -7,7 +7,7 @@ exports[`PicturePage Component PicturePage snapshot 1`] = `
   >
     <div>
       <div
-        className="mdp_input"
+        className="dp_input"
         onClick={[Function]}
       >
         <input

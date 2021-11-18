@@ -1,8 +1,8 @@
-.mdp_input{
+.dp_input{
     width: 10rem;
     height: 2.5rem;
 }
 
-.mdp_input:focus{
+.dp_input:focus{
     outline: none;
 }
