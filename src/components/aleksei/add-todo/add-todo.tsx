@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, MouseEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { todosActions } from 'store/aleksei/todos/actions';
 import addTodoStyles from './add-todo.module.css';
@@ -10,6 +10,11 @@ const AddTodo: React.FC = () => {
   const [name, setName] = useState(EMPTY_VALUE);
   const [description, setDescription] = useState(EMPTY_VALUE);
   const dispatch = useDispatch();
+
+  const handleAddTodoClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    addTodo();
+  };
 
   const addTodo = () =>
     dispatch(
@@ -42,7 +47,7 @@ const AddTodo: React.FC = () => {
           onChange={handleDescriptionChange}
         ></textarea>
         <div>
-          <button onClick={() => addTodo()} disabled={checkAddDisabled()}>
+          <button onClick={handleAddTodoClick} disabled={checkAddDisabled()}>
             Add todo
           </button>
         </div>
