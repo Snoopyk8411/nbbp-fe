@@ -1,3 +1,4 @@
+import axios from 'axios';
 import type { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -67,14 +68,19 @@ const PicturePage: IPicturePageType = ({ todayPicture }) => {
 PicturePage.getLayout = (page: NextPage) => <Layout>{page}</Layout>;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch(API_URL);
-  const todayPicture = await res.json();
+  try {
+    const res = await axios(API_URL);
+    const todayPicture = await res.data;
 
-  return {
-    props: {
-      todayPicture,
-    },
-  };
+    return {
+      props: {
+        todayPicture,
+      },
+    };
+  } catch (error) {
+    console.log('Fetching initial props failed');
+    return { props: {} };
+  }
 };
 
 export default PicturePage;
