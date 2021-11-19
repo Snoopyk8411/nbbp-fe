@@ -1,7 +1,8 @@
 import { createSelector } from 'reselect';
 import { RootState } from 'store/reducers';
+import { IGalleryPageData } from './slice';
 
-const selectGalleryPage = (state: RootState) => state.galleryPage;
+const selectGalleryPage = (state: RootState): IGalleryPageData => state.galleryPage;
 
 export const selectIsLoading = createSelector(selectGalleryPage, galleryPage => galleryPage.isLoading);
 export const selectError = createSelector(selectGalleryPage, galleryPage => galleryPage.error);

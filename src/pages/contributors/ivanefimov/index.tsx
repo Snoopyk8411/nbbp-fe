@@ -12,7 +12,11 @@ const IndexPage = ({ initialPhotos }: IIndexPageProps): JSX.Element => {
 
 export default IndexPage;
 
-export const getServerSideProps = async () => {
+interface IServerSideProps {
+  props: IIndexPageProps;
+}
+
+export const getServerSideProps = async (): Promise<IServerSideProps> => {
   const initialPhotos = await apiGetPhotos();
   return {
     props: { initialPhotos },
