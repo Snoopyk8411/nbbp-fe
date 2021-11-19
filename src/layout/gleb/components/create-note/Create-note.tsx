@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 import Error from 'layout/gleb/components/error/Error';
 import { MAX_TITLE_LENGTH, MIN_TITLE_LENGTH, TEXTAREA_ROWS, PLACEHOLDER, ADD_NOTE_BTN_TEXT } from './constants';
@@ -15,7 +15,8 @@ const CreateNote: React.FC<CreateNoteProps> = ({ addNote }) => {
   const [isError, setIsError] = useState(false);
 
   const handleChangeNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setTitle(e.target.value);
+    const value = e?.target?.value ?? '';
+    setTitle(value);
     if (isError) setIsError(false);
   };
 
