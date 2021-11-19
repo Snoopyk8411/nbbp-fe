@@ -10,25 +10,33 @@ import { connect } from 'react-redux';
 
 type CookbookProps = {
   products: IProductsData;
+  error?: Error;
   setProducts?: (products: IProductsData) => void;
+  setError?: (error: Error) => void;
 };
 
-const CookbookPage: FC<CookbookProps> = ({ products, setProducts }) => {
+const CookbookPage: FC<CookbookProps> = ({ products, error, setProducts, setError }) => {
   useEffect(() => {
     setProducts?.(products);
+    error && setError?.(error);
   }, []);
   return <Cookbook />;
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products: IProductsData = await axios.get(COOKBOOK_API.products).then(res => res.data);
-  return {
-    props: { products }, // will be passed to the page component as props
-  };
+  return await axios
+    .get(COOKBOOK_API.products)
+    .then(res => ({
+      props: { products: res.data },
+    }))
+    .catch(error => ({
+      props: { products: [], error },
+    }));
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   setProducts: (products: IProductsData) => dispatch(productsActions.setData(products)),
+  setError: (error: Error) => dispatch(productsActions.setError(error)),
 });
 
 export default connect(null, mapDispatchToProps)(CookbookPage);

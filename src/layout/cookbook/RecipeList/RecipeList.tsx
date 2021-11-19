@@ -14,12 +14,11 @@ import recipeListStyles from './recipeList.module.css';
 
 type RecipeListProps = {
   recipes?: IRecipe[];
-  error?: Error | undefined;
+  error?: Error;
   onLoad: () => void;
 };
 
 const RecipeList: FC<RecipeListProps> = ({ recipes, error, onLoad }) => {
-  console.log(recipesAction);
   useEffect(() => {
     onLoad();
   }, []);

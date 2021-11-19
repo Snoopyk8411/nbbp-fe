@@ -17,26 +17,27 @@ type RecipeCreateProps = {
 export const RecipeCreate: FC<RecipeCreateProps> = ({ ingredients, onClear, onCreate }) => {
   const [name, setName] = useState(INITIAL_NAME);
 
-  const isReady = (): Boolean => !!(ingredients.length && name);
+  const isReady = !!(ingredients.length && name);
 
-  const changeNameHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+  const hasIngredients = !!ingredients.length;
+
+  const handleChangeName = (e: ChangeEvent<HTMLInputElement>): void => {
     const { target: { value = INITIAL_NAME } = {} } = e || {};
     setName(value);
   };
 
-  const createRecipeHandler = (): void => {
+  const handleCreateRecipe = (): void => {
     onCreate({ name: name, ingredients: ingredients });
-    onClear();
     setName(INITIAL_NAME);
   };
   return (
     <div className={recipeCreateStyles.wrapper}>
-      <input placeholder={NAME_FIELD_PLACEHOLDER} value={name} onChange={changeNameHandler} />
+      <input placeholder={NAME_FIELD_PLACEHOLDER} value={name} onChange={handleChangeName} />
       <RecipeCard recipe={{ ingredients }} />
-      <button onClick={onClear} disabled={!ingredients.length}>
+      <button onClick={onClear} disabled={!hasIngredients}>
         {CLEAR}
       </button>
-      <button disabled={!isReady()} onClick={createRecipeHandler}>
+      <button disabled={!isReady} onClick={handleCreateRecipe}>
         {CREATE_RECIPE}
       </button>
     </div>

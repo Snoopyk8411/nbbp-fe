@@ -1,1 +1,1 @@
-export const NO_INRGEDIENTS = 'no ingredients';
+export const NO_INGREDIENTS = 'no ingredients';

@@ -21,13 +21,14 @@ const RecipeWizard: FC<RecipeWizardProps> = ({ addRecipe }) => {
   const [ingredients, setIngredients] = useState<IRecipeIngredient[]>([]);
   const [product, setProduct] = useState<IProduct>();
 
-  const clearHandler = useCallback((): void => {
+  const clear = useCallback((): void => {
     setIngredients([]);
   }, []);
-  const recipeCreateHandler = useCallback((recipe: IRecipe): void => {
+  const handleRecipeCreate = useCallback((recipe: IRecipe): void => {
     addRecipe(recipe);
-    setIngredients([]);
+    clear();
   }, []);
+  const handleAddIngredient = (ingredient: IRecipeIngredient) => setIngredients([...ingredients, ingredient]);
 
   return (
     <div className={recipeWizardStyles.wrapper}>
@@ -35,10 +36,10 @@ const RecipeWizard: FC<RecipeWizardProps> = ({ addRecipe }) => {
         <ProductsSelect onChange={setProduct} />
       </Card>
       <Card title={AMOUNT_TITLE} className={recipeWizardStyles['wizard-item']}>
-        <IngredientCreate product={product} onCreate={ingredient => setIngredients([...ingredients, ingredient])} />
+        <IngredientCreate product={product} onCreate={handleAddIngredient} />
       </Card>
       <Card title={RECIPE_TITLE} className={recipeWizardStyles['wizard-item']}>
-        <RecipeCreate ingredients={ingredients} onClear={clearHandler} onCreate={recipeCreateHandler} />
+        <RecipeCreate ingredients={ingredients} onClear={clear} onCreate={handleRecipeCreate} />
       </Card>
     </div>
   );
