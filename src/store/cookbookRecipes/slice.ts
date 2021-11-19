@@ -18,7 +18,7 @@ export const recipesSlice = createSlice({
   name: 'recipes',
   initialState,
   reducers: {
-    loadInitData: (state, _action: PayloadAction<IRecipeData>) => {
+    loadRecipes: state => {
       return state;
     },
 

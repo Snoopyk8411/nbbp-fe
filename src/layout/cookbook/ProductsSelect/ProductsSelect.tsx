@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import cn from 'classnames';
 
 import { IProduct, IProductsData } from 'store/cookbookProducts/interfaces';
-import { getProducts, getIsLoading } from 'store/cookbookProducts/selectors';
+import { selectProducts } from 'store/cookbookProducts/selectors';
 import { RootState } from 'store/reducers';
 
 import { NO_PRODUCTS } from './constants';
@@ -49,8 +49,7 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], onChang
 };
 
 const mapStateToProps = (state: RootState) => ({
-  products: getProducts(state),
-  isLoading: getIsLoading(state),
+  products: selectProducts(state),
 });
 
 export default connect(mapStateToProps)(ProductsSelect);
