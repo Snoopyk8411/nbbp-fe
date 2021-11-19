@@ -14,12 +14,12 @@ type IngredientCreateProps = {
 
 const INITIAL_AMOUNT = '';
 
-const isAmountValid = (amount: number | string | undefined): amount is number => Number(amount) > 0;
+const isAmountValid = (amount: number | string | undefined): amount is number => Number(amount) >= 0;
 
 export const IngredientCreate: FC<IngredientCreateProps> = ({ product, onCreate }) => {
   const [amount, setAmount] = useState<string>(INITIAL_AMOUNT);
 
-  const isReady = product?.id && product.name && isAmountValid(amount);
+  const isReady = product?.id && product.name && isAmountValid(amount) && amount > 0;
 
   const changeAmountHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { target: { value = INITIAL_AMOUNT } = {} } = e || {};
@@ -31,10 +31,16 @@ export const IngredientCreate: FC<IngredientCreateProps> = ({ product, onCreate 
   };
 
   return (
-    <div className={ingredientCreateStyles.amount}>
-      <div>{product?.name}</div>
-      <input value={amount} name={AMOUNT_NAME} placeholder={AMOUNT_PLACEHOLDER} onChange={changeAmountHandler} />
-      <button disabled={!isReady} onClick={createIngredientHandler}>
+    <div className={ingredientCreateStyles.wrapper}>
+      <div className={ingredientCreateStyles.margin}>{product?.name}</div>
+      <input
+        className={ingredientCreateStyles.margin}
+        value={amount}
+        name={AMOUNT_NAME}
+        placeholder={AMOUNT_PLACEHOLDER}
+        onChange={changeAmountHandler}
+      />
+      <button className={ingredientCreateStyles.margin} disabled={!isReady} onClick={createIngredientHandler}>
         {ADD_INGREDIENT}
       </button>
     </div>

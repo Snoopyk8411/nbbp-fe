@@ -1,18 +1,17 @@
 import { FC, useState, useCallback } from 'react';
-
 import { connect } from 'react-redux';
 import { Dispatch } from '@reduxjs/toolkit';
 
 import { IProduct } from 'store/cookbookProducts/interfaces';
 import { recipesAction } from 'store/cookbookRecipes/actions';
 import { IRecipe, IRecipeIngredient } from 'store/cookbookRecipes/interfaces';
-
 import { ProductsSelect } from 'layout/cookbook/ProductsSelect';
+import { Card } from 'layout/cookbook/ui/Card';
+import { IngredientCreate } from 'layout/cookbook/IngredientCreate';
+import { RecipeCreate } from 'layout/cookbook/RecipeCreate';
 
-import recipeWizardStyles from './recipeWizard.module.css';
-import { IngredientCreate } from '../IngredientCreate';
-import { RecipeCreate } from '../RecipeCreate';
 import { AMOUNT_TITLE, RECIPE_TITLE, SELECT_INGREDIENT_TITLE } from './constant';
+import recipeWizardStyles from './recipeWizard.module.css';
 
 type RecipeWizardProps = {
   addRecipe: (recipe: IRecipe) => void;
@@ -32,18 +31,15 @@ const RecipeWizard: FC<RecipeWizardProps> = ({ addRecipe }) => {
 
   return (
     <div className={recipeWizardStyles.wrapper}>
-      <div>
-        <h2>{SELECT_INGREDIENT_TITLE}</h2>
+      <Card title={SELECT_INGREDIENT_TITLE} className={recipeWizardStyles['wizard-item']}>
         <ProductsSelect onChange={setProduct} />
-      </div>
-      <div>
-        <h2>{AMOUNT_TITLE}</h2>
+      </Card>
+      <Card title={AMOUNT_TITLE} className={recipeWizardStyles['wizard-item']}>
         <IngredientCreate product={product} onCreate={ingredient => setIngredients([...ingredients, ingredient])} />
-      </div>
-      <div>
-        <h2>{RECIPE_TITLE}</h2>
+      </Card>
+      <Card title={RECIPE_TITLE} className={recipeWizardStyles['wizard-item']}>
         <RecipeCreate ingredients={ingredients} onClear={clearHandler} onCreate={recipeCreateHandler} />
-      </div>
+      </Card>
     </div>
   );
 };

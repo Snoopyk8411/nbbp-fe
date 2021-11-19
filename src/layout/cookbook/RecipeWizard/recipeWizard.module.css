@@ -1,8 +1,9 @@
 .wrapper {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.wrapper > *:not(:first-child) {
-  margin-left: 15rem;
+.wizard-item {
+  min-width: 25rem;
 }
+

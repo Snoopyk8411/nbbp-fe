@@ -1,7 +1,10 @@
 import { ChangeEvent, FC, useState } from 'react';
+
 import { IRecipe, IRecipeIngredient } from 'store/cookbookRecipes/interfaces';
-import { RecipeCard } from '../RecipeCard';
+import { RecipeCard } from 'layout/cookbook/RecipeCard';
+
 import { CLEAR, CREATE_RECIPE, NAME_FIELD_PLACEHOLDER } from './constants';
+import recipeCreateStyles from './recipeCreate.module.css';
 
 const INITIAL_NAME = '';
 
@@ -27,7 +30,7 @@ export const RecipeCreate: FC<RecipeCreateProps> = ({ ingredients, onClear, onCr
     setName(INITIAL_NAME);
   };
   return (
-    <>
+    <div className={recipeCreateStyles.wrapper}>
       <input placeholder={NAME_FIELD_PLACEHOLDER} value={name} onChange={changeNameHandler} />
       <RecipeCard recipe={{ ingredients }} />
       <button onClick={onClear} disabled={!ingredients.length}>
@@ -36,6 +39,6 @@ export const RecipeCreate: FC<RecipeCreateProps> = ({ ingredients, onClear, onCr
       <button disabled={!isReady()} onClick={createRecipeHandler}>
         {CREATE_RECIPE}
       </button>
-    </>
+    </div>
   );
 };

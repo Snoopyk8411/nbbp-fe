@@ -13,7 +13,7 @@
 }
  
 .select::-webkit-scrollbar-thumb {
-  background-color: var(--main-ui-color);
+  background-color: var(--secondary-bg-color);
 }
 
 .select > .option {
