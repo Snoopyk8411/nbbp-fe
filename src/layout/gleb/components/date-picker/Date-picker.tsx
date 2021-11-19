@@ -1,4 +1,4 @@
-import { useState, useEffect, createRef, RefObject } from 'react';
+import { useState, useEffect, createRef, RefObject, useRef, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'hooks/use-app-selector';
 import { setData } from 'store/gleb/slice';
@@ -11,16 +11,17 @@ type DateProps = {
   onChange: (e: string) => void;
 };
 
-export function DatePicker(props: DateProps) {
+export function DatePicker({ onChange }: DateProps) {
   const dispatch = useDispatch();
   const date = useAppSelector(selectNewDateFromDatePicker);
 
-  const inputRef: RefObject<HTMLInputElement> = createRef();
-  const [isShowDatePicker, setIsShowDatePicker] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [isDatePickerShown, setIsDatePickerShown] = useState(false);
+  let dateValue;
 
-  const addBackDrop = (e: MouseEvent) => {
-    if (isShowDatePicker && !inputRef.current?.contains(e.target as Node)) {
-      setIsShowDatePicker(false);
+  const hideDatePicker = (e: MouseEvent) => {
+    if (isDatePickerShown && !inputRef.current?.contains(e.target as Node)) {
+      setIsDatePickerShown(false);
     }
   };
 
@@ -30,32 +31,32 @@ export function DatePicker(props: DateProps) {
   };
 
   useEffect(() => {
-    window.addEventListener('click', addBackDrop);
+    window.addEventListener('click', hideDatePicker);
     setDateToInput(date);
     return () => {
-      window.removeEventListener('click', addBackDrop);
+      window.removeEventListener('click', hideDatePicker);
     };
-  }, [isShowDatePicker]);
+  }, [isDatePickerShown]);
 
   const setDateInsideComponent = (dateValue: string) => {
     dispatch(setData(dateValue));
     /** Pass data to parent */
-    props.onChange(dateValue);
+    onChange(dateValue);
   };
 
-  const updateDateFromInput = () => {
-    const dateValue = inputRef.current?.value;
+  const updateDateFromInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const dateValue = e.target.value;
     if (dateValue && dateValue !== null) {
       setDateInsideComponent(dateValue);
     }
   };
 
-  const handleClick = () => setIsShowDatePicker(true);
+  const handleClick = () => setIsDatePickerShown(true);
 
   return (
     <div>
       <div className={styles.dp_input} onClick={handleClick}>
-        <input type='date' data-testid='inputRef' ref={inputRef} onChange={updateDateFromInput} />
+        <input type='date' data-testid='inputRef' ref={inputRef} value={dateValue} onChange={updateDateFromInput} />
       </div>
     </div>
   );
