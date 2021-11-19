@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef, createRef, RefObject } from 'react';
+import { useState, useEffect, createRef, RefObject } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'hooks/use-app-selector';
 import { setData } from 'store/gleb/slice';
 import { selectNewDateFromDatePicker } from 'store/gleb/selectors';
 import { getDateStringFromTimestamp } from './helpers';
-import { IDateData } from './interfaces';
 
 import styles from './date-picker.module.css';
 
@@ -16,13 +15,12 @@ export function DatePicker(props: DateProps) {
   const dispatch = useDispatch();
   const date = useAppSelector(selectNewDateFromDatePicker);
 
-  const el = useRef<HTMLInputElement>(null);
   const inputRef: RefObject<HTMLInputElement> = createRef();
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [isShowDatePicker, setIsShowDatePicker] = useState(false);
 
   const addBackDrop = (e: MouseEvent) => {
-    if (showDatePicker && !el.current?.contains(e.target as Node)) {
-      setShowDatePicker(false);
+    if (isShowDatePicker && !inputRef.current?.contains(e.target as Node)) {
+      setIsShowDatePicker(false);
     }
   };
 
@@ -32,55 +30,30 @@ export function DatePicker(props: DateProps) {
   };
 
   useEffect(() => {
-    //  Only needed when using SSR in Next.js
-    // if (!process.browser) {
-    //   return;
-    // }
-
     window.addEventListener('click', addBackDrop);
     setDateToInput(date);
     return () => {
       window.removeEventListener('click', addBackDrop);
     };
-  }, [showDatePicker]);
+  }, [isShowDatePicker]);
 
-  const setDate = (dateData: IDateData) => {
-    const selectedDay: string = new Date(dateData.year, dateData.month - 1, dateData.date + 1)
-      .toISOString()
-      .slice(0, 10);
-    dispatch(setData(selectedDay));
+  const setDateInsideComponent = (dateValue: string) => {
+    dispatch(setData(dateValue));
     /** Pass data to parent */
-    props.onChange(selectedDay);
-  };
-
-  const getDateFromDateString = (dateValue: string) => {
-    const dateData = dateValue?.split('-').map((d: string) => parseInt(d, 10));
-
-    if (dateData.length < 3 || !dateData[0] || !dateData[1] || !dateData[2]) {
-      return null;
-    }
-
-    const year = dateData[0];
-    const month = dateData[1];
-    const date = dateData[2];
-    return { year, month, date };
+    props.onChange(dateValue);
   };
 
   const updateDateFromInput = () => {
     const dateValue = inputRef.current?.value;
-
-    if (dateValue) {
-      const dateData = getDateFromDateString(dateValue);
-      if (dateData !== null) {
-        setDate(dateData);
-      }
+    if (dateValue && dateValue !== null) {
+      setDateInsideComponent(dateValue);
     }
   };
 
-  const handleClick = () => setShowDatePicker(true);
+  const handleClick = () => setIsShowDatePicker(true);
 
   return (
-    <div ref={el}>
+    <div>
       <div className={styles.dp_input} onClick={handleClick}>
         <input type='date' data-testid='inputRef' ref={inputRef} onChange={updateDateFromInput} />
       </div>

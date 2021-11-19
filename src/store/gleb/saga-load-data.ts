@@ -6,13 +6,13 @@ import { IPicture } from './interfaces';
 import { selectDate } from './selectors';
 
 export default function* getMediaByDateWatcher(): Generator {
-  yield takeLatest(getPicture.type, getMediaByDateFlow);
+  yield takeLatest(getPicture.type, getMediaByDate);
 }
 
 type DataSagaReturn = SagaReturnType<typeof requestGetPicture>;
 type DateSelectorReturn = SagaReturnType<typeof String>;
 
-function* getMediaByDateFlow(): TypeToGenerator<IPicture> {
+function* getMediaByDate(): TypeToGenerator<IPicture> {
   try {
     const newDate: DateSelectorReturn = yield select(selectDate);
     const data: DataSagaReturn = yield call(requestGetPicture, newDate);
