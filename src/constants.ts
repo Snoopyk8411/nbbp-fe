@@ -3,6 +3,8 @@ export const COOKBOOK = 'cookbook';
 export const PRODUCTS = 'products';
 export const RECIPES = 'recipes';
 
+export const ROOT_ID = '__next';
+
 const API_HOSTS = {
   cookbook: {
     products: `${API}/${COOKBOOK}/${PRODUCTS}`,

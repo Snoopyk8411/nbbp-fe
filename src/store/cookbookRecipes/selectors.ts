@@ -2,6 +2,6 @@ import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from 'store/reducers';
 import { IRecipesStore } from './slice';
 
-const getRecipesStore = (store: RootState) => store.recipes;
+const selectRecipesStore = (store: RootState) => store.recipes;
 
-export const getRecipes = createSelector(getRecipesStore, (recipesStore: IRecipesStore) => recipesStore.data);
+export const selectRecipes = createSelector(selectRecipesStore, (recipesStore: IRecipesStore) => recipesStore.data);
