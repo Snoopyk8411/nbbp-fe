@@ -9,7 +9,7 @@ import { Card } from './components/card/card';
 import { Loader } from './components/loader/loader';
 import { IPhoto } from './interfaces';
 
-import styles from './gallery.module.css';
+import galleryStyles from './gallery.module.css';
 
 interface IGalleryProps {
   initialPhotos: IPhoto[];
@@ -35,10 +35,10 @@ const Gallery = ({ initialPhotos }: IGalleryProps): JSX.Element => {
 
   return (
     <>
-      <div className={styles.container}>
-        <h1 className={styles.heading}>{TITLE}</h1>
-        {error && <p className={styles.error}>{error.message}</p>}
-        <div className={styles.cards}>
+      <div className={galleryStyles.container}>
+        <h1 className={galleryStyles.heading}>{TITLE}</h1>
+        {error && <p className={galleryStyles.error}>{error.message}</p>}
+        <div className={galleryStyles.cards}>
           {initialPhotos.map(photo => (
             <Card key={photo.id} photo={photo} />
           ))}

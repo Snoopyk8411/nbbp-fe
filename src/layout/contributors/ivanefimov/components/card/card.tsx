@@ -11,15 +11,16 @@ interface ICardProps {
 
 export const Card = ({ photo }: ICardProps): JSX.Element => {
   const router = useRouter();
+  const { id, author, width, height } = photo;
   return (
-    <div className={cardStyles.card} style={{ backgroundImage: getUrlById(photo.id) }}>
+    <div className={cardStyles.card} style={{ backgroundImage: getUrlById(id) }}>
       <div className={cardStyles.content}>
-        <h3 className={cardStyles.heading}>by {photo.author}</h3>
+        <h3 className={cardStyles.heading}>by {author}</h3>
         <p className={cardStyles.description}>Original size:</p>
         <p className={cardStyles.description}>
-          {photo.width} x {photo.height} px
+          {width} x {height} px
         </p>
-        <Link href={`${router.asPath}/${photo.id}`}>
+        <Link href={`${router.asPath}/${id}`}>
           <a className={cardStyles.button}>Download</a>
         </Link>
       </div>
