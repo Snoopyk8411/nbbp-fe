@@ -22,12 +22,10 @@ export const pictureSlice = createSlice({
   initialState: initialState,
   reducers: {
     getPicture(state, action: PayloadAction<string>) {
-      const date = action.payload;
-      return { ...state, picture: { ...state.picture, date } };
+      state.picture.date = action.payload;
     },
     setPicture(state, action: PayloadAction<IPicture>) {
-      const pictureData = action.payload;
-      return { ...state, picture: pictureData };
+      state.picture = action.payload;
     },
     setError: (state, action: PayloadAction<Error>) => {
       state.error = action.payload;

@@ -2,7 +2,7 @@ import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 import Error from 'layout/gleb/components/error/Error';
 import { MAX_TITLE_LENGTH, MIN_TITLE_LENGTH, TEXTAREA_ROWS, PLACEHOLDER, ADD_NOTE_BTN_TEXT } from './constants';
-import { ENTER_BUTTON, EMPTY_STRING } from 'constants/constants';
+import { ENTER_BUTTON, EMPTY_STRING } from 'constants/index';
 
 import styles from './create-note.module.css';
 
@@ -16,7 +16,7 @@ const CreateNote: React.FC<CreateNoteProps> = ({ addNote }) => {
 
   const handleChangeNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTitle(e.target.value);
-    setIsError(false);
+    if (isError) setIsError(false);
   };
 
   const titleLength = title.length;

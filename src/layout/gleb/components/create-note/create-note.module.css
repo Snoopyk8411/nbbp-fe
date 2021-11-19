@@ -19,12 +19,12 @@
   padding: 0.5rem 1rem;
 }
 .input:focus {
-  background-color: white
+  background-color: var(--white);
 }
 
 .add_note_button {
   margin-left: 0.5rem;
-  color: white;
+  color: var(--white);
   background: var(--background-blue);
   padding: 0.3rem 0.6rem;
   border: none;
@@ -36,5 +36,3 @@
 .add_note_button:disabled {
   opacity: 0.5;
 }
-
-
