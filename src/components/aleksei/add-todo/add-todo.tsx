@@ -1,33 +1,30 @@
-import { ChangeEvent, useState, MouseEvent } from 'react';
+import { ChangeEvent, useState, MouseEvent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { todosActions } from 'store/aleksei/todos/actions';
 import addTodoStyles from './add-todo.module.css';
 import { validateName } from './helpers/validateName';
 import { EMPTY_VALUE } from 'tools/types/aleksei/const';
-import * as addTodoConst from './const';
+import * as addTodoConst from './constants';
 
 const AddTodo: React.FC = () => {
   const [name, setName] = useState(EMPTY_VALUE);
   const [description, setDescription] = useState(EMPTY_VALUE);
+  const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(true);
   const dispatch = useDispatch();
 
   const handleAddTodoClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    addTodo();
-  };
-
-  const addTodo = () =>
     dispatch(
       todosActions.addTodo({
         name,
         description,
       }),
     );
-
-  const checkAddDisabled = () => {
-    const isAddDisabled = !validateName(name);
-    return isAddDisabled;
   };
+
+  useEffect(() => {
+    setIsAddButtonDisabled(!validateName(name));
+  }, [name]);
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
   const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value);
@@ -47,7 +44,7 @@ const AddTodo: React.FC = () => {
           onChange={handleDescriptionChange}
         ></textarea>
         <div>
-          <button onClick={handleAddTodoClick} disabled={checkAddDisabled()}>
+          <button onClick={handleAddTodoClick} disabled={isAddButtonDisabled}>
             Add todo
           </button>
         </div>

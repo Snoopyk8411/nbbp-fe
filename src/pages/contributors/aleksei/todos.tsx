@@ -27,8 +27,8 @@ const TodoListPage: NextPage<ITodoListPageProps> = ({ todos }: ITodoListPageProp
       <AddTodo />
       <h2>Todos</h2>
       <main>
-        <ToDoList title={'Remaining'} list={remainingTodos} emptyListTitle={'Nothing is remaining'} />
-        <ToDoList title={'Done'} list={doneTodos} emptyListTitle={'Nothing is done yet'} />
+        <ToDoList title='Remaining' list={remainingTodos} emptyListTitle={'Nothing is remaining'} />
+        <ToDoList title='Done' list={doneTodos} emptyListTitle={'Nothing is done yet'} />
       </main>
     </div>
   );
