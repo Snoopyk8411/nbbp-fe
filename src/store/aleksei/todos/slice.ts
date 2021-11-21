@@ -33,7 +33,9 @@ export const todosPageSlice = createSlice({
     markDone: (state, action: PayloadAction<{ id: number }>) => {
       const id = action.payload.id;
       const todo = id && state.todos[id];
-      todo && (todo.isDone = true);
+      if (todo) {
+        state.todos[id] = { ...todo, isDone: true };
+      }
     },
   },
 });
