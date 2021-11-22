@@ -11,14 +11,16 @@ import { ErrorFrame } from 'layout/cookbook/ui/ErrorFrame';
 
 import { LOAD_ERROR_TEXT, NO_RECIPES_FOUND_TEXT } from './constants';
 import recipeListStyles from './recipeList.module.css';
+import { Loader } from '../ui/Loader';
 
 type RecipeListProps = {
   recipes?: IRecipe[];
   error?: Error;
+  isLoading?: Boolean;
   onLoad: () => void;
 };
 
-const RecipeList: FC<RecipeListProps> = ({ recipes, error, onLoad }) => {
+const RecipeList: FC<RecipeListProps> = ({ recipes, error, isLoading, onLoad }) => {
   useEffect(() => {
     onLoad();
   }, []);
@@ -26,7 +28,8 @@ const RecipeList: FC<RecipeListProps> = ({ recipes, error, onLoad }) => {
   return (
     <div className={recipeListStyles.wrapper}>
       {!!error && <ErrorFrame message={`${LOAD_ERROR_TEXT}: ${error.message}`} />}
-      {hasRecipes ? (
+      {isLoading && <Loader />}
+      {hasRecipes && !isLoading ? (
         recipes.map((recipe, idx) => <RecipeCard key={idx} recipe={recipe} />)
       ) : (
         <span>{NO_RECIPES_FOUND_TEXT}</span>
@@ -38,6 +41,7 @@ const RecipeList: FC<RecipeListProps> = ({ recipes, error, onLoad }) => {
 const mapStateToProps = (state: RootState) => ({
   recipes: selectRecipes(state),
   error: state.recipes.error,
+  isLoading: state.recipes.isLoading,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

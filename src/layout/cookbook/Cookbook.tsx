@@ -1,13 +1,12 @@
-import { RecipeWizard } from './RecipeWizard';
-import { RecipeList } from './RecipeList';
-
+import { FC } from 'react';
 import cn from 'classnames';
 
+import { RecipeWizard } from './RecipeWizard';
+import { RecipeList } from './RecipeList';
 import { COOKBOOK_TITLE, RECIPES_TITLE } from './constants';
 
 import cookbookStyles from './cookbook.module.css';
 import theme from './cookbook-theme.module.css';
-import { FC } from 'react';
 
 export const Cookbook: FC = () => (
   <div className={cn(theme['cookbook-theme'], cookbookStyles.wrapper)}>
