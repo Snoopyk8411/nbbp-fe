@@ -14,7 +14,7 @@ import productsSelectStyles from './productsSelect.module.css';
 type ProductsSelectProps = {
   products?: IProductsData;
   error?: Error;
-  onChange: (product: IProduct) => void;
+  onChange?: (product: IProduct) => void;
 };
 
 export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, onChange }) => {
@@ -23,7 +23,7 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, 
     (index: number) => {
       const selectedProduct = products[index] || undefined;
       setSelectedIndex(index);
-      selectedProduct && onChange(selectedProduct);
+      selectedProduct && onChange?.(selectedProduct);
     },
     [onChange, products],
   );
@@ -38,7 +38,7 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, 
                 [productsSelectStyles.selected as string]: idx === selectedIndex,
               })}
               key={item.id}
-              onClick={() => selectHandler(idx)}
+              onClick={(): void => selectHandler(idx)}
             >
               {item.name}
             </div>
@@ -51,7 +51,7 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, 
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: RootState): Partial<ProductsSelectProps> => ({
   products: selectProducts(state),
   error: state.products.error,
 });

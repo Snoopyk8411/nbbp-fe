@@ -9,13 +9,13 @@ import { productsActions } from 'store/cookbookProducts/actions';
 import { connect } from 'react-redux';
 
 type CookbookProps = {
-  products: IProductsData;
+  products?: IProductsData;
   error?: Error;
   setProducts?: (products: IProductsData) => void;
   setError?: (error: Error) => void;
 };
 
-const CookbookPage: FC<CookbookProps> = ({ products, error, setProducts, setError }) => {
+const CookbookPage: FC<CookbookProps> = ({ products = [], error, setProducts, setError }) => {
   useEffect(() => {
     setProducts?.(products);
     error && setError?.(error);
@@ -34,9 +34,13 @@ export const getStaticProps: GetStaticProps = async () => {
     }));
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setProducts: (products: IProductsData) => dispatch(productsActions.setData(products)),
-  setError: (error: Error) => dispatch(productsActions.setError(error)),
+const mapDispatchToProps = (dispatch: Dispatch): Partial<CookbookProps> => ({
+  setProducts: (products: IProductsData): void => {
+    dispatch(productsActions.setData(products));
+  },
+  setError: (error: Error): void => {
+    dispatch(productsActions.setError(error));
+  },
 });
 
 export default connect(null, mapDispatchToProps)(CookbookPage);

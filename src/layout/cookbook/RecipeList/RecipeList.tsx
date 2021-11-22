@@ -17,12 +17,12 @@ type RecipeListProps = {
   recipes?: IRecipe[];
   error?: Error;
   isLoading?: Boolean;
-  onLoad: () => void;
+  onLoad?: () => void;
 };
 
 const RecipeList: FC<RecipeListProps> = ({ recipes, error, isLoading, onLoad }) => {
   useEffect(() => {
-    onLoad();
+    onLoad?.();
   }, []);
   const hasRecipes = recipes && recipes.length !== 0;
   return (
@@ -38,14 +38,16 @@ const RecipeList: FC<RecipeListProps> = ({ recipes, error, isLoading, onLoad }) 
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
+const mapStateToProps = (state: RootState): Partial<RecipeListProps> => ({
   recipes: selectRecipes(state),
   error: state.recipes.error,
   isLoading: state.recipes.isLoading,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  onLoad: () => dispatch(recipesAction.loadRecipes()),
+const mapDispatchToProps = (dispatch: Dispatch): Partial<RecipeListProps> => ({
+  onLoad: (): void => {
+    dispatch(recipesAction.loadRecipes());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeList);

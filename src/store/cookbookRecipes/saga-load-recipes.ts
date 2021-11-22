@@ -6,7 +6,7 @@ import { TypeToGenerator } from 'store/utils/generator-types';
 import axios from 'axios';
 import { COOKBOOK_API } from 'src/constants';
 
-export default function* recipesLoadDataWatcher() {
+export default function* recipesLoadDataWatcher(): Generator {
   yield takeEvery(recipesAction.loadRecipes, recipesLoadDataFlow);
 }
 

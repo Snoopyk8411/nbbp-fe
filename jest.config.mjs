@@ -16,6 +16,7 @@ const jestConfig = {
     '^public/(.*)$': ['<rootDir>/public/$1'],
     '^assets/(.*)$': ['<rootDir>/public/assets/$1'],
     '^layout/(.*)$': ['<rootDir>/src/layout/$1'],
+    '^store/(.*)$': ['<rootDir>/src/store/$1'],
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   testEnvironment: 'jsdom',

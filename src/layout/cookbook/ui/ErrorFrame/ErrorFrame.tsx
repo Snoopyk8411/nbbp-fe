@@ -21,7 +21,7 @@ export const ErrorFrame: FC<ErrorFrameProps> = ({ message }) => {
       container.current.classList.add(cookBookTheme['cookbook-theme'] as string);
       container.current.id = ERROR_ELEMENT_ID;
       document.querySelector(`#${ROOT_ID}`)?.appendChild(container?.current);
-      return () => {
+      return (): void => {
         container?.current && document.querySelector(`#${ROOT_ID}`)?.removeChild(container?.current);
       };
     }
