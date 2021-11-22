@@ -51,14 +51,16 @@ const PicturePage: IPicturePageType = ({ initialPicture }) => {
         {currentPicture.media_type === VIDEO ? (
           <iframe id='video' title='video' loading='lazy' width='600' height='600' src={currentPicture.url}></iframe>
         ) : (
-          <Image
-            loader={imageLoader}
-            unoptimized
-            src={currentPicture?.url}
-            alt={currentPicture.title}
-            width='800px'
-            height='600px'
-          />
+          currentPicture.url && (
+            <Image
+              loader={imageLoader}
+              unoptimized
+              src={currentPicture.url}
+              alt={currentPicture.title}
+              width='800px'
+              height='600px'
+            />
+          )
         )}
         <div className={styles.picture_title}>{currentPicture.title}</div>
         <div className={styles.explanation}>{currentPicture.explanation}</div>
