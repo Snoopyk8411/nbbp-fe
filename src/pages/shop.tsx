@@ -28,6 +28,7 @@ const ShopPage = (): JSX.Element => (
       <meta content='follow, index' name='robots' />
       <meta content='#ffffff' name='theme-color' />
       <meta content='#ffffff' name='msapplication-TileColor' />
+      <meta content={OG_TAGS.description} name='description' />
       <link href='favicon.ico' rel='shortcut icon' />
       <link rel='preconnect' href='https://fonts.googleapis.com' />
       <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='' />
