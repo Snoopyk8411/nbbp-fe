@@ -26,10 +26,9 @@ const CreateNote: React.FC<CreateNoteProps> = ({ addNote }) => {
   const handleClickAddNote = () => {
     if (isTitleLengthValid) {
       addNote(title);
-      setIsError(false);
       setTitle(EMPTY_STRING);
     } else {
-      setIsError(true);
+      setIsError(!isTitleLengthValid);
     }
   };
 

@@ -11,7 +11,7 @@ type DateProps = {
   onChange: (e: string) => void;
 };
 
-export function DatePicker({ onChange }: DateProps) {
+export function DatePicker({ onChange }: DateProps): JSX.Element {
   const dispatch = useDispatch();
   const date = useAppSelector(selectNewDateFromDatePicker);
 

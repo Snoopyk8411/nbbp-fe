@@ -16,34 +16,29 @@ import { VIDEO, PICTURE_PAGE_TITLE, API_URL } from 'layout/gleb/components/pictu
 import styles from 'layout/gleb/components/picture/picture.module.css';
 
 type PicturePageProps = {
-  todayPicture: IPicture;
+  initialPicture: IPicture;
 };
 
 type IPicturePageType = NextPage<PicturePageProps> & {
   getLayout: (page: NextPage) => JSX.Element;
 };
 
-const PicturePage: IPicturePageType = ({ todayPicture }) => {
+const PicturePage: IPicturePageType = ({ initialPicture }) => {
   const dispatch = useDispatch();
 
-  const pictureFromStore = useAppSelector(pictureSelector);
-  const [date, setDate] = useState(pictureFromStore.date);
+  const picture = useAppSelector(pictureSelector);
+  const [date, setDate] = useState(picture.date);
   const [isToday, setIsToday] = useState(true);
 
   useEffect(() => {
-    if (date !== pictureFromStore.date) {
+    const isNewDateSelected = date !== picture.date;
+    if (isNewDateSelected) {
       setIsToday(false);
       dispatch(getPicture(date));
     }
   }, [date]);
 
-  const picture = isToday ? todayPicture : pictureFromStore;
-
-  const image = picture.url ? (
-    <Image loader={imageLoader} unoptimized src={picture.url} alt={picture.title} width='800px' height='600px' />
-  ) : (
-    <img src={picture.url} alt={picture.title} className={styles.picture_image} />
-  );
+  const currentPicture = isToday ? initialPicture : picture;
 
   const onChange = (newDate: string) => setDate(newDate);
 
@@ -53,13 +48,20 @@ const PicturePage: IPicturePageType = ({ todayPicture }) => {
         <DatePicker onChange={onChange} />
         <h1 data-testid='title'>{PICTURE_PAGE_TITLE}</h1>
         <div>{date}</div>
-        {picture.media_type === VIDEO ? (
-          <iframe id='video' title='video' loading='lazy' width='600' height='600' src={picture.url}></iframe>
+        {currentPicture.media_type === VIDEO ? (
+          <iframe id='video' title='video' loading='lazy' width='600' height='600' src={currentPicture.url}></iframe>
         ) : (
-          image
+          <Image
+            loader={imageLoader}
+            unoptimized
+            src={currentPicture?.url}
+            alt={currentPicture.title}
+            width='800px'
+            height='600px'
+          />
         )}
-        <div className={styles.picture_title}>{picture.title}</div>
-        <div className={styles.explanation}>{picture.explanation}</div>
+        <div className={styles.picture_title}>{currentPicture.title}</div>
+        <div className={styles.explanation}>{currentPicture.explanation}</div>
       </div>
     </div>
   );
@@ -70,11 +72,11 @@ PicturePage.getLayout = (page: NextPage) => <Layout>{page}</Layout>;
 export const getStaticProps: GetStaticProps = async () => {
   try {
     const res = await axios(API_URL);
-    const todayPicture = await res.data;
+    const initialPicture = await res.data;
 
     return {
       props: {
-        todayPicture,
+        initialPicture,
       },
     };
   } catch (error) {

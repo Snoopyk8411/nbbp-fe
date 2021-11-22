@@ -1,4 +1,3 @@
-import type { GetStaticProps, NextPage } from 'next';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import createSagaMiddleware from 'redux-saga';
@@ -12,7 +11,7 @@ const sagaMiddleware = createSagaMiddleware();
 const mockStoreConf = configureStore([sagaMiddleware]);
 
 type PicturePageProps = {
-  todayPicture: IPicture;
+  initialPicture: IPicture;
 };
 const picture = {
   copyright: '',
@@ -36,7 +35,7 @@ describe('PicturePage Component', () => {
   beforeEach(() => {
     mockStore = mockStoreConf(mockData);
     props = {
-      todayPicture: picture,
+      initialPicture: picture,
     };
   });
 
