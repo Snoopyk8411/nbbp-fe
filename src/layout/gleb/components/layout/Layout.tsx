@@ -4,7 +4,7 @@ import type { NextPage } from 'next';
 
 import { MAIN_ROUTE, NOTES_ROUTE, GO_TO_PICTURE, GO_TO_NOTES } from './constants';
 
-import styles from './layout.module.css';
+import layoutStyles from './layout.module.css';
 
 export const Layout = ({ children }: { children: ReactNode | NextPage }) => {
   const router = useRouter();
@@ -15,8 +15,8 @@ export const Layout = ({ children }: { children: ReactNode | NextPage }) => {
 
   return (
     <div>
-      <div className={styles.header} data-test='headerComponent'>
-        <button className={styles.header_title} data-testid='NavigationButton' onClick={handleClickNavigation}>
+      <div className={layoutStyles.header} data-test='headerComponent'>
+        <button className={layoutStyles.header_title} data-testid='NavigationButton' onClick={handleClickNavigation}>
           {isNotesRoute ? GO_TO_PICTURE : GO_TO_NOTES}
         </button>
       </div>

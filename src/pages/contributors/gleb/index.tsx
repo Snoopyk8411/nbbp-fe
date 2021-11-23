@@ -14,7 +14,7 @@ import { DatePicker } from 'layout/gleb/components/date-picker/Date-picker';
 import { IMedia } from 'store/gleb/interfaces';
 import { VIDEO, PICTURE_PAGE_TITLE, API_URL } from 'layout/gleb/components/media/constants';
 
-import styles from 'layout/gleb/components/media/media.module.css';
+import mediaPageStyles from 'layout/gleb/components/media/media.module.css';
 
 type MediaPageProps = {
   initialMedia: IMedia;
@@ -47,7 +47,7 @@ const MediaPage: IMediaPageType = ({ initialMedia }) => {
   const handleChange = (newDate: string): void => setDate(newDate);
   return (
     <div>
-      <div className={styles.content}>
+      <div className={mediaPageStyles.content}>
         <DatePicker onChange={handleChange} />
         <h1 data-testid='title'>{PICTURE_PAGE_TITLE}</h1>
         {isLoading && <Loader />}
@@ -57,8 +57,8 @@ const MediaPage: IMediaPageType = ({ initialMedia }) => {
         ) : (
           url && <Image loader={imageLoader} unoptimized src={url} alt={title} width='800px' height='600px' />
         )}
-        <div className={styles.picture_title}>{title}</div>
-        <div className={styles.explanation}>{explanation}</div>
+        <div className={mediaPageStyles.picture_title}>{title}</div>
+        <div className={mediaPageStyles.explanation}>{explanation}</div>
       </div>
     </div>
   );

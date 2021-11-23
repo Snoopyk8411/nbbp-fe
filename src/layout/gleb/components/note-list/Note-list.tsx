@@ -4,7 +4,7 @@ import { CreateNote } from 'layout/gleb/components/create-note/Create-note';
 import { Note } from 'layout/gleb/components/note/Note';
 import { Layout } from 'layout/gleb/components/layout/Layout';
 
-import styles from './note-list.module.css';
+import noteListStyles from './note-list.module.css';
 
 export type INoteListType = FunctionComponent & {
   getLayout: (page: ReactNode) => JSX.Element;
@@ -19,9 +19,9 @@ export const NoteList: INoteListType = (): JSX.Element => {
   };
 
   return (
-    <div className={styles.notes}>
+    <div className={noteListStyles.notes}>
       <div>
-        <h1 className={styles.title}>Notes</h1>
+        <h1 className={noteListStyles.title}>Notes</h1>
         <ul>
           {noteList.map((note, index) => (
             <Note note={note} key={`note_${index + 1}`} />

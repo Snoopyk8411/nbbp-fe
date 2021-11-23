@@ -4,7 +4,7 @@ import { Error } from 'layout/gleb/components/error/Error';
 import { MAX_TITLE_LENGTH, MIN_TITLE_LENGTH, TEXTAREA_ROWS, PLACEHOLDER, ADD_NOTE_BTN_TEXT } from './constants';
 import { ENTER_BUTTON, EMPTY_STRING } from 'constants/index';
 
-import styles from './create-note.module.css';
+import createNoteStyles from './create-note.module.css';
 
 type CreateNoteProps = {
   addNote: (note: string) => void;
@@ -39,22 +39,22 @@ export const CreateNote: React.FC<CreateNoteProps> = ({ addNote }): JSX.Element 
   };
 
   return (
-    <div className={styles.create_note}>
-      <div className={styles.create_note_form}>
+    <div className={createNoteStyles.create_note}>
+      <div className={createNoteStyles.create_note_form}>
         <textarea
           rows={TEXTAREA_ROWS}
           value={title}
           onChange={handleChangeNote}
           placeholder={PLACEHOLDER}
           onKeyPress={handleKeypress}
-          className={styles.input}
+          className={createNoteStyles.input}
           data-testid='AddNoteInputField'
         />
 
         <button
           type='button'
           onClick={handleClickAddNote}
-          className={styles.add_note_button}
+          className={createNoteStyles.add_note_button}
           disabled={isError}
           data-testid='AddNoteButton'
         >

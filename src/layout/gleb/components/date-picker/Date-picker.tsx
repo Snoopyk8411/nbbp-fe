@@ -5,7 +5,7 @@ import { setData } from 'store/gleb/slice';
 import { selectNewDateFromDatePicker } from 'store/gleb/selectors';
 import { getDateStringFromTimestamp } from './helpers';
 
-import styles from './date-picker.module.css';
+import datePickerStyles from './date-picker.module.css';
 
 type DateProps = {
   onChange: (e: string) => void;
@@ -41,7 +41,7 @@ export function DatePicker({ onChange }: DateProps): JSX.Element {
 
   return (
     <div>
-      <div className={styles.dp_input}>
+      <div className={datePickerStyles.dp_input}>
         <input type='date' value={dateValue} onChange={updateDateFromInput} />
       </div>
     </div>
