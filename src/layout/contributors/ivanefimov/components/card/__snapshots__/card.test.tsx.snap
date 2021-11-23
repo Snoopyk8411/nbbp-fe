@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component should get valid snapshot 1`] = `
+<div
+  className="card"
+  style={
+    Object {
+      "backgroundImage": "url(https://picsum.photos/id/1/200/300)",
+    }
+  }
+>
+  <div
+    className="content"
+  >
+    <h3
+      className="heading"
+    >
+      by 
+      author
+    </h3>
+    <p
+      className="description"
+    >
+      Original size:
+    </p>
+    <p
+      className="description"
+    >
+      100
+       x 
+      100
+       px
+    </p>
+    <a
+      className="button"
+      href="/1"
+      onClick={[Function]}
+      onMouseEnter={[Function]}
+    >
+      Download
+    </a>
+  </div>
+</div>
+`;

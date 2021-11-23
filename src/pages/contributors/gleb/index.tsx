@@ -1,4 +1,5 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import type { GetStaticProps, NextPage } from 'next';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -24,7 +25,7 @@ type IMediaPageType = NextPage<MediaPageProps> & {
   getLayout: (page: NextPage) => JSX.Element;
 };
 
-const MediaPage: IMediaPageType = ({ initialMedia }) => {
+const MediaPage: IMediaPageType = ({ initialMedia }): JSX.Element => {
   const dispatch = useDispatch();
 
   const storedMedia = useAppSelector(mediaSelector);
@@ -64,7 +65,7 @@ const MediaPage: IMediaPageType = ({ initialMedia }) => {
   );
 };
 
-MediaPage.getLayout = (page: NextPage) => <Layout>{page}</Layout>;
+MediaPage.getLayout = (page: NextPage): JSX.Element => <Layout>{page}</Layout>;
 
 export const getStaticProps: GetStaticProps = async () => {
   try {
@@ -80,6 +81,10 @@ export const getStaticProps: GetStaticProps = async () => {
     console.log('Fetching initial props failed');
     return { props: {} };
   }
+};
+
+MediaPage.propTypes = {
+  initialMedia: PropTypes.any,
 };
 
 export default MediaPage;

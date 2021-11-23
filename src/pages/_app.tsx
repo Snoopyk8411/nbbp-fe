@@ -13,8 +13,8 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-const App = ({ Component, pageProps }: AppPropsWithLayout) => {
-  const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
+const App = ({ Component, pageProps }: AppPropsWithLayout): JSX.Element => {
+  const getLayout = Component.getLayout ?? ((page: ReactNode): ReactNode => page);
   return <Provider store={store}>{getLayout(<Component {...pageProps} />)}</Provider>;
 };
 
