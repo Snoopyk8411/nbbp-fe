@@ -19,7 +19,7 @@ type ProductsSelectProps = {
 
 export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, onChange }) => {
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
-  const selectHandler = useCallback(
+  const handleSelect = useCallback(
     (index: number) => {
       const selectedProduct = products[index] || undefined;
       setSelectedIndex(index);
@@ -32,17 +32,19 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, 
       {!!error && <ErrorFrame message={`${LOAD_ERROR_TEXT}: ${error.message}`} />}
       {products.length ? (
         <div className={productsSelectStyles.select}>
-          {products.map((item, idx) => (
-            <div
-              className={cn(productsSelectStyles.option, {
-                [productsSelectStyles.selected as string]: idx === selectedIndex,
-              })}
-              key={item.id}
-              onClick={(): void => selectHandler(idx)}
-            >
-              {item.name}
-            </div>
-          ))}
+          {products.map((item, idx) => {
+            return (
+              <div
+                className={cn(productsSelectStyles.option, {
+                  [productsSelectStyles.selected as string]: idx === selectedIndex,
+                })}
+                key={item.id}
+                onClick={(): void => handleSelect(idx)}
+              >
+                {item.name}
+              </div>
+            );
+          })}
         </div>
       ) : (
         <div>{NO_PRODUCTS}</div>

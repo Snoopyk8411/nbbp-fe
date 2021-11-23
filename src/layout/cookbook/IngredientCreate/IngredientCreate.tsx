@@ -21,12 +21,12 @@ export const IngredientCreate: FC<IngredientCreateProps> = ({ product, onCreate 
 
   const isReady = product?.id && product.name && isAmountValid(amount) && amount > 0;
 
-  const changeAmountHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeAmount = (e: ChangeEvent<HTMLInputElement>): void => {
     const { target: { value = INITIAL_AMOUNT } = {} } = e || {};
     isAmountValid(value) && setAmount(value);
   };
 
-  const createIngredientHandler = () => {
+  const handleCreateIngredient = (): void => {
     isReady && onCreate({ product, amount });
   };
 
@@ -38,9 +38,9 @@ export const IngredientCreate: FC<IngredientCreateProps> = ({ product, onCreate 
         value={amount}
         name={AMOUNT_NAME}
         placeholder={AMOUNT_PLACEHOLDER}
-        onChange={changeAmountHandler}
+        onChange={handleChangeAmount}
       />
-      <button className={ingredientCreateStyles.margin} disabled={!isReady} onClick={createIngredientHandler}>
+      <button className={ingredientCreateStyles.margin} disabled={!isReady} onClick={handleCreateIngredient}>
         {ADD_INGREDIENT}
       </button>
     </div>
