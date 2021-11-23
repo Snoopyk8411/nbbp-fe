@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import { GetStaticPropsResult, NextPage } from 'next';
 import AddTodo from 'components/aleksei/add-todo/add-todo';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDoneTodos, selectRemainingTodos } from 'store/aleksei/todos/selectors';
@@ -34,7 +34,7 @@ const TodoListPage: NextPage<ITodoListPageProps> = ({ todos }: ITodoListPageProp
   );
 };
 
-export const getStaticProps = async () => ({
+export const getStaticProps = async (): Promise<GetStaticPropsResult<ITodoListPageProps>> => ({
   props: { todos: mockTodos },
 });
 

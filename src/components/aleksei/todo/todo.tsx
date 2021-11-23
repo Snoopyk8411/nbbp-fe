@@ -9,8 +9,8 @@ const Todo: React.FC<models.ITodo> = (todo: ITodoProps) => {
   const { name, description, isDone } = todo;
   const dispatch = useDispatch();
 
-  const handleDoneClick = () => todo.id && dispatch(todosActions.markDone({ id: todo.id }));
-  const handleDeleteClick = () => todo.id && dispatch(todosActions.removeTodo({ id: todo.id }));
+  const handleDoneClick = (): void => (todo.id && dispatch(todosActions.markDone({ id: todo.id }))) as void;
+  const handleDeleteClick = (): void => (todo.id && dispatch(todosActions.removeTodo({ id: todo.id }))) as void;
 
   return (
     <article className={todoStyles.container}>

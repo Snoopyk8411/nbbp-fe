@@ -12,7 +12,7 @@ const AddTodo: React.FC = () => {
   const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(true);
   const dispatch = useDispatch();
 
-  const handleAddTodoClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleAddTodoClick = (e: MouseEvent<HTMLButtonElement>): void => {
     e.preventDefault();
     dispatch(
       todosActions.addTodo({
@@ -26,8 +26,8 @@ const AddTodo: React.FC = () => {
     setIsAddButtonDisabled(!validateName(name));
   }, [name]);
 
-  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
-  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value);
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>): void => setName(e.target.value);
+  const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>): void => setDescription(e.target.value);
 
   return (
     <div className={addTodoStyles.container}>

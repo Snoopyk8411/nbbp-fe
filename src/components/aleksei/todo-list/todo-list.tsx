@@ -8,7 +8,7 @@ interface ITodoListProps {
   emptyListTitle: string;
 }
 
-const TodoList = ({ title, list, emptyListTitle }: ITodoListProps) => (
+const TodoList: React.FC<ITodoListProps> = ({ title, list, emptyListTitle }: ITodoListProps) => (
   <>
     <h3>{title}:</h3>
     {list.length > 0 ? (

@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import store from 'store';
 import 'styles/globals.css';
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <Provider store={store}>
       <Component {...pageProps} />
