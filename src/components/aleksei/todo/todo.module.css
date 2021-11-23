@@ -1,0 +1,15 @@
+.container {
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.header {
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
