@@ -1,0 +1,10 @@
+.notes {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.title {
+  margin-left: 1.5rem;
+}

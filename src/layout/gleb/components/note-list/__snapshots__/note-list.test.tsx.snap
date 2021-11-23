@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoteList Component makes NoteList snapshot 1`] = `
+<div
+  className="notes"
+>
+  <div>
+    <h1
+      className="title"
+    >
+      Notes
+    </h1>
+    <ul />
+  </div>
+  <div
+    className="create_note"
+  >
+    <div
+      className="create_note_form"
+    >
+      <textarea
+        className="input"
+        data-testid="AddNoteInputField"
+        onChange={[Function]}
+        onKeyPress={[Function]}
+        placeholder="Write new note"
+        rows={3}
+        value=""
+      />
+      <button
+        className="add_note_button"
+        data-testid="AddNoteButton"
+        disabled={false}
+        onClick={[Function]}
+        type="button"
+      >
+        Add
+      </button>
+    </div>
+    <div />
+  </div>
+</div>
+`;

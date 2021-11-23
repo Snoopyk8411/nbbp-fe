@@ -1,0 +1,38 @@
+.create_note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 1rem 0.75rem;
+}
+
+.create_note_form {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.input {
+  background-color: var(--background-gray);
+  border-color: var(--border-gray);
+  border-width: 2px;
+  outline: none;
+  padding: 0.5rem 1rem;
+}
+.input:focus {
+  background: var(--white);
+}
+
+.add_note_button {
+  margin-left: 0.5rem;
+  color: var(--white);
+  background: var(--background-blue);
+  padding: 0.3rem 0.6rem;
+  border: none;
+}
+.add_note_button:hover {
+  background-color: var(--background-lightblue);
+}
+
+.add_note_button:disabled {
+  opacity: 0.5;
+}
