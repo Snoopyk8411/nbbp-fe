@@ -7,11 +7,12 @@ import { RootState } from 'store/reducers';
 import { selectRecipes } from 'store/cookbookRecipes/selectors';
 import { recipesAction } from 'store/cookbookRecipes/actions';
 import { RecipeCard } from 'layout/cookbook/RecipeCard';
-import { ErrorFrame } from 'layout/cookbook/ui/ErrorFrame';
+import { ErrorFrame } from 'layout/cookbook/components/ErrorFrame';
 
 import { LOAD_ERROR_TEXT, NO_RECIPES_FOUND_TEXT } from './constants';
 import recipeListStyles from './recipeList.module.css';
-import { Loader } from '../ui/Loader';
+import { Loader } from '../components/Loader';
+import { ErrorMessage } from '../components/ErrorMessage';
 
 type RecipeListProps = {
   recipes?: IRecipe[];
@@ -27,7 +28,7 @@ const RecipeList: FC<RecipeListProps> = ({ recipes, error, isLoading, onLoad }) 
   const hasRecipes = recipes && recipes.length !== 0;
   return (
     <div className={recipeListStyles.wrapper}>
-      {!!error && <ErrorFrame message={`${LOAD_ERROR_TEXT}: ${error.message}`} />}
+      {!!error && <ErrorMessage message={`${LOAD_ERROR_TEXT}: ${error.message}`} />}
       {isLoading && <Loader />}
       {hasRecipes && !isLoading ? (
         recipes.map((recipe, idx) => <RecipeCard key={idx} recipe={recipe} />)

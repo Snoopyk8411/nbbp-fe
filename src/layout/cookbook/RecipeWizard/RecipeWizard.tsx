@@ -6,7 +6,7 @@ import { IProduct } from 'store/cookbookProducts/interfaces';
 import { recipesAction } from 'store/cookbookRecipes/actions';
 import { IRecipe, IRecipeIngredient } from 'store/cookbookRecipes/interfaces';
 import { ProductsSelect } from 'layout/cookbook/ProductsSelect';
-import { Card } from 'layout/cookbook/ui/Card';
+import { Card } from 'layout/cookbook/components/Card';
 import { IngredientCreate } from 'layout/cookbook/IngredientCreate';
 import { RecipeCreate } from 'layout/cookbook/RecipeCreate';
 

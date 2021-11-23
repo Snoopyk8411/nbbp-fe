@@ -1,12 +1,16 @@
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { GetStaticProps, NextPage } from 'next';
+
 import { COOKBOOK_API } from 'src/constants';
 import { Cookbook } from 'layout/cookbook';
-import { GetStaticProps } from 'next';
-import { FC, useEffect } from 'react';
-import { Dispatch } from '@reduxjs/toolkit';
+import { ErrorFrame } from 'layout/cookbook/components/ErrorFrame';
 import { IProductsData } from 'store/cookbookProducts/interfaces';
 import { productsActions } from 'store/cookbookProducts/actions';
-import { connect } from 'react-redux';
+
+import { NextPageWithLayout } from './types';
 
 type CookbookProps = {
   products?: IProductsData;
@@ -15,13 +19,25 @@ type CookbookProps = {
   setError?: (error: Error) => void;
 };
 
-const CookbookPage: FC<CookbookProps> = ({ products = [], error, setProducts, setError }) => {
+const CookbookPage: NextPageWithLayout<CookbookProps> = ({
+  products = [],
+  error,
+  setProducts,
+  setError,
+}: CookbookProps) => {
   useEffect(() => {
     setProducts?.(products);
     error && setError?.(error);
   }, []);
   return <Cookbook />;
 };
+
+CookbookPage.getLayout = (page: NextPage): JSX.Element => (
+  <>
+    <ErrorFrame />
+    {page}
+  </>
+);
 
 export const getStaticProps: GetStaticProps = async () => {
   return await axios
@@ -30,7 +46,7 @@ export const getStaticProps: GetStaticProps = async () => {
       props: { products: res.data },
     }))
     .catch(error => ({
-      props: { products: [], error },
+      props: { products: [], error: JSON.parse(JSON.stringify(error)) },
     }));
 };
 

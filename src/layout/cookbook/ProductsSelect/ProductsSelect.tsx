@@ -5,11 +5,11 @@ import cn from 'classnames';
 import { IProduct, IProductsData } from 'store/cookbookProducts/interfaces';
 import { selectProducts } from 'store/cookbookProducts/selectors';
 import { RootState } from 'store/reducers';
-import { ErrorFrame } from 'layout/cookbook/ui/ErrorFrame';
 
 import { LOAD_ERROR_TEXT, NO_PRODUCTS } from './constants';
 
 import productsSelectStyles from './productsSelect.module.css';
+import { ErrorMessage } from '../components/ErrorMessage';
 
 type ProductsSelectProps = {
   products?: IProductsData;
@@ -29,7 +29,7 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, 
   );
   return (
     <div>
-      {!!error && <ErrorFrame message={`${LOAD_ERROR_TEXT}: ${error.message}`} />}
+      {!!error && <ErrorMessage message={`${LOAD_ERROR_TEXT}: ${error.message}`} />}
       {products.length ? (
         <div className={productsSelectStyles.select}>
           {products.map((item, idx) => {
