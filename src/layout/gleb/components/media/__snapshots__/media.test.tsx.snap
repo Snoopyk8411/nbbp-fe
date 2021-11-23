@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PicturePage Component PicturePage snapshot 1`] = `
+exports[`MediaPage Component makes MediaPage snapshot 1`] = `
 <div>
   <div
     className="content"
@@ -8,12 +8,11 @@ exports[`PicturePage Component PicturePage snapshot 1`] = `
     <div>
       <div
         className="dp_input"
-        onClick={[Function]}
       >
         <input
-          data-testid="inputRef"
           onChange={[Function]}
           type="date"
+          value=""
         />
       </div>
     </div>

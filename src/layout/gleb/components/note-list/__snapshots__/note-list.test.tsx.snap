@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NoteList Component NoteList snapshot 1`] = `
+exports[`NoteList Component makes NoteList snapshot 1`] = `
 <div
   className="notes"
 >

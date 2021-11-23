@@ -20,5 +20,6 @@ a {
   --background-blue: rgb(40, 171, 214);
   --background-lightblue: rgb(108, 188, 214);
   --border-gray: rgb(209, 213, 219);
-  --white: rgb((255, 255, 255));
+  --white: rgb(255, 255, 255);
+  --red: rgb(255,0,0)
 }

@@ -1,11 +1,11 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
 import { welcomePageSlice } from './welcome/slice';
-import { pictureSlice } from './gleb/slice';
+import { mediaSlice } from './gleb/slice';
 
 const rootReducer = combineReducers({
   welcomePage: welcomePageSlice.reducer,
-  picturePage: pictureSlice.reducer,
+  mediaPage: mediaSlice.reducer,
 });
 
 export default rootReducer;

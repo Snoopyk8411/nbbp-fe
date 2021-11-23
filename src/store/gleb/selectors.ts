@@ -1,9 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from 'store/reducers';
 
-const selectPicture = (state: RootState) => state.picturePage.picture;
-const selectDateFromDatePicker = (state: RootState) => state.picturePage.selectedDay;
+const selectMedia = (state: RootState) => state.mediaPage;
 
-export const pictureSelector = createSelector(selectPicture, state => state);
-export const selectDate = createSelector(selectPicture, state => state.date);
-export const selectNewDateFromDatePicker = createSelector(selectDateFromDatePicker, state => state);
+export const mediaSelector = createSelector(selectMedia, state => state.media);
+export const selectDate = createSelector(selectMedia, state => state.media.date);
+export const selectNewDateFromDatePicker = createSelector(selectMedia, state => state.selectedDay);
+export const selectIsLoading = createSelector(selectMedia, state => state.isLoading);

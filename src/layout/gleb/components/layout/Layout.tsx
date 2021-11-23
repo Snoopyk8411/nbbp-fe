@@ -6,7 +6,7 @@ import { MAIN_ROUTE, NOTES_ROUTE, GO_TO_PICTURE, GO_TO_NOTES } from './constants
 
 import styles from './layout.module.css';
 
-const Layout = ({ children }: { children: ReactNode | NextPage }) => {
+export const Layout = ({ children }: { children: ReactNode | NextPage }) => {
   const router = useRouter();
 
   const isNotesRoute: boolean = router.pathname === NOTES_ROUTE;
@@ -24,5 +24,3 @@ const Layout = ({ children }: { children: ReactNode | NextPage }) => {
     </div>
   );
 };
-
-export default Layout;

@@ -2,8 +2,6 @@ type NoteProps = {
   note: string;
 };
 
-const Note: React.FC<NoteProps> = ({ note }) => {
+export const Note: React.FC<NoteProps> = ({ note }): JSX.Element => {
   return <li>{note}</li>;
 };
-
-export default Note;

@@ -3,15 +3,16 @@ import configureStore from 'redux-mock-store';
 import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
 import { DatePicker } from 'layout/gleb/components/date-picker/Date-picker';
-import { IMockStore } from 'layout/gleb/components/interfaces';
+import { IMockStore, IMockData } from 'layout/gleb/components/interfaces';
+import { IMediaPage, IMedia } from 'store/gleb/interfaces';
 
 let mockStore: IMockStore;
 const sagaMiddleware = createSagaMiddleware();
 const mockStoreConf = configureStore([sagaMiddleware]);
 
-const mockData = {
-  picturePage: {
-    picture: {
+const mockData: IMockData = {
+  mediaPage: {
+    media: {
       copyright: '',
       date: '2021-11-07',
       explanation: "To some it looks like a cat's eye.",
@@ -23,6 +24,7 @@ const mockData = {
     },
     error: null,
     selectedDay: 1637010000000,
+    isLoading: false,
   },
 };
 type DateProps = {
@@ -35,7 +37,7 @@ describe('DatePicker Component', () => {
     mockStore = mockStoreConf(mockData);
   });
 
-  it('DatePicker snapshot', () => {
+  it('makes DatePicker snapshot', () => {
     const component = renderer.create(
       <Provider store={mockStore}>
         <DatePicker {...props} />

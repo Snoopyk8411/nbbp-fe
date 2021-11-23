@@ -1,6 +1,6 @@
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 
-import Error from 'layout/gleb/components/error/Error';
+import { Error } from 'layout/gleb/components/error/Error';
 import { MAX_TITLE_LENGTH, MIN_TITLE_LENGTH, TEXTAREA_ROWS, PLACEHOLDER, ADD_NOTE_BTN_TEXT } from './constants';
 import { ENTER_BUTTON, EMPTY_STRING } from 'constants/index';
 
@@ -10,7 +10,7 @@ type CreateNoteProps = {
   addNote: (note: string) => void;
 };
 
-const CreateNote: React.FC<CreateNoteProps> = ({ addNote }) => {
+export const CreateNote: React.FC<CreateNoteProps> = ({ addNote }): JSX.Element => {
   const [title, setTitle] = useState(EMPTY_STRING);
   const [isError, setIsError] = useState(false);
 
@@ -65,5 +65,3 @@ const CreateNote: React.FC<CreateNoteProps> = ({ addNote }) => {
     </div>
   );
 };
-
-export default CreateNote;

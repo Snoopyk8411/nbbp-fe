@@ -1,23 +1,26 @@
 import { call, put, select, takeLatest, SagaReturnType } from 'redux-saga/effects';
 import { TypeToGenerator } from 'tools/types/generator-types';
-import { setPicture, getPicture, setError } from './slice';
-import { requestGetPicture } from './request';
-import { IPicture } from './interfaces';
+import { setMedia, getMedia, setError, setIsLoading } from './slice';
+import { requestGetMedia } from './request';
+import { IMedia } from './interfaces';
 import { selectDate } from './selectors';
 
 export default function* getMediaByDateWatcher(): Generator {
-  yield takeLatest(getPicture.type, getMediaByDate);
+  yield takeLatest(getMedia.type, getMediaByDate);
 }
 
-type DataSagaReturn = SagaReturnType<typeof requestGetPicture>;
+type DataSagaReturn = SagaReturnType<typeof requestGetMedia>;
 type DateSelectorReturn = SagaReturnType<typeof String>;
 
-function* getMediaByDate(): TypeToGenerator<IPicture> {
+function* getMediaByDate(): TypeToGenerator<IMedia | boolean> {
   try {
+    yield put(setIsLoading(true));
     const newDate: DateSelectorReturn = yield select(selectDate);
-    const data: DataSagaReturn = yield call(requestGetPicture, newDate);
-    yield put(setPicture({ ...data }));
+    const data: DataSagaReturn = yield call(requestGetMedia, newDate);
+    yield put(setMedia({ ...data }));
   } catch (error) {
     yield put(setError(error as Error));
+  } finally {
+    yield put(setIsLoading(false));
   }
 }

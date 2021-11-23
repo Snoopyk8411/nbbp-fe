@@ -4,18 +4,16 @@ type ErrorProps = {
   error: boolean;
 };
 
-const Error: React.FC<ErrorProps> = ({ error }) => {
+export const Error: React.FC<ErrorProps> = ({ error }) => {
   return (
     <div>
       {error && (
         <div className={styles.error}>
-          <div>The note length must not be shorter than 3 characters</div>
-          <div>and</div>
-          <div>must not exceed 20 characters.</div>
+          <p>The note length must not be shorter than 3 characters</p>
+          <p>and</p>
+          <p>must not exceed 20 characters.</p>
         </div>
       )}
     </div>
   );
 };
-
-export default Error;

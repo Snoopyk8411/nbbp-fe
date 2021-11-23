@@ -1,4 +1,4 @@
-import { useState, useEffect, createRef, RefObject, useRef, ChangeEvent } from 'react';
+import { useEffect, useState, ChangeEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'hooks/use-app-selector';
 import { setData } from 'store/gleb/slice';
@@ -15,30 +15,18 @@ export function DatePicker({ onChange }: DateProps): JSX.Element {
   const dispatch = useDispatch();
   const date = useAppSelector(selectNewDateFromDatePicker);
 
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [isDatePickerShown, setIsDatePickerShown] = useState(false);
-  let dateValue;
-
-  const hideDatePicker = (e: MouseEvent) => {
-    if (isDatePickerShown && !inputRef.current?.contains(e.target as Node)) {
-      setIsDatePickerShown(false);
-    }
-  };
+  const [dateValue, setDateValue] = useState('');
 
   const setDateToInput = (timestamp: string) => {
     const dateString = getDateStringFromTimestamp(timestamp);
-    if (inputRef.current) inputRef.current.value = dateString;
+    setDateValue(dateString);
   };
 
   useEffect(() => {
-    window.addEventListener('click', hideDatePicker);
     setDateToInput(date);
-    return () => {
-      window.removeEventListener('click', hideDatePicker);
-    };
-  }, [isDatePickerShown]);
+  }, []);
 
-  const setDateInsideComponent = (dateValue: string) => {
+  const updateDate = (dateValue: string) => {
     dispatch(setData(dateValue));
     /** Pass data to parent */
     onChange(dateValue);
@@ -47,16 +35,14 @@ export function DatePicker({ onChange }: DateProps): JSX.Element {
   const updateDateFromInput = (e: ChangeEvent<HTMLInputElement>) => {
     const dateValue = e.target.value;
     if (dateValue && dateValue !== null) {
-      setDateInsideComponent(dateValue);
+      updateDate(dateValue);
     }
   };
 
-  const handleClick = () => setIsDatePickerShown(true);
-
   return (
     <div>
-      <div className={styles.dp_input} onClick={handleClick}>
-        <input type='date' data-testid='inputRef' ref={inputRef} value={dateValue} onChange={updateDateFromInput} />
+      <div className={styles.dp_input}>
+        <input type='date' value={dateValue} onChange={updateDateFromInput} />
       </div>
     </div>
   );

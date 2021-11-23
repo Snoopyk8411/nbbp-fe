@@ -19,7 +19,7 @@
   padding: 0.5rem 1rem;
 }
 .input:focus {
-  background-color: var(--white);
+  background: var(--white);
 }
 
 .add_note_button {

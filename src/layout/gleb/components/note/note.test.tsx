@@ -1,7 +1,7 @@
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-import Note from 'layout/gleb/components/note/Note';
+import { Note } from 'layout/gleb/components/note/Note';
 import { IMockStore } from 'layout/gleb/components/interfaces';
 
 let mockStore: IMockStore;
@@ -17,7 +17,7 @@ describe('Note Component', () => {
     };
   });
 
-  it('Note snapshot', () => {
+  it('makes Note snapshot', () => {
     const component = renderer.create(
       <Provider store={mockStore}>
         <Note {...props} />

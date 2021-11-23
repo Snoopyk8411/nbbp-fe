@@ -2,8 +2,7 @@ import axios from 'axios';
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
-export function requestGetPicture(newDate: string) {
-  console.log();
+export function requestGetMedia(newDate: string) {
   return axios
     .request({
       method: 'GET',

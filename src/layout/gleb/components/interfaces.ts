@@ -24,3 +24,21 @@ export type MockGetState<S = {}> = (actions: AnyAction[]) => S;
 declare function createMockStore<S, DispatchExts = {}>(middlewares?: Middleware[]): MockStoreCreator<S, DispatchExts>;
 
 export default createMockStore;
+
+export interface IMockData {
+  mediaPage: {
+    media: {
+      copyright: string;
+      date: string;
+      explanation: string;
+      hdurl: string;
+      media_type: string;
+      service_version: string;
+      title: string;
+      url: string;
+    };
+    error: Error | null;
+    selectedDay: any;
+    isLoading: boolean;
+  };
+}

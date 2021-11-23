@@ -2,18 +2,18 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
-import PicturePage from 'pages/contributors/gleb';
-import { IPicture } from 'store/gleb/interfaces';
-import { IMockStore } from 'layout/gleb/components/interfaces';
+import MediaPage from 'pages/contributors/gleb';
+import { IMedia } from 'store/gleb/interfaces';
+import { IMockStore, IMockData } from 'layout/gleb/components/interfaces';
 
 let mockStore: IMockStore;
 const sagaMiddleware = createSagaMiddleware();
 const mockStoreConf = configureStore([sagaMiddleware]);
 
-type PicturePageProps = {
-  initialPicture: IPicture;
+type MediaPageProps = {
+  initialMedia: IMedia;
 };
-const picture = {
+const media = {
   copyright: '',
   date: '2021-11-07',
   explanation: "To some it looks like a cat's eye.",
@@ -24,25 +24,28 @@ const picture = {
   url: 'https://apod.nasa.gov/apod/image/2111/CatsEye_HubblePohl_960.jpg',
 };
 
-const mockData = {
-  picturePage: {
-    picture: picture,
+const mockData: IMockData = {
+  mediaPage: {
+    media,
+    error: null,
+    selectedDay: 1637010000000,
+    isLoading: false,
   },
 };
 
-describe('PicturePage Component', () => {
-  let props: PicturePageProps;
+describe('MediaPage Component', () => {
+  let props: MediaPageProps;
   beforeEach(() => {
     mockStore = mockStoreConf(mockData);
     props = {
-      initialPicture: picture,
+      initialMedia: media,
     };
   });
 
-  it('PicturePage snapshot', () => {
+  it('makes MediaPage snapshot', () => {
     const component = renderer.create(
       <Provider store={mockStore}>
-        <PicturePage {...props} />
+        <MediaPage {...props} />
       </Provider>,
     );
     const tree = component.toJSON();

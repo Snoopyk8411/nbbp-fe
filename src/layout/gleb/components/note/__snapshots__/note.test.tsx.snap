@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Note Component Note snapshot 1`] = `
+exports[`Note Component makes Note snapshot 1`] = `
 <li>
   write a note
 </li>

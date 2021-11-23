@@ -1,20 +1,21 @@
-import { useState, ReactNode } from 'react';
+import { useState, ReactNode, FunctionComponent } from 'react';
 
-import CreateNote from 'layout/gleb/components/create-note/Create-note';
-import Note from 'layout/gleb/components/note/Note';
-import Layout from 'layout/gleb/components/layout/Layout';
+import { CreateNote } from 'layout/gleb/components/create-note/Create-note';
+import { Note } from 'layout/gleb/components/note/Note';
+import { Layout } from 'layout/gleb/components/layout/Layout';
 
 import styles from './note-list.module.css';
 
-type INoteListType = ReactNode & {
+export type INoteListType = FunctionComponent & {
   getLayout: (page: ReactNode) => JSX.Element;
 };
 
-const NoteList: INoteListType = () => {
+export const NoteList: INoteListType = (): JSX.Element => {
   const [noteList, setNoteList] = useState<string[]>([]);
 
   const addNote = (note: string) => {
-    setNoteList([note, ...noteList]);
+    const updatedNoteList = [note, ...noteList];
+    setNoteList(updatedNoteList);
   };
 
   return (
@@ -33,5 +34,3 @@ const NoteList: INoteListType = () => {
 };
 
 NoteList.getLayout = (page: ReactNode) => <Layout>{page}</Layout>;
-
-export default NoteList;

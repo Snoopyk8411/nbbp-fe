@@ -1,5 +1,5 @@
-export interface IPicturePage {
-  picture: {
+export interface IMediaPage {
+  media: {
     copyright: string;
     date: string;
     explanation: string;
@@ -11,9 +11,10 @@ export interface IPicturePage {
   };
   error: Error | null;
   selectedDay: any;
+  isLoading: boolean;
 }
 
-export interface IPicture {
+export interface IMedia {
   copyright: string;
   date: string;
   explanation: string;
