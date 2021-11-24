@@ -1,0 +1,21 @@
+.content {
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.picture_title {
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
+.picture_image {
+  width: 47rem;
+  height: 35rem;
+}
+
+.explanation {
+  margin: 0.25rem 10rem 2rem 10rem;
+}

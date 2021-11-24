@@ -1,5 +1,13 @@
 const jestConfig = {
-  collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}', '!**/*.d.ts', '!**/node_modules/**'],
+  collectCoverageFrom: [
+    '**/*.{js,jsx,ts,tsx}',
+    '!**/*.d.ts',
+    '!**/node_modules/**',
+    '!**/.next/**',
+    '!**/coverage/**',
+    '!**/public/**',
+    '!**/.**'
+  ],
   moduleNameMapper: {
     /* Handle CSS imports (with CSS modules)
     https://jestjs.io/docs/webpack#mocking-css-modules */
@@ -27,6 +35,7 @@ const jestConfig = {
   },
   transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  moduleDirectories: ["node_modules", "src"] // node_modules is default option
 };
 
 export default jestConfig;

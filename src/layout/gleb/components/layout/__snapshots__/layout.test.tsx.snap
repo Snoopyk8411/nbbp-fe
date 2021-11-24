@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout Component makes Layout snapshot 1`] = `
+<div>
+  <div
+    className="header"
+    data-test="headerComponent"
+  >
+    <button
+      className="header_title"
+      data-testid="NavigationButton"
+      onClick={[Function]}
+    >
+      Go to Notes
+    </button>
+  </div>
+  Component
+</div>
+`;
