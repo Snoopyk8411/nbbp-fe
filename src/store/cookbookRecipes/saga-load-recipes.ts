@@ -1,10 +1,9 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import { TypeToGenerator } from 'store/utils/generator-types';
+
 import { recipesAction } from './actions';
 import { IRecipeData } from './interfaces';
-
-import { TypeToGenerator } from 'store/utils/generator-types';
-import axios from 'axios';
-import { COOKBOOK_API } from 'src/constants';
+import { apiGetRecipes } from './api-get-recipes';
 
 export default function* recipesLoadDataWatcher(): Generator {
   yield takeEvery(recipesAction.loadRecipes, recipesLoadDataFlow);
@@ -13,7 +12,7 @@ export default function* recipesLoadDataWatcher(): Generator {
 function* recipesLoadDataFlow(): TypeToGenerator<IRecipeData | Boolean | Error> {
   try {
     yield put(recipesAction.setIsLoading(true));
-    const recipes: IRecipeData = yield call(() => axios.get<IRecipeData>(COOKBOOK_API.recipes).then(res => res.data));
+    const recipes: IRecipeData = yield call(() => apiGetRecipes());
     yield put(recipesAction.setRecipes(recipes));
   } catch (error) {
     yield put(recipesAction.setError(error as Error));

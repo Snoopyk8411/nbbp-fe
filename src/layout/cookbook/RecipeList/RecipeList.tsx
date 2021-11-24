@@ -4,15 +4,15 @@ import { Dispatch } from '@reduxjs/toolkit';
 
 import { IRecipe } from 'store/cookbookRecipes/interfaces';
 import { RootState } from 'store/reducers';
-import { selectRecipes } from 'store/cookbookRecipes/selectors';
+import { selectIsLoading, selectRecipes } from 'store/cookbookRecipes/selectors';
 import { recipesAction } from 'store/cookbookRecipes/actions';
 import { RecipeCard } from 'layout/cookbook/RecipeCard';
-import { ErrorFrame } from 'layout/cookbook/components/ErrorFrame';
 
 import { LOAD_ERROR_TEXT, NO_RECIPES_FOUND_TEXT } from './constants';
 import recipeListStyles from './recipeList.module.css';
 import { Loader } from '../components/Loader';
 import { ErrorMessage } from '../components/ErrorMessage';
+import { selectError } from 'store/cookbookProducts/selectors';
 
 type RecipeListProps = {
   recipes?: IRecipe[];
@@ -41,8 +41,8 @@ const RecipeList: FC<RecipeListProps> = ({ recipes, error, isLoading, onLoad }) 
 
 const mapStateToProps = (state: RootState): Partial<RecipeListProps> => ({
   recipes: selectRecipes(state),
-  error: state.recipes.error,
-  isLoading: state.recipes.isLoading,
+  error: selectError(state),
+  isLoading: selectIsLoading(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): Partial<RecipeListProps> => ({

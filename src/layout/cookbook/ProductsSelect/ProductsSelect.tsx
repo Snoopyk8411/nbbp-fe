@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import cn from 'classnames';
 
 import { IProduct, IProductsData } from 'store/cookbookProducts/interfaces';
-import { selectProducts } from 'store/cookbookProducts/selectors';
+import { selectError, selectProducts } from 'store/cookbookProducts/selectors';
 import { RootState } from 'store/reducers';
 
 import { LOAD_ERROR_TEXT, NO_PRODUCTS } from './constants';
@@ -55,7 +55,7 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, 
 
 const mapStateToProps = (state: RootState): Partial<ProductsSelectProps> => ({
   products: selectProducts(state),
-  error: state.products.error,
+  error: selectError(state),
 });
 
 export default connect(mapStateToProps)(ProductsSelect);
