@@ -54,7 +54,12 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, 
   );
 };
 
-const mapStateToProps = (state: RootState): Partial<ProductsSelectProps> => ({
+const mapStateToProps = (
+  state: RootState,
+): {
+  products?: IProductsData;
+  error?: Error;
+} => ({
   products: selectProducts(state),
   error: selectError(state),
 });
