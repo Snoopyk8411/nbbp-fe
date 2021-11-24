@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { ERROR_FRAME_ID } from 'layout/cookbook/constants';
+import { ERROR_FRAME_ID } from 'layout/contributors/Ilia_Kotov/cookbook/constants';
 
 import { ERROR_TIMEOUT } from './constants';
 import errorMessageStyles from './errorMessage.module.css';

@@ -1,8 +1,8 @@
 import { ChangeEvent, FC, useState } from 'react';
 
-import { IProduct } from 'store/cookbookProducts/interfaces';
-import { IRecipeIngredient } from 'store/cookbookRecipes/interfaces';
-import { AMOUNT_NAME, AMOUNT_PLACEHOLDER } from 'layout/cookbook/constants';
+import { IProduct } from 'store/contributors/Ilia_Kotov/cookbookProducts/interfaces';
+import { IRecipeIngredient } from 'store/contributors/Ilia_Kotov/cookbookRecipes/interfaces';
+import { AMOUNT_NAME, AMOUNT_PLACEHOLDER } from 'layout/contributors/Ilia_Kotov/cookbook/constants';
 
 import { ADD_INGREDIENT } from './constants';
 import ingredientCreateStyles from './ingredientCreate.module.css';

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { COOKBOOK_API } from 'src/constants';
+import { COOKBOOK_API } from 'store/contributors/Ilia_Kotov/constants';
 import { IRecipeData } from './interfaces';
 
 export const apiGetRecipes = (): Promise<IRecipeData> =>

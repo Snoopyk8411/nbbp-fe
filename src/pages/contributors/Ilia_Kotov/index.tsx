@@ -4,11 +4,11 @@ import { Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { GetStaticProps, NextPage } from 'next';
 
-import { COOKBOOK_API } from 'src/constants';
-import { Cookbook } from 'layout/cookbook';
-import { ErrorFrame } from 'layout/cookbook/components/ErrorFrame';
-import { IProductsData } from 'store/cookbookProducts/interfaces';
-import { productsActions } from 'store/cookbookProducts/actions';
+import { COOKBOOK_API } from 'store/contributors/Ilia_Kotov/constants';
+import { Cookbook } from 'layout/contributors/Ilia_Kotov/cookbook';
+import { ErrorFrame } from 'layout/contributors/Ilia_Kotov/cookbook/components/ErrorFrame';
+import { IProductsData } from 'store/contributors/Ilia_Kotov/cookbookProducts/interfaces';
+import { productsActions } from 'store/contributors/Ilia_Kotov/cookbookProducts/actions';
 
 import { NextPageWithLayout } from './types';
 

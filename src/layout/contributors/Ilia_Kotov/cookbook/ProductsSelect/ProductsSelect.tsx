@@ -2,8 +2,8 @@ import { FC, useCallback, useState } from 'react';
 import { connect } from 'react-redux';
 import cn from 'classnames';
 
-import { IProduct, IProductsData } from 'store/cookbookProducts/interfaces';
-import { selectError, selectProducts } from 'store/cookbookProducts/selectors';
+import { IProduct, IProductsData } from 'store/contributors/Ilia_Kotov/cookbookProducts/interfaces';
+import { selectError, selectProducts } from 'store/contributors/Ilia_Kotov/cookbookProducts/selectors';
 import { RootState } from 'store/reducers';
 
 import { LOAD_ERROR_TEXT, NO_PRODUCTS } from './constants';
@@ -21,7 +21,7 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, 
   const [selectedIndex, setSelectedIndex] = useState<number | undefined>();
   const handleSelect = useCallback(
     (index: number) => {
-      const selectedProduct = products[index] || undefined;
+      const selectedProduct = products[index];
       setSelectedIndex(index);
       selectedProduct && onChange?.(selectedProduct);
     },
@@ -32,14 +32,15 @@ export const ProductsSelect: FC<ProductsSelectProps> = ({ products = [], error, 
       {!!error && <ErrorMessage message={`${LOAD_ERROR_TEXT}: ${error.message}`} />}
       {products.length ? (
         <div className={productsSelectStyles.select}>
-          {products.map((item, idx) => {
+          {products.map((item, index) => {
+            const handleClick = (): void => handleSelect(index);
             return (
               <div
                 className={cn(productsSelectStyles.option, {
-                  [productsSelectStyles.selected as string]: idx === selectedIndex,
+                  [productsSelectStyles.selected as string]: index === selectedIndex,
                 })}
                 key={item.id}
-                onClick={(): void => handleSelect(idx)}
+                onClick={handleClick}
               >
                 {item.name}
               </div>

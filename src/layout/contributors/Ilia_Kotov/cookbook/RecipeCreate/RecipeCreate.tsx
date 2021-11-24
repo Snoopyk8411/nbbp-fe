@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, useState } from 'react';
 
-import { IRecipe, IRecipeIngredient } from 'store/cookbookRecipes/interfaces';
-import { RecipeCard } from 'layout/cookbook/RecipeCard';
+import { IRecipe, IRecipeIngredient } from 'store/contributors/Ilia_Kotov/cookbookRecipes/interfaces';
+import { RecipeCard } from 'layout/contributors/Ilia_Kotov/cookbook/RecipeCard';
 
 import { CLEAR, CREATE_RECIPE, NAME_FIELD_PLACEHOLDER } from './constants';
 import recipeCreateStyles from './recipeCreate.module.css';

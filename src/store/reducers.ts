@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { productsSlice } from './cookbookProducts/slice';
-import { recipesSlice } from './cookbookRecipes/slice';
+import { productsSlice } from './contributors/Ilia_Kotov/cookbookProducts/slice';
+import { recipesSlice } from './contributors/Ilia_Kotov/cookbookRecipes/slice';
 
 import { galleryPageSlice } from './contributors/ivanefimov/slice';
 import { welcomePageSlice } from './welcome/slice';

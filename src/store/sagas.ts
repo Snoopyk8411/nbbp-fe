@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 
-import recipesLoadDataWatcher from './cookbookRecipes/saga-load-recipes';
+import recipesLoadDataWatcher from './contributors/Ilia_Kotov/cookbookRecipes/saga-load-recipes';
 import gpLoadPhotosPageWatcher from './contributors/ivanefimov/saga-load-photos';
 import wpLoadInitDataWatcher from './welcome/saga-load-init-data';
 

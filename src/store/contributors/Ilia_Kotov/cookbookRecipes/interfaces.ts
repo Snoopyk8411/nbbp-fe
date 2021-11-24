@@ -1,4 +1,4 @@
-import { IProduct } from 'store/cookbookProducts/interfaces';
+import { IProduct } from 'store/contributors/Ilia_Kotov/cookbookProducts/interfaces';
 
 export interface IRecipeIngredient {
   product: IProduct;

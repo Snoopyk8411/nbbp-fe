@@ -2,10 +2,10 @@ import { FC } from 'react';
 import { createPortal } from 'react-dom';
 import cn from 'classnames';
 
-import { ERROR_FRAME_ID } from 'layout/cookbook/constants';
+import { ERROR_FRAME_ID } from 'layout/contributors/Ilia_Kotov/cookbook/constants';
 
 import errorFrameStyles from './errorFrame.module.css';
-import cookbookStyles from 'layout/cookbook/cookbook-theme.module.css';
+import cookbookStyles from 'layout/contributors/Ilia_Kotov/cookbook/cookbook-theme.module.css';
 
 const ErrorFrame: FC = () => {
   const bodyEl = document.querySelector('body') as HTMLBodyElement;

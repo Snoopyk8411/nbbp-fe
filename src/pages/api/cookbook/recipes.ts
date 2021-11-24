@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { IRecipeData } from 'store/cookbookRecipes/interfaces';
+import { IRecipeData } from 'store/contributors/Ilia_Kotov/cookbookRecipes/interfaces';
 
 import RECIPES from 'store/cookbook-recipes-data-mock.json';
 

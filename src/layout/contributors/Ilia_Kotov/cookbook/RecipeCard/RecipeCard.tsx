@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { IRecipe } from 'store/cookbookRecipes/interfaces';
+import { IRecipe } from 'store/contributors/Ilia_Kotov/cookbookRecipes/interfaces';
 import { NO_INGREDIENTS } from './constants';
 
 import recipeCardStyles from './recipeCard.module.css';
