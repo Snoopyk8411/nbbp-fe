@@ -2,7 +2,6 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "src/*": ["../src/*"],
       "styles/*": ["../styles/*"],
       "public/*": ["../public/*"],
       "assets/*": ["../public/assets/*"],
