@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import { ERROR_FRAME_ID } from 'layout/contributors/Ilia_Kotov/cookbook/constants';
@@ -11,7 +11,7 @@ type ErrorMessageProps = {
 };
 
 const ErrorMessage: FC<ErrorMessageProps> = ({ message }) => {
-  const [container] = useState(document.querySelector(`#${ERROR_FRAME_ID}`) as HTMLDivElement);
+  const container = useRef<HTMLDivElement>(document.querySelector(`#${ERROR_FRAME_ID}`) as HTMLDivElement);
   const [messages, setMessages] = useState<string[]>([]);
   useEffect(() => {
     if (message) {
@@ -26,7 +26,7 @@ const ErrorMessage: FC<ErrorMessageProps> = ({ message }) => {
     </div>
   ));
 
-  return createPortal(errors, container);
+  return createPortal(errors, container.current);
 };
 
 export default ErrorMessage;

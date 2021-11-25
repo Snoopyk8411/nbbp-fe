@@ -1,4 +1,4 @@
-import { ERROR_FRAME_ID } from 'layout/contributors/Ilia_Kotov/cookbook/constants';
+import { ERROR_FRAME_ID, ILIA_KOTOV_ROOT } from 'layout/contributors/Ilia_Kotov/cookbook/constants';
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
 
 class MyDocument extends Document {
@@ -12,7 +12,7 @@ class MyDocument extends Document {
 
   override render(): JSX.Element {
     const { __NEXT_DATA__: { page = undefined } = {} } = this.props || {};
-    const hasErrorFrame = page?.startsWith('/contributors/Ilia_Kotov');
+    const hasErrorFrame = page?.startsWith(ILIA_KOTOV_ROOT);
     return (
       <Html>
         <Head />

@@ -7,11 +7,11 @@ import { RootState } from 'store/reducers';
 import { selectIsLoading, selectRecipes, selectError } from 'store/contributors/Ilia_Kotov/cookbookRecipes/selectors';
 import { recipesAction } from 'store/contributors/Ilia_Kotov/cookbookRecipes/actions';
 import { RecipeCard } from 'layout/contributors/Ilia_Kotov/cookbook/RecipeCard';
+import { ErrorMessage } from 'layout/contributors/Ilia_Kotov/cookbook/components/ErrorMessage';
 
 import { LOAD_ERROR_TEXT, NO_RECIPES_FOUND_TEXT } from './constants';
 import recipeListStyles from './recipeList.module.css';
 import { Loader } from '../components/Loader';
-import { ErrorMessage } from '../components/ErrorMessage';
 
 type RecipeListProps = {
   recipes?: IRecipe[];
