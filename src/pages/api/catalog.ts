@@ -1,33 +1,38 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { ICatalogItem, ICatalogNode, ICatalogTree } from 'tools/types/api-catalog-items-types';
+import { Errors, ICatalogItem, ICatalogNode, ICatalogTree } from 'tools/types/api-catalog-items-types';
 import { CATALOG_ITEMS } from 'mock-data/catalog-data';
 
-const getNodeFromItem = (item: ICatalogItem): ICatalogNode => {
-  const { id, name, url, accent, svg } = { ...item };
-  return { id, name, url, accent, svg, order: Number(id) };
+export const getNodeFromItem = (item: ICatalogItem): ICatalogNode => {
+  const { id, name, url, appearance, svg } = { ...item };
+  return { id, name, url, appearance, svg, order: Number(id) };
 };
 
-const getChildren = (group: string): string[] => {
+export const getChildren = (group: string): string[] => {
   return CATALOG_ITEMS.filter(item => item.groups.includes(group)).map(item => item.name);
 };
 
-const getTree = (group: string, depth: number, tree?: ICatalogTree): ICatalogTree => {
+export const getTree = (group: string, depth: number, tree?: ICatalogTree): ICatalogTree => {
   if (!depth && tree) return tree;
   const root = CATALOG_ITEMS.find(item => item.name === group);
+  if (!root) throw Error;
   return {
-    node: getNodeFromItem(root!),
-    children: getChildren(group).map(group => getTree(group, depth - 1, tree)),
+    node: getNodeFromItem(root),
+    children: depth ? getChildren(group).map(group => getTree(group, depth - 1, tree)) : [],
   };
 };
 
-const handler = (req: NextApiRequest, res: NextApiResponse<ICatalogTree>): void => {
+const getCategoriesHandler = (req: NextApiRequest, res: NextApiResponse<ICatalogTree>): void => {
   const { category, depth } = req.query;
   if (typeof category === 'string') {
-    const depthNum = Number(depth?.toString()) || 1;
-    const tree = getTree(category, depthNum);
-    res.status(200).json(tree);
+    const depthNum = Number(depth?.toString()) || Infinity;
+    try {
+      const tree = getTree(category, depthNum);
+      res.status(200).json(tree);
+    } catch (err) {
+      res.status(404).end(Errors.NOT_FOUND);
+    }
   }
-  res.status(400).end();
+  res.status(400).end(Errors.WRONG_TYPE);
 };
 
-export default handler;
+export default getCategoriesHandler;
