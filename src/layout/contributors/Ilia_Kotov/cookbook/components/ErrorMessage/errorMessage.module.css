@@ -4,8 +4,8 @@
   text-align: center;
   font-size: 1.6rem;
   padding: 1rem;
-  border: 3px solid var(--main-error-font);
+  border: 3px solid red;
   border-radius: 1rem;
   text-align: left;
-  color: var(--main-error-font);
+  color: red;
 }

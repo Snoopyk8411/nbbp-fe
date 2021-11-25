@@ -31,7 +31,7 @@ export const recipesSlice = createSlice({
       state.data.push({ ...action.payload, id: state.counter });
     },
 
-    setError: (state, action: PayloadAction<Error>) => {
+    setError: (state, action: PayloadAction<Error | undefined>) => {
       state.error = action.payload;
     },
 

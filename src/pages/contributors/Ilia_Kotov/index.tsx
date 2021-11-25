@@ -1,16 +1,13 @@
-import { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { GetStaticProps, NextPage } from 'next';
+import { GetStaticProps } from 'next';
 
 import { COOKBOOK_API } from 'store/contributors/Ilia_Kotov/constants';
 import { Cookbook } from 'layout/contributors/Ilia_Kotov/cookbook';
-import { ErrorFrame } from 'layout/contributors/Ilia_Kotov/cookbook/components/ErrorFrame';
 import { IProductsData } from 'store/contributors/Ilia_Kotov/cookbookProducts/interfaces';
 import { productsActions } from 'store/contributors/Ilia_Kotov/cookbookProducts/actions';
-
-import { NextPageWithLayout } from './types';
 
 type CookbookProps = {
   products?: IProductsData;
@@ -19,25 +16,13 @@ type CookbookProps = {
   setError?: (error: Error) => void;
 };
 
-const CookbookPage: NextPageWithLayout<CookbookProps> = ({
-  products = [],
-  error,
-  setProducts,
-  setError,
-}: CookbookProps) => {
+const CookbookPage: FC<CookbookProps> = ({ products = [], error, setProducts, setError }: CookbookProps) => {
   useEffect(() => {
     setProducts?.(products);
     error && setError?.(error);
   }, []);
   return <Cookbook />;
 };
-
-CookbookPage.getLayout = (page: NextPage): JSX.Element => (
-  <>
-    <ErrorFrame />
-    {page}
-  </>
-);
 
 export const getStaticProps: GetStaticProps = async () => {
   return await axios

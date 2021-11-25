@@ -13,7 +13,6 @@ type ErrorMessageProps = {
 const ErrorMessage: FC<ErrorMessageProps> = ({ message }) => {
   const [container] = useState(document.querySelector(`#${ERROR_FRAME_ID}`) as HTMLDivElement);
   const [messages, setMessages] = useState<string[]>([]);
-
   useEffect(() => {
     if (message) {
       setMessages([message, ...messages]);
