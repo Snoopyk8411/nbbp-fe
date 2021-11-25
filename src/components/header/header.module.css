@@ -1,0 +1,32 @@
+.header_fixed_always {
+  position: fixed;
+}
+.header_with_shadow {
+  height: auto;
+  padding-top: 10px;
+  padding-bottom: 7px;
+  transform: translate3d(0, 0, 0);
+  box-shadow: 0px 1px 17px rgb(0 0 0 / 9%);
+}
+
+.header__container {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header_level_bottom {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
