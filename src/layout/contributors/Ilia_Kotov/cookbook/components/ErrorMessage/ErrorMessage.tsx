@@ -10,7 +10,7 @@ type ErrorMessageProps = {
   message: string;
 };
 
-const ErrorMessage: FC<ErrorMessageProps> = ({ message }) => {
+export const ErrorMessage: FC<ErrorMessageProps> = ({ message }) => {
   const container = useRef<HTMLDivElement>(document.querySelector(`#${ERROR_FRAME_ID}`) as HTMLDivElement);
   const [messages, setMessages] = useState<string[]>([]);
   useEffect(() => {
@@ -28,5 +28,3 @@ const ErrorMessage: FC<ErrorMessageProps> = ({ message }) => {
 
   return createPortal(errors, container.current);
 };
-
-export default ErrorMessage;
