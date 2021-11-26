@@ -1,0 +1,29 @@
+[
+  {
+    "id": 0,
+    "name": "Salad",
+    "ingredients": [
+      {
+        "product": {
+          "id": 1,
+          "name": "tomato"
+        },
+        "amount": 10
+      },
+      {
+        "product": {
+          "id": 6,
+          "name": "salad leafs"
+        },
+        "amount": 10
+      },
+      {
+        "product": {
+          "id": 3,
+          "name": "olive oil"
+        },
+        "amount": 10
+      }
+    ]
+  }
+]
