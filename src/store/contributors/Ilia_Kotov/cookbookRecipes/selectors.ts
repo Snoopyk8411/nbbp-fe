@@ -2,13 +2,13 @@ import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from 'store/reducers';
 import { IRecipesStore } from './slice';
 
-const selectRecipesStore = (store: RootState): IRecipesStore => store.recipes;
+const selectRecipesData = (store: RootState): IRecipesStore => store.recipes;
 
-export const selectRecipes = createSelector(selectRecipesStore, (recipesStore: IRecipesStore) => recipesStore.data);
+export const selectRecipes = createSelector(selectRecipesData, (recipesStore: IRecipesStore) => recipesStore.data);
 
 export const selectIsLoading = createSelector(
-  selectRecipesStore,
+  selectRecipesData,
   (recipesStore: IRecipesStore) => recipesStore.isLoading,
 );
 
-export const selectError = createSelector(selectRecipesStore, (recipesStore: IRecipesStore) => recipesStore.error);
+export const selectError = createSelector(selectRecipesData, (recipesStore: IRecipesStore) => recipesStore.error);
