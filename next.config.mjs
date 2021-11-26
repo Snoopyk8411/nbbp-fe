@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
@@ -7,6 +8,14 @@ const nextConfig = {
     loader: 'custom',
     path: '/',
   },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"]
+    });
+
+    return config;
+  }
 };
 
 export default nextConfig;
