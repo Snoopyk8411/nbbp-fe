@@ -14,7 +14,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.ACCENT,
-    svg: '',
+    svgUrl: '',
   },
   {
     id: '2',
@@ -22,7 +22,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.HIGHLIGHT,
-    svg: '',
+    svgUrl: '',
   },
   {
     id: '3',
@@ -58,7 +58,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.ACCENT,
-    svg: '',
+    svgUrl: '',
   },
   {
     id: '8',
@@ -66,7 +66,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.PLAIN,
-    svg: '',
+    svgUrl: '',
   },
   {
     id: '9',
@@ -74,7 +74,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.PLAIN,
-    svg: '',
+    svgUrl: '',
   },
   {
     id: '10',
@@ -82,7 +82,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.PLAIN,
-    svg: '',
+    svgUrl: '',
   },
   {
     id: '11',

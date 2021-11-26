@@ -3,8 +3,8 @@ import { Errors, ICatalogItem, ICatalogNode, ICatalogTree } from 'tools/types/ap
 import { CATALOG_ITEMS } from 'mock-data/catalog-data';
 
 export const getNodeFromItem = (item: ICatalogItem): ICatalogNode => {
-  const { id, name, url, appearance, svg } = { ...item };
-  return { id, name, url, appearance, svg, order: Number(id) };
+  const { id, name, url, appearance, svgUrl: svg } = { ...item };
+  return { id, name, url, appearance, svgUrl: svg, order: Number(id) };
 };
 
 export const getChildren = (group: string): string[] => {
