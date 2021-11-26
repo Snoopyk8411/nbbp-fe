@@ -1,0 +1,12 @@
+.card {
+  border: 1px solid var(--secondary-bg-color);
+  border-radius: 1rem;
+}
+
+.title {
+  margin: 0;
+  padding: 2rem;
+  background-color: var(--secondary-bg-color);
+  border-radius: 1rem 1rem 0 0;
+  color: var(--secondary-font-color);
+}
