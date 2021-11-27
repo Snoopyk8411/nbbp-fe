@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wizard-item {
+  min-width: 25rem;
+}
+
