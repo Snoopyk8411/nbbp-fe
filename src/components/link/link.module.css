@@ -17,13 +17,12 @@
 
 .svg {
   margin-right: 0.3rem;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2.3rem;
+  height: 2.3rem;
 }
 
 .accent {
   color: var(--red);
-  font-style: italic;
 }
 
 .highlight {

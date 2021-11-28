@@ -1,33 +1,36 @@
 import { useState, useEffect } from 'react';
 
-import { accentStyle, highlightStyle } from './constants';
+import { Appearance } from 'tools/types/api-catalog-items-types';
+import { IconComponent } from 'components/icon/Icon';
 
 import linkStyles from './link.module.css';
 
 type LinkProps = {
   url: string;
-  title: string;
-  svg?: string;
-  accent: any; // после добавления типов заменить тип на Appearance
+  name: string;
+  svgName?: string;
+  appearance: Appearance | String;
 };
 
-export const Link = ({ url, title, svg, accent }: LinkProps): JSX.Element => {
+export const Link = ({ url, name, svgName, appearance }: LinkProps): JSX.Element => {
+  const accentStyle = linkStyles.accent;
+  const highlightStyle = linkStyles.highlight;
   const [style, setStyle] = useState<String>();
 
   useEffect(() => {
-    if (accent === 1) {
+    if (appearance === Appearance.ACCENT) {
       setStyle(accentStyle);
     }
-    if (accent === 2) {
+    if (appearance == Appearance.HIGHLIGHT) {
       setStyle(highlightStyle);
     }
-  }, [accent]);
+  }, [appearance]);
 
   return (
     <div className={`${linkStyles.link_container} ${style}`}>
-      {svg && <img src={svg} alt={title} className={linkStyles.svg} />}
-      <a href={url} className={linkStyles.title} role='menuitem'>
-        {title}
+      {svgName && <IconComponent name={svgName} className={linkStyles.svg} fill={'currentColor'} />}
+      <a href={url} className={linkStyles.name} role='menuitem'>
+        {name}
       </a>
     </div>
   );
