@@ -20,9 +20,11 @@ export interface IMenuProps {
 
 export interface IMenuLevelProps {
   items: IMenuItemModel[];
+  parentItem?: IMenuItemModel;
   submenuOpenActionType: SubmenuOpenActionType;
+  submenuPosition: SubmenuPosition;
   containerElement: HTMLElement | null;
-  isRoot: boolean;
+  onClose?: () => void;
 }
 
 type MenuItemIdType = string | number;
@@ -36,9 +38,11 @@ export interface IMenuItemModel {
 
 const MenuLevel: React.FC<IMenuLevelProps> = ({
   items,
+  parentItem,
   submenuOpenActionType,
   containerElement,
-  isRoot,
+  submenuPosition,
+  onClose,
 }: IMenuLevelProps) => {
   const [openedSubmenuId, setOpenedSubmenuId] = useState<MenuItemIdType | null>(null);
 
@@ -46,13 +50,21 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
     return null;
   }
 
+  const showBackToParentLink = submenuPosition === SubmenuPosition.Overlap;
+
   const handleMenuItemClick = (itemId: MenuItemIdType): void =>
     (submenuOpenActionType === SubmenuOpenActionType.Click && setOpenedSubmenuId(itemId)) as void;
   const handleMenuItemMouseEnter = (itemId: MenuItemIdType): void =>
     (submenuOpenActionType === SubmenuOpenActionType.Hover && setOpenedSubmenuId(itemId)) as void;
+  const handleSubmenuClose = (): void => setOpenedSubmenuId(null);
 
   const menuLevel = (
-    <ul className={getMenuLevelClass(isRoot)}>
+    <ul className={getMenuLevelClass(!parentItem)}>
+      {!!parentItem && showBackToParentLink && (
+        <li className={`${menuStyles.menu_item} ${menuStyles.menu_item_back_to_parent}`} onClick={onClose}>
+          {parentItem.name}
+        </li>
+      )}
       {items.map(item => (
         <li key={item.id}>
           <div
@@ -66,8 +78,10 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
             <MenuLevel
               submenuOpenActionType={submenuOpenActionType}
               items={item.children}
+              parentItem={item}
+              submenuPosition={submenuPosition}
               containerElement={containerElement}
-              isRoot={false}
+              onClose={handleSubmenuClose}
             />
           )}
         </li>
@@ -87,7 +101,12 @@ const Menu: React.FC<IMenuProps> = ({ submenuPosition, ...rest }: IMenuProps) =>
 
   return (
     <nav ref={menuContainerRef} className={getMenuContainerClass(submenuPosition)}>
-      <MenuLevel isRoot={true} {...rest} containerElement={containerElement} />
+      <MenuLevel
+        {...rest}
+        parentItem={undefined}
+        containerElement={containerElement}
+        submenuPosition={submenuPosition}
+      />
     </nav>
   );
 };

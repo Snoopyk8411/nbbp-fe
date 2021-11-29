@@ -57,6 +57,17 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 0.4em;
+}
+
+.menu_item_back_to_parent {
+    justify-content: start;
+    margin-bottom: 0.5em;
+}
+
+.menu_item_back_to_parent::before {
+    content: "<";
+    color: var(--secondary-font-color);
 }
 
 .menu_item_with_children::after {
