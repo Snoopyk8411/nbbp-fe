@@ -10,11 +10,14 @@ const MenuPage: NextPage = () => {
         submenuOpenActionType={SubmenuOpenActionType.Click}
         submenuPosition={SubmenuPosition.Overlap}
       ></Menu>
-      <Menu
-        items={menuItems}
-        submenuOpenActionType={SubmenuOpenActionType.Hover}
-        submenuPosition={SubmenuPosition.Alongside}
-      ></Menu>
+      <br />
+      {
+        <Menu
+          items={menuItems}
+          submenuOpenActionType={SubmenuOpenActionType.Hover}
+          submenuPosition={SubmenuPosition.Alongside}
+        ></Menu>
+      }
     </>
   );
 };

@@ -1,17 +1,19 @@
 .container {
     --menu-background: rgb(255, 255, 255);
+    --border-color: rgb(245, 245, 245);
+    --selected-color: var(--border-color);
+    --secondary-font-color: rgb(148, 148, 148);
     --menu-width: 22rem;
     border-radius: 0.5rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     font-size: 1rem;
-    list-style: none;
-    padding: 1rem;
     box-sizing: border-box;
     background: var(--menu-background);
 }
 
 .container_submenu_overlap {
     display: inline-block;
+    position: relative;
 }
 
 .container_submenu_alongside {
@@ -21,8 +23,47 @@
 
 .menu_level {
     width: var(--menu-width);
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    background: var(--menu-background);
+    overflow-y: scroll;
+}
+
+.menu_level_nested {
+    max-height: 100%;
+}
+
+.container_submenu_overlap .menu_level_nested {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/*.container_submenu_overlap .menu_level {
+    position: absolute;
+    height: 100%;
+}*/
+
+.container_submenu_alongside .menu_level + .menu_level {
+    border-left: 1px solid var(--border-color);
 }
 
 .menu_item {
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menu_item_with_children::after {
+    content: '>';
+    color: var(--secondary-font-color);
+}
+
+.menu_item:hover {
+    background: var(--selected-color);
 }

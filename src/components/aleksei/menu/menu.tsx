@@ -22,6 +22,7 @@ export interface IMenuLevelProps {
   items: IMenuItemModel[];
   submenuOpenActionType: SubmenuOpenActionType;
   containerElement: HTMLElement | null;
+  isRoot: boolean;
 }
 
 type MenuItemIdType = string | number;
@@ -33,7 +34,12 @@ export interface IMenuItemModel {
   children?: IMenuItemModel[];
 }
 
-const MenuLevel: React.FC<IMenuLevelProps> = ({ items, submenuOpenActionType, containerElement }: IMenuLevelProps) => {
+const MenuLevel: React.FC<IMenuLevelProps> = ({
+  items,
+  submenuOpenActionType,
+  containerElement,
+  isRoot,
+}: IMenuLevelProps) => {
   const [openedSubmenuId, setOpenedSubmenuId] = useState<MenuItemIdType | null>(null);
 
   if (!containerElement) {
@@ -46,11 +52,11 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({ items, submenuOpenActionType, co
     (submenuOpenActionType === SubmenuOpenActionType.Hover && setOpenedSubmenuId(itemId)) as void;
 
   const menuLevel = (
-    <ul className={menuStyles.menu_level}>
+    <ul className={getMenuLevelClass(isRoot)}>
       {items.map(item => (
         <li key={item.id}>
           <div
-            className={menuStyles.menu_item}
+            className={getMenuItemClass(!!item.children && item.children.length > 0)}
             onClick={(): void => handleMenuItemClick(item.id)}
             onMouseEnter={(): void => handleMenuItemMouseEnter(item.id)}
           >
@@ -61,6 +67,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({ items, submenuOpenActionType, co
               submenuOpenActionType={submenuOpenActionType}
               items={item.children}
               containerElement={containerElement}
+              isRoot={false}
             />
           )}
         </li>
@@ -80,7 +87,7 @@ const Menu: React.FC<IMenuProps> = ({ submenuPosition, ...rest }: IMenuProps) =>
 
   return (
     <nav ref={menuContainerRef} className={getMenuContainerClass(submenuPosition)}>
-      <MenuLevel {...rest} containerElement={containerElement} />
+      <MenuLevel isRoot={true} {...rest} containerElement={containerElement} />
     </nav>
   );
 };
@@ -89,5 +96,11 @@ const getMenuContainerClass = (submenuPosition: SubmenuPosition): string | undef
   submenuPosition === SubmenuPosition.Overlap
     ? `${menuStyles.container} ${menuStyles.container_submenu_overlap}`
     : `${menuStyles.container} ${menuStyles.container_submenu_alongside}`;
+
+const getMenuItemClass = (hasChildren: boolean): string | undefined =>
+  hasChildren ? `${menuStyles.menu_item} ${menuStyles.menu_item_with_children}` : `${menuStyles.menu_item}`;
+
+const getMenuLevelClass = (isRoot: boolean): string | undefined =>
+  isRoot ? `${menuStyles.menu_level}` : `${menuStyles.menu_level} ${menuStyles.menu_level_nested}`;
 
 export default Menu;
