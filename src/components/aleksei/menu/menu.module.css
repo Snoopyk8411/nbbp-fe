@@ -1,28 +1,28 @@
-.menu {
-    --menu-width: 22rem;
+.container {
     --menu-background: rgb(255, 255, 255);
+    --menu-width: 22rem;
     border-radius: 0.5rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     font-size: 1rem;
     list-style: none;
     padding: 1rem;
-    width: var(--menu-width);
-    position: relative;
     box-sizing: border-box;
     background: var(--menu-background);
 }
 
-.menu .menu {
-    position: absolute;
-    top: 0;
-    left: var(--menu-width);
-    height: 100%;
+.container_submenu_overlap {
+    display: inline-block;
+}
+
+.container_submenu_alongside {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.menu_level {
+    width: var(--menu-width);
 }
 
 .menu_item {
     padding: 0.5rem 0;
-}
-
-.menu_overlapping .menu {
-    left: 0;
 }

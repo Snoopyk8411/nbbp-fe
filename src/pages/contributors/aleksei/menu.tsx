@@ -1,60 +1,18 @@
-import Menu, { IMenuItemModel, SubmenuOpeningMode, SubmenuPosition } from 'components/aleksei/menu/menu';
+import Menu, { SubmenuOpenActionType, SubmenuPosition } from 'components/aleksei/menu/menu';
 import { NextPage } from 'next';
-
-const menuItems: IMenuItemModel[] = [
-  {
-    id: '1',
-    name: 'Доставка',
-  },
-  {
-    id: '2',
-    name: 'Магазины',
-  },
-  {
-    id: '3',
-    name: 'Акции',
-    children: [
-      {
-        id: '4',
-        name: 'Любимый продукт',
-      },
-      {
-        id: '5',
-        name: 'Разнообразное питание',
-      },
-    ],
-  },
-  {
-    id: '7',
-    name: 'Новости',
-    children: [
-      {
-        id: '9',
-        name: 'Интернет-магазин',
-      },
-      {
-        id: '15',
-        name: 'Все новости',
-      },
-      {
-        id: '17',
-        name: 'Школа потребителя',
-      },
-    ],
-  },
-];
+import { menuItems } from 'mock-data/aleksei/menu-items';
 
 const MenuPage: NextPage = () => {
   return (
     <>
       <Menu
         items={menuItems}
-        submenuOpeningMode={SubmenuOpeningMode.OnClick}
+        submenuOpenActionType={SubmenuOpenActionType.Click}
         submenuPosition={SubmenuPosition.Overlap}
       ></Menu>
       <Menu
         items={menuItems}
-        submenuOpeningMode={SubmenuOpeningMode.OnHover}
+        submenuOpenActionType={SubmenuOpenActionType.Hover}
         submenuPosition={SubmenuPosition.Alongside}
       ></Menu>
     </>

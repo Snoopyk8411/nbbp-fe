@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import menuStyles from './menu.module.css';
 
-export enum SubmenuOpeningMode {
-  OnClick,
-  OnHover,
+export enum SubmenuOpenActionType {
+  Click,
+  Hover,
 }
 
 export enum SubmenuPosition {
@@ -13,11 +14,17 @@ export enum SubmenuPosition {
 
 export interface IMenuProps {
   items: IMenuItemModel[];
-  submenuOpeningMode: SubmenuOpeningMode;
+  submenuOpenActionType: SubmenuOpenActionType;
   submenuPosition: SubmenuPosition;
 }
 
-type MenuItemIdType = string;
+export interface IMenuLevelProps {
+  items: IMenuItemModel[];
+  submenuOpenActionType: SubmenuOpenActionType;
+  containerElement: HTMLElement | null;
+}
+
+type MenuItemIdType = string | number;
 
 export interface IMenuItemModel {
   id: MenuItemIdType;
@@ -26,21 +33,20 @@ export interface IMenuItemModel {
   children?: IMenuItemModel[];
 }
 
-const Menu: React.FC<IMenuProps> = ({ items, submenuOpeningMode, submenuPosition, ...restProps }: IMenuProps) => {
+const MenuLevel: React.FC<IMenuLevelProps> = ({ items, submenuOpenActionType, containerElement }: IMenuLevelProps) => {
   const [openedSubmenuId, setOpenedSubmenuId] = useState<MenuItemIdType | null>(null);
 
-  const handleMenuItemClick = (itemId: MenuItemIdType): void =>
-    (submenuOpeningMode === SubmenuOpeningMode.OnClick && setOpenedSubmenuId(itemId)) as void;
-  const handleMenuItemMouseEnter = (itemId: MenuItemIdType): void =>
-    (submenuOpeningMode === SubmenuOpeningMode.OnHover && setOpenedSubmenuId(itemId)) as void;
-
-  let menuClassNames = menuStyles.menu;
-  if (submenuPosition == SubmenuPosition.Overlap) {
-    menuClassNames += ` ${menuStyles.menu_overlapping}`;
+  if (!containerElement) {
+    return null;
   }
 
-  return (
-    <ul className={menuClassNames}>
+  const handleMenuItemClick = (itemId: MenuItemIdType): void =>
+    (submenuOpenActionType === SubmenuOpenActionType.Click && setOpenedSubmenuId(itemId)) as void;
+  const handleMenuItemMouseEnter = (itemId: MenuItemIdType): void =>
+    (submenuOpenActionType === SubmenuOpenActionType.Hover && setOpenedSubmenuId(itemId)) as void;
+
+  const menuLevel = (
+    <ul className={menuStyles.menu_level}>
       {items.map(item => (
         <li key={item.id}>
           <div
@@ -51,17 +57,37 @@ const Menu: React.FC<IMenuProps> = ({ items, submenuOpeningMode, submenuPosition
             {item.name}
           </div>
           {item.children && item.id === openedSubmenuId && (
-            <Menu
-              submenuOpeningMode={submenuOpeningMode}
-              submenuPosition={submenuPosition}
+            <MenuLevel
+              submenuOpenActionType={submenuOpenActionType}
               items={item.children}
-              {...restProps}
+              containerElement={containerElement}
             />
           )}
         </li>
       ))}
     </ul>
   );
+
+  return createPortal(menuLevel, containerElement);
 };
+
+const Menu: React.FC<IMenuProps> = ({ submenuPosition, ...rest }: IMenuProps) => {
+  const menuContainerRef = useRef(null as HTMLDivElement | null);
+  const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setContainerElement(menuContainerRef.current);
+  });
+
+  return (
+    <nav ref={menuContainerRef} className={getMenuContainerClass(submenuPosition)}>
+      <MenuLevel {...rest} containerElement={containerElement} />
+    </nav>
+  );
+};
+
+const getMenuContainerClass = (submenuPosition: SubmenuPosition): string | undefined =>
+  submenuPosition === SubmenuPosition.Overlap
+    ? `${menuStyles.container} ${menuStyles.container_submenu_overlap}`
+    : `${menuStyles.container} ${menuStyles.container_submenu_alongside}`;
 
 export default Menu;
