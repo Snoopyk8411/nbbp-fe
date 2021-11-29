@@ -1,4 +1,4 @@
-import Menu, { IMenuItemModel, SubmenuOpeningMode } from 'components/aleksei/menu/menu';
+import Menu, { IMenuItemModel, SubmenuOpeningMode, SubmenuPosition } from 'components/aleksei/menu/menu';
 import { NextPage } from 'next';
 
 const menuItems: IMenuItemModel[] = [
@@ -47,8 +47,16 @@ const menuItems: IMenuItemModel[] = [
 const MenuPage: NextPage = () => {
   return (
     <>
-      <Menu items={menuItems} submenuOpeningMode={SubmenuOpeningMode.OnClick}></Menu>
-      <Menu items={menuItems} submenuOpeningMode={SubmenuOpeningMode.OnHover}></Menu>
+      <Menu
+        items={menuItems}
+        submenuOpeningMode={SubmenuOpeningMode.OnClick}
+        submenuPosition={SubmenuPosition.Overlap}
+      ></Menu>
+      <Menu
+        items={menuItems}
+        submenuOpeningMode={SubmenuOpeningMode.OnHover}
+        submenuPosition={SubmenuPosition.Alongside}
+      ></Menu>
     </>
   );
 };
