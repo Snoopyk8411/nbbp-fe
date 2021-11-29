@@ -14,7 +14,6 @@ export enum SubmenuPosition {
 
 export interface IMenuProps {
   items: IMenuItemModel[];
-  submenuOpenActionType: SubmenuOpenActionType;
   submenuPosition: SubmenuPosition;
 }
 
@@ -98,6 +97,8 @@ const Menu: React.FC<IMenuProps> = ({ submenuPosition, ...rest }: IMenuProps) =>
   useEffect(() => {
     setContainerElement(menuContainerRef.current);
   });
+  const submenuOpenActionType =
+    submenuPosition === SubmenuPosition.Alongside ? SubmenuOpenActionType.Hover : SubmenuOpenActionType.Click;
 
   return (
     <nav ref={menuContainerRef} className={getMenuContainerClass(submenuPosition)}>
@@ -106,6 +107,7 @@ const Menu: React.FC<IMenuProps> = ({ submenuPosition, ...rest }: IMenuProps) =>
         parentItem={undefined}
         containerElement={containerElement}
         submenuPosition={submenuPosition}
+        submenuOpenActionType={submenuOpenActionType}
       />
     </nav>
   );
