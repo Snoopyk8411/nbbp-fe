@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import menuStyles from './menu.module.css';
+import { Link } from 'components/link/Link';
+import { Appearance } from 'tools/types/api-catalog-items-types';
 
 export enum SubmenuOpenActionType {
   Click,
@@ -31,7 +33,8 @@ type MenuItemIdType = string | number;
 export interface IMenuItemModel {
   id: MenuItemIdType;
   name: string;
-  className?: string;
+  url: string;
+  appearance: Appearance | String;
   children?: IMenuItemModel[];
 }
 
@@ -71,7 +74,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
             onClick={(): void => handleMenuItemClick(item.id)}
             onMouseEnter={(): void => handleMenuItemMouseEnter(item.id)}
           >
-            {item.name}
+            <Link url={item.url} name={item.name} appearance={item.appearance} />
           </div>
           {item.children && item.id === openedSubmenuId && (
             <MenuLevel
