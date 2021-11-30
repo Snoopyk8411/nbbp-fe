@@ -1,5 +1,5 @@
-import { Menu } from 'components/link/Menu';
+import { Header } from 'components/header/Header';
 
-export default Menu;
+export default Header;
 
 // страница на период разаработки. Потом удалить

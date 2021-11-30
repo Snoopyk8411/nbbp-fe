@@ -30,7 +30,7 @@
   border: none;
 }
 .add_note_button:hover {
-  background-color: var(--background-lightblue);
+  background-color: var(--lightblue);
 }
 
 .add_note_button:disabled {

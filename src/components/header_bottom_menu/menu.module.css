@@ -1,0 +1,24 @@
+ /* Компонент на период разаработки.
+Когда появятся отдельные компонеты Каталог, Вакансии, Доставка и т. д. перенесу логику этого компонента в Header. */
+
+.menu {
+  display: flex;
+  padding: 0 1.5rem 0 0.5rem;
+}
+
+.menu:hover {
+  background: var(--background-gray);
+}
+
+.menu_row {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.menu:first-child {
+    border-right: 0.2rem solid var(--border-gray);
+    opacity: 0.7;
+  }
