@@ -2,4 +2,4 @@ import { Header } from 'components/header/Header';
 
 export default Header;
 
-// страница на период разаработки. Потом удалить
+// Page for the development period. Then it should be deleted

@@ -1,5 +1,5 @@
-// компонент на период разаработки.
-// Когда появятся отдельные компонеты Каталог, Вакансии, Доставка и т. д. перенесу логику этого компонента в Header.
+/* Component for the development period.
+When the components Catalog, Jobs, Delivery, etc. appear, I will transfer the logic of this component to the Header.. */
 
 import { Link } from 'components/link/Link';
 

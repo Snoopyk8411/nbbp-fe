@@ -10,7 +10,7 @@
 
 @media (max-width: 600px) {
   .search_input {
-    display: none !important;
+    display: none;
   }
 }
 
@@ -22,7 +22,7 @@
   height: auto;
   padding-top: 0.5rem;
   padding-bottom: 0.4rem;
-  box-shadow: 0 1px 17px rgb(0 0 0 / 9%); /* приём взял у Вкусвилла */
+  box-shadow: 0 1px 17px rgb(0 0 0 / 9%);
 }
 
 .header__container {

@@ -4,7 +4,7 @@ import { IconComponent } from 'components/icon/Icon';
 import headerStyles from './header.module.css';
 
 export const Header = (): JSX.Element => {
-  const logoName = 'Shop'; // пока у нас только fallback иконка. Логотип на согласовании у клиента :)
+  const logoName = 'Shop';
   return (
     <header className={`${headerStyles.header_fixed_always} ${headerStyles.header_with_shadow}`}>
       <div className={headerStyles.header__container}>
