@@ -50,8 +50,10 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   const [wrapperClassName, setWrapperClassName] = useState(menuStyles.menu_level_wrapper);
 
   useEffect(() => {
-    // to trigger opening animation
-    setWrapperClassName(`${wrapperClassName} ${menuStyles.opened}`);
+    setTimeout(() => {
+      // to trigger opening animation
+      setWrapperClassName(`${wrapperClassName} ${menuStyles.opened}`);
+    }, 0);
   }, []);
 
   if (!containerElement) {

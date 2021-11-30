@@ -4,7 +4,7 @@
     --selected-color: var(--border-color);
     --secondary-font-color: rgb(148, 148, 148);
     --menu-width: 22rem;
-    --animations-duration: 0.35s;
+    --animations-duration: 0.25s;
     border-radius: 0.5rem;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     font-size: 1rem;
@@ -43,6 +43,20 @@
     left: 0;
     right: 0;
     bottom: 0;
+}
+
+.container_submenu_overlap .menu_level_wrapper + .menu_level_wrapper {
+    position: absolute;
+    top: 0;
+    width: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    transition: width var(--animations-duration);
+}
+
+.container_submenu_overlap .menu_level_wrapper + .menu_level_wrapper.opened {
+    width: var(--menu-width);
 }
 
 .container_submenu_alongside .menu_level_wrapper + .menu_level_wrapper {
