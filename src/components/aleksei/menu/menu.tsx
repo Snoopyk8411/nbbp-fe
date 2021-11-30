@@ -47,6 +47,12 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   onClose,
 }: IMenuLevelProps) => {
   const [openedSubmenuId, setOpenedSubmenuId] = useState<MenuItemIdType | null>(null);
+  const [wrapperClassName, setWrapperClassName] = useState(menuStyles.menu_level_wrapper);
+
+  useEffect(() => {
+    // to trigger opening animation
+    setWrapperClassName(`${wrapperClassName} ${menuStyles.opened}`);
+  }, []);
 
   if (!containerElement) {
     return null;
@@ -61,34 +67,36 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   const handleSubmenuClose = (): void => setOpenedSubmenuId(null);
 
   const menuLevel = (
-    <ul className={getMenuLevelClass(!parentItem)}>
-      {!!parentItem && showBackToParentLink && (
-        <li className={`${menuStyles.menu_item} ${menuStyles.menu_item_back_to_parent}`} onClick={onClose}>
-          {parentItem.name}
-        </li>
-      )}
-      {items.map(item => (
-        <li key={item.id}>
-          <div
-            className={getMenuItemClass(!!item.children && item.children.length > 0)}
-            onClick={(): void => handleMenuItemClick(item.id)}
-            onMouseEnter={(): void => handleMenuItemMouseEnter(item.id)}
-          >
-            <Link url={item.url} name={item.name} appearance={item.appearance} />
-          </div>
-          {item.children && item.id === openedSubmenuId && (
-            <MenuLevel
-              submenuOpenActionType={submenuOpenActionType}
-              items={item.children}
-              parentItem={item}
-              submenuPosition={submenuPosition}
-              containerElement={containerElement}
-              onClose={handleSubmenuClose}
-            />
-          )}
-        </li>
-      ))}
-    </ul>
+    <div className={wrapperClassName}>
+      <ul className={getMenuLevelClass(!parentItem)}>
+        {!!parentItem && showBackToParentLink && (
+          <li className={`${menuStyles.menu_item} ${menuStyles.menu_item_back_to_parent}`} onClick={onClose}>
+            {parentItem.name}
+          </li>
+        )}
+        {items.map(item => (
+          <li key={item.id}>
+            <div
+              className={getMenuItemClass(!!item.children && item.children.length > 0)}
+              onClick={(): void => handleMenuItemClick(item.id)}
+              onMouseEnter={(): void => handleMenuItemMouseEnter(item.id)}
+            >
+              <Link url={item.url} name={item.name} appearance={item.appearance} />
+            </div>
+            {item.children && item.id === openedSubmenuId && (
+              <MenuLevel
+                submenuOpenActionType={submenuOpenActionType}
+                items={item.children}
+                parentItem={item}
+                submenuPosition={submenuPosition}
+                containerElement={containerElement}
+                onClose={handleSubmenuClose}
+              />
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 
   return createPortal(menuLevel, containerElement);
