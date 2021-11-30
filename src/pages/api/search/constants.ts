@@ -1,5 +1,7 @@
 import { IProduct } from './mockProducts';
 
+export const WRONG_QUERY_ERROR = 'wrong query';
+
 export type SearchKeysType = keyof IProduct;
 
 export const SEARCH_KEYS: SearchKeysType[] = ['title'];

@@ -1,8 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { Errors } from 'tools/types/api-catalog-items-types';
-
-import { SEARCH_KEYS } from './constants';
+import { SEARCH_KEYS, WRONG_QUERY_ERROR } from './constants';
 import { mockProducts } from './mockProducts';
 import { searchProduct } from './searchProduct';
 
@@ -16,7 +14,7 @@ const search = (req: NextApiRequest, res: NextApiResponse): void => {
     res.status(200).json(result);
     return;
   }
-  res.status(400).end(Errors.WRONG_TYPE);
+  res.status(400).end(WRONG_QUERY_ERROR);
 };
 
 export default search;
