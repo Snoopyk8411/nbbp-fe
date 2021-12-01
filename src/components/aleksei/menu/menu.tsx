@@ -46,13 +46,14 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   submenuPosition,
   onClose,
 }: IMenuLevelProps) => {
+  const closedWrapperClassName = menuStyles.menu_level_wrapper;
   const [openedSubmenuId, setOpenedSubmenuId] = useState<MenuItemIdType | null>(null);
-  const [wrapperClassName, setWrapperClassName] = useState(menuStyles.menu_level_wrapper);
+  const [wrapperClassName, setWrapperClassName] = useState(closedWrapperClassName);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
-      // to trigger opening animation
-      setWrapperClassName(`${wrapperClassName} ${menuStyles.opened}`);
+      setWrapperClassName(`${wrapperClassName} ${menuStyles.opened}`); // triggers opening animation
     }, 0);
   }, []);
 
@@ -67,12 +68,17 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   const handleMenuItemMouseEnter = (itemId: MenuItemIdType): void =>
     (submenuOpenActionType === SubmenuOpenActionType.Hover && setOpenedSubmenuId(itemId)) as void;
   const handleSubmenuClose = (): void => setOpenedSubmenuId(null);
+  const handleWrapperTransitionEnd = (): void => (isClosing && onClose && onClose()) as void;
+  const handleCloseClick = (): void => {
+    setIsClosing(true);
+    setWrapperClassName(closedWrapperClassName); // triggers closing animation
+  };
 
   const menuLevel = (
-    <div className={wrapperClassName}>
+    <div onTransitionEnd={handleWrapperTransitionEnd} className={wrapperClassName}>
       <ul className={getMenuLevelClass(!parentItem)}>
         {!!parentItem && showBackToParentLink && (
-          <li className={`${menuStyles.menu_item} ${menuStyles.menu_item_back_to_parent}`} onClick={onClose}>
+          <li className={`${menuStyles.menu_item} ${menuStyles.menu_item_back_to_parent}`} onClick={handleCloseClick}>
             {parentItem.name}
           </li>
         )}

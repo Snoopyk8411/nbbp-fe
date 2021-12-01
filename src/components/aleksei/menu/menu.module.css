@@ -34,7 +34,6 @@
 
 .submenu_wrapper {
     overflow: hidden;
-    margin-left: calc(0 - var(--menu-width));
 }
 
 .container_submenu_overlap .menu_level_nested {
