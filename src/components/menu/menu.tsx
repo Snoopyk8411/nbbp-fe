@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import menuStyles from './menu.module.css';
 import { Link } from 'components/link/Link';
@@ -33,6 +33,7 @@ type MenuItemIdType = string | number;
 export interface IMenuItemModel {
   id: MenuItemIdType;
   name: string;
+  order: number;
   url: string;
   appearance: Appearance | String;
   children?: IMenuItemModel[];
@@ -51,6 +52,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   const [openedSubmenuId, setOpenedSubmenuId] = useState<MenuItemIdType | null>(null);
   const [wrapperClassName, setWrapperClassName] = useState(closedWrapperClassName);
   const [isClosing, setIsClosing] = useState(false);
+  const sortedItems = useMemo(() => getSortedItems(items), [items]);
 
   const triggerOpeningAnimation = (): void => setWrapperClassName(openedWrapperClassName);
   const triggerClosingAnimation = (): void => setWrapperClassName(closedWrapperClassName);
@@ -71,7 +73,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
     }, 0);
   }, []);
 
-  if (!containerElement) {
+  if (!containerElement || !sortedItems) {
     return null;
   }
 
@@ -85,7 +87,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
             {parentItem.name}
           </li>
         )}
-        {items.map(item => (
+        {sortedItems.map(item => (
           <li key={item.id}>
             <div
               className={getMenuItemClass(!!item.children && item.children.length > 0)}
@@ -94,7 +96,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
             >
               <Link url={item.url} name={item.name} appearance={item.appearance} />
             </div>
-            {item.children && item.id === openedSubmenuId && (
+            {item.children && item.children.length > 0 && item.id === openedSubmenuId && (
               <MenuLevel
                 submenuOpenActionType={submenuOpenActionType}
                 items={item.children}
@@ -145,5 +147,19 @@ const getMenuItemClass = (hasChildren: boolean): string | undefined =>
 
 const getMenuLevelClass = (isRoot: boolean): string | undefined =>
   isRoot ? `${menuStyles.menu_level}` : `${menuStyles.menu_level} ${menuStyles.menu_level_nested}`;
+
+const getSortedItems = (menuItems: IMenuItemModel[]): IMenuItemModel[] => {
+  const copy = [...menuItems];
+  copy.sort((a, b) => {
+    if (a.order > b.order) {
+      return 1;
+    }
+    if (a.order < b.order) {
+      return -1;
+    }
+    return 0;
+  });
+  return copy;
+};
 
 export default Menu;
