@@ -1,4 +1,4 @@
-import { IMenuItemModel } from 'components/aleksei/menu/menu';
+import { IMenuItemModel } from 'components/menu/menu';
 import { Appearance } from 'tools/types/api-catalog-items-types';
 
 const getNextId = ((): (() => number) => {

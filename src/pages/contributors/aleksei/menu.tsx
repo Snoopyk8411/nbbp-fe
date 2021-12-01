@@ -1,8 +1,8 @@
-import Menu, { SubmenuPosition } from 'components/aleksei/menu/menu';
+import Menu, { SubmenuPosition } from 'components/menu/menu';
 import { MouseEventHandler, useState } from 'react';
 import { NextPage } from 'next';
 import { menuItems } from 'mock-data/aleksei/menu-items';
-import Popup, { HideActionType } from 'components/aleksei/popup/popup';
+import Popup, { HideActionType } from 'components/popup/popup';
 
 const MenuPage: NextPage = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
