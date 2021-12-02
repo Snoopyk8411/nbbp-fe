@@ -1,13 +1,3 @@
-@media (prefers-color-scheme: dark) {
-  .header__container {
-    background: var(--black) !important;
-    color: var(--white) !important;
-  }
-  .logo {
-    fill: var(--lightblue) !important;
-  }
-}
-
 @media (max-width: 600px) {
   .search_input {
     display: none;
@@ -54,4 +44,14 @@
   width: 3rem;
   height: 3rem;
   fill: var(--blue);
+}
+
+@media (prefers-color-scheme: dark) {
+  .header__container {
+    background: var(--black);
+    color: var(--white);
+  }
+  .logo {
+    fill: var(--lightblue);
+  }
 }
