@@ -10,7 +10,7 @@ import menuStyles from './menu.module.css';
 export const Menu = (): JSX.Element => {
   const headerItem = CATALOG_ITEMS.filter(el => el.groups.includes('Header'));
   return (
-    <div aria-live='polite' id='menu' className={menuStyles.menu_row} role='group'>
+    <nav aria-live='polite' id='menu' className={menuStyles.menu_row} role='group'>
       {headerItem.map(element => {
         const { url, name, svgName, appearance } = element;
         return (
@@ -19,6 +19,6 @@ export const Menu = (): JSX.Element => {
           </div>
         );
       })}
-    </div>
+    </nav>
   );
 };
