@@ -1,10 +1,6 @@
-import { IProduct } from './mockProducts';
+import { ISearchKeysType } from './types';
 
-export const WRONG_QUERY_ERROR = 'wrong query';
-
-export type SearchKeysType = keyof IProduct;
-
-export const SEARCH_KEYS: SearchKeysType[] = ['title'];
+export const SEARCH_KEYS: ISearchKeysType[] = ['title'];
 
 export const SEARCH_DISTANCE = 30;
 

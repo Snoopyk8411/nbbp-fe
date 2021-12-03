@@ -1,20 +1,17 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { SEARCH_KEYS, WRONG_QUERY_ERROR } from './constants';
-import { mockProducts } from './mockProducts';
+import { IProduct } from 'tools/types/api-product-types';
+import { PRODUCTS } from 'mock-data/product-data';
+
+import { SEARCH_KEYS } from './constants';
 import { searchProduct } from './searchProduct';
 
-const search = (req: NextApiRequest, res: NextApiResponse): void => {
-  const { value = '', limit } = req.query;
-  if (typeof value === 'string') {
-    let result: object[] = searchProduct(value, mockProducts, SEARCH_KEYS);
-    if (Number(limit)) {
-      result = result.slice(0, Number(limit));
-    }
-    res.status(200).json(result);
-    return;
-  }
-  res.status(400).end(WRONG_QUERY_ERROR);
+const searchProductApi = (req: NextApiRequest, res: NextApiResponse): void => {
+  const { value = '', limit: limitParam } = req.query;
+  const limit = Number.isNaN(Number(limitParam)) ? undefined : Number(limitParam);
+  let result: IProduct[] = searchProduct(value as string, PRODUCTS, SEARCH_KEYS);
+  result = result.slice(0, limit);
+  res.status(200).json(result);
 };
 
-export default search;
+export default searchProductApi;

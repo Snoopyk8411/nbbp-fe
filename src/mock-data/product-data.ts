@@ -1,25 +1,12 @@
-export interface IRating {
-  rate: number;
-  count: number;
-}
+import { IProduct } from 'tools/types/api-product-types';
 
-export interface IProduct {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: IRating;
-}
-
-export const mockProducts = [
+export const PRODUCTS: IProduct[] = [
   {
     id: 1,
     title: 'Арбуз',
     price: 123,
     description: 'string',
-    category: 'category',
+    category: ['category'],
     image: 'image',
     rating: {
       rate: 1,
@@ -31,7 +18,7 @@ export const mockProducts = [
     title: 'Ассорти "Мини-макарон"',
     price: 123,
     description: 'string',
-    category: 'category',
+    category: ['category'],
     image: 'image',
     rating: {
       rate: 1,
@@ -43,7 +30,7 @@ export const mockProducts = [
     title: 'Батончик "Соленая карамель в шоколаде"',
     price: 123,
     description: 'string',
-    category: 'category',
+    category: ['category'],
     image: 'image',
     rating: {
       rate: 1,
@@ -55,7 +42,7 @@ export const mockProducts = [
     title: 'Биточки куриные с сыром и картофелем с укропом',
     price: 123,
     description: 'string',
-    category: 'category',
+    category: ['category'],
     image: 'image',
     rating: {
       rate: 1,
@@ -67,7 +54,7 @@ export const mockProducts = [
     title: 'Блины с заварным кремом, мягким сыром и клубникой',
     price: 123,
     description: 'string',
-    category: 'category',
+    category: ['category'],
     image: 'image',
     rating: {
       rate: 1,
@@ -79,7 +66,7 @@ export const mockProducts = [
     title: 'Букет Гербера 11 шт',
     price: 123,
     description: 'string',
-    category: 'category',
+    category: ['category'],
     image: 'image',
     rating: {
       rate: 1,
@@ -91,7 +78,7 @@ export const mockProducts = [
     title: 'Вареники с абрикосами',
     price: 123,
     description: 'string',
-    category: 'category',
+    category: ['category'],
     image: 'image',
     rating: {
       rate: 1,

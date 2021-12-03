@@ -1,41 +1,40 @@
 import Fuse from 'fuse.js';
 
-import { IProduct, mockProducts } from './mockProducts';
 import { shiftString } from './shiftString';
 import { trimPunctuation } from './trimPunctuation';
-import { SearchKeysType, SEARCH_DISTANCE } from './constants';
+import { SEARCH_DISTANCE } from './constants';
+import { ISearchKeysType, ISearchResult } from './types';
+import { IProduct } from 'tools/types/api-product-types';
+import { PRODUCTS } from 'mock-data/product-data';
 
-export const searchProduct = (value: string, products: IProduct[], keys: SearchKeysType[]): IProduct[] => {
+export const searchProduct = (value: string, products: IProduct[], searchKeys: ISearchKeysType[]): IProduct[] => {
   const searchString = trimPunctuation(value.trim());
+  const isEmptySearchString = searchString.length === 0;
+  if (isEmptySearchString) {
+    return products;
+  }
   const options = {
-    keys,
+    keys: searchKeys,
     distance: SEARCH_DISTANCE,
     getFn: (product: IProduct, path: string | string[]): string[] | string => {
       const key = Array.isArray(path) ? path[0] : path;
-      if (typeof key === 'string') {
-        const value = product[key as keyof IProduct];
-        if (typeof value === 'string') {
-          return value
-            .split(' ')
-            .map(word => word.trim())
-            .map(trimPunctuation);
-        }
-        return value.toString();
-      }
-      return '';
+      const value = product[key as keyof IProduct];
+      const isValueValid = !!value;
+      return `${isValueValid ? value : ''}`
+        .split(' ')
+        .map(word => word.trim())
+        .map(trimPunctuation);
     },
   };
-  if (searchString.length === 0) {
-    return products;
-  }
-  const fuse = new Fuse(mockProducts, options);
-  let result: IProduct[] = fuse.search(searchString).map(result => result.item);
-  if (result.length === 0 && value.length > 1) {
+  const fuse = new Fuse(PRODUCTS, options);
+  let result: ISearchResult[] = fuse.search(searchString);
+  const hasResults = !!result.length;
+  const isOneCharSearch = value.length === 1;
+  if (!hasResults && !isOneCharSearch) {
     const shiftedString: string = shiftString(value);
-    console.log(shiftedString);
     if (shiftedString !== value) {
-      result = fuse.search(shiftedString).map(result => result.item);
+      result = fuse.search(shiftedString);
     }
   }
-  return result;
+  return result.map(result => result.item);
 };
