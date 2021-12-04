@@ -17,8 +17,8 @@ export const searchProduct = (value: string, products: IProduct[], searchKeys: I
     keys: searchKeys,
     distance: SEARCH_DISTANCE,
     getFn: (product: IProduct, path: string | string[]): string[] | string => {
-      const key = Array.isArray(path) ? path[0] : path;
-      const value = product[key as keyof IProduct];
+      const searchKey = Array.isArray(path) ? path[0] : path;
+      const value = product[searchKey as keyof IProduct];
       const isValueValid = !!value;
       return `${isValueValid ? value : ''}`
         .split(' ')
@@ -33,7 +33,7 @@ export const searchProduct = (value: string, products: IProduct[], searchKeys: I
   if (!hasResults && !isOneCharSearch) {
     const shiftedString: string = shiftString(value);
     if (shiftedString !== value) {
-      result = fuse.search(shiftedString);
+      result = fuse.search(trimPunctuation(shiftedString.trim()));
     }
   }
   return result.map(result => result.item);
