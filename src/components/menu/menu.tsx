@@ -1,43 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import menuStyles from './menu.module.css';
 import { Link } from 'components/link/Link';
-import { Appearance } from 'tools/types/api-catalog-items-types';
-
-export enum SubmenuOpenActionType {
-  Click,
-  Hover,
-}
-
-export enum SubmenuPosition {
-  Overlap,
-  Alongside,
-}
-
-export interface IMenuProps {
-  items: IMenuItemModel[];
-  submenuPosition: SubmenuPosition;
-}
-
-export interface IMenuLevelProps {
-  items: IMenuItemModel[];
-  parentItem?: IMenuItemModel;
-  submenuOpenActionType: SubmenuOpenActionType;
-  submenuPosition: SubmenuPosition;
-  containerElement: HTMLElement | null;
-  onClose?: () => void;
-}
-
-type MenuItemIdType = string | number;
-
-export interface IMenuItemModel {
-  id: MenuItemIdType;
-  name: string;
-  order: number;
-  url: string;
-  appearance: Appearance | String;
-  children?: IMenuItemModel[];
-}
+import menuStyles from './menu.module.css';
+import { SubmenuOpenActionType, SubmenuPosition } from './constants';
+import { IMenuLevelProps, IMenuProps, MenuItemIdType } from './interfaces';
+import { getMenuContainerClass, getMenuItemClass, getMenuLevelClass, getSortedItems } from './utils';
 
 const MenuLevel: React.FC<IMenuLevelProps> = ({
   items,
@@ -46,7 +13,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   containerElement,
   submenuPosition,
   onClose,
-}: IMenuLevelProps) => {
+}) => {
   const closedWrapperClassName = menuStyles.menu_level_wrapper;
   const openedWrapperClassName = `${menuStyles.menu_level_wrapper} ${menuStyles.opened}`;
   const [openedSubmenuId, setOpenedSubmenuId] = useState<MenuItemIdType | null>(null);
@@ -56,12 +23,16 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
 
   const triggerOpeningAnimation = (): void => setWrapperClassName(openedWrapperClassName);
   const triggerClosingAnimation = (): void => setWrapperClassName(closedWrapperClassName);
-  const handleMenuItemClick = (itemId: MenuItemIdType): void =>
-    (submenuOpenActionType === SubmenuOpenActionType.Click && setOpenedSubmenuId(itemId)) as void;
-  const handleMenuItemMouseEnter = (itemId: MenuItemIdType): void =>
-    (submenuOpenActionType === SubmenuOpenActionType.Hover && setOpenedSubmenuId(itemId)) as void;
+  const handleMenuItemClick = (itemId: MenuItemIdType): void => {
+    submenuOpenActionType === SubmenuOpenActionType.Click && setOpenedSubmenuId(itemId);
+  };
+  const handleMenuItemMouseEnter = (itemId: MenuItemIdType): void => {
+    submenuOpenActionType === SubmenuOpenActionType.Hover && setOpenedSubmenuId(itemId);
+  };
   const handleSubmenuClose = (): void => setOpenedSubmenuId(null);
-  const handleWrapperTransitionEnd = (): void => (isClosing && onClose && onClose()) as void;
+  const handleWrapperTransitionEnd = (): void => {
+    isClosing && onClose && onClose();
+  };
   const handleCloseClick = (): void => {
     setIsClosing(true);
     triggerClosingAnimation();
@@ -135,31 +106,6 @@ const Menu: React.FC<IMenuProps> = ({ submenuPosition, ...rest }: IMenuProps) =>
       />
     </nav>
   );
-};
-
-const getMenuContainerClass = (submenuPosition: SubmenuPosition): string | undefined =>
-  submenuPosition === SubmenuPosition.Overlap
-    ? `${menuStyles.container} ${menuStyles.container_submenu_overlap}`
-    : `${menuStyles.container} ${menuStyles.container_submenu_alongside}`;
-
-const getMenuItemClass = (hasChildren: boolean): string | undefined =>
-  hasChildren ? `${menuStyles.menu_item} ${menuStyles.menu_item_with_children}` : `${menuStyles.menu_item}`;
-
-const getMenuLevelClass = (isRoot: boolean): string | undefined =>
-  isRoot ? `${menuStyles.menu_level}` : `${menuStyles.menu_level} ${menuStyles.menu_level_nested}`;
-
-const getSortedItems = (menuItems: IMenuItemModel[]): IMenuItemModel[] => {
-  const copy = [...menuItems];
-  copy.sort((a, b) => {
-    if (a.order > b.order) {
-      return 1;
-    }
-    if (a.order < b.order) {
-      return -1;
-    }
-    return 0;
-  });
-  return copy;
 };
 
 export default Menu;

@@ -15,8 +15,9 @@ export interface IPopupProps {
 
 // eslint-disable-next-line react/prop-types
 const Popup: React.FC<IPopupProps> = ({ isVisible, setIsVisible, hideActionType, children }) => {
-  const handleClickOutside = (): void =>
-    (hideActionType === HideActionType.ClickOutside && setIsVisible(false)) as void;
+  const handleClickOutside = (): void => {
+    hideActionType === HideActionType.ClickOutside && setIsVisible(false);
+  };
   const handleMouseLeave = (): void => (hideActionType === HideActionType.MouseOut && setIsVisible(false)) as void;
   const handleClick: MouseEventHandler<Element> = e => e.stopPropagation();
 
