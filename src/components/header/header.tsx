@@ -1,34 +1,31 @@
-/* Under construction. Пока можно не проверять */
-
-import { Menu } from 'components/link/Menu';
-import logo from 'assets/logo.png';
-import shop from 'assets/shop.svg';
+import { Menu } from 'components/header_bottom_menu/Menu';
+import { IconComponent } from 'components/icon/Icon';
 
 import headerStyles from './header.module.css';
 
 export const Header = (): JSX.Element => {
-  const icon = logo ? logo.src : shop.src;
-
+  const logoName = 'Shop';
   return (
     <header className={`${headerStyles.header_fixed_always} ${headerStyles.header_with_shadow}`}>
       <div className={headerStyles.header__container}>
-        <div className={headerStyles.container}>
-          <img src={icon} alt='the logo of shop.' className={headerStyles.svg} />
+        <div className={headerStyles.header_level_top}>
+          <IconComponent name={logoName} className={headerStyles.logo} />
           <div>
-            <input type='search' placeholder='начните поиск' aria-label='Search through site content.' />
+            <input
+              type='search'
+              placeholder='начните поиск'
+              aria-label='Search through site content.'
+              className={headerStyles.search_input}
+            />
             <button>Search</button>
           </div>
           <div>GEO</div>
           <div>некоторые другие иконки действий</div>
         </div>
         <div className={headerStyles.header_level_bottom}>
-          <div>Каталог</div>
           <Menu />
-          <div>Вакансии</div>
-          <div>Доставка</div>
         </div>
       </div>
     </header>
   );
 };
-//under construction
