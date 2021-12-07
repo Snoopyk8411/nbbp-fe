@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames/bind';
 import { Link } from 'components/link/Link';
@@ -91,16 +91,15 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
 };
 
 const Menu: React.FC<IMenuProps> = ({ submenuPosition, ...rest }: IMenuProps) => {
-  const menuContainerRef = useRef<HTMLElement>(null);
   const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);
-  useEffect(() => {
-    setContainerElement(menuContainerRef.current);
-  }, []);
   const submenuOpenActionType =
     submenuPosition === SubmenuPosition.Alongside ? SubmenuOpenActionType.Hover : SubmenuOpenActionType.Click;
 
   return (
-    <nav ref={menuContainerRef} className={getMenuContainerClass(submenuPosition)}>
+    <nav
+      ref={(el: HTMLElement | null): void => setContainerElement(el)}
+      className={getMenuContainerClass(submenuPosition)}
+    >
       <MenuLevel
         {...rest}
         parentItem={undefined}
