@@ -21,7 +21,14 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
 
   const [isOpened, setIsOpened] = useState(false);
   const sortedItems = useMemo(() => getSortedItems(items), [items]);
-  const triggerOpeningAnimation = (): void => setIsOpened(true);
+
+  const triggerOpeningAnimation = (): void => {
+    // as animation is just a css transition caused by applying of css class,
+    // using setTimeout to ensure that the class will be applied after commit phase of the initial render,
+    // otherwise component will be rendered with the final animation state's class right away,
+    // that would not trigger animation
+    setTimeout(() => setIsOpened(true), 0);
+  };
   const triggerClosingAnimation = (): void => setIsOpened(false);
   const handleMenuItemClick = (itemId: MenuItemIdType): void => {
     submenuOpenActionType === SubmenuOpenActionType.Click && setOpenedSubmenuId(itemId);
@@ -37,9 +44,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   const handleCloseClick = (): void => triggerClosingAnimation();
 
   useEffect(() => {
-    setTimeout(() => {
-      triggerOpeningAnimation();
-    }, 0);
+    triggerOpeningAnimation();
   }, []);
 
   if (!containerElement || !sortedItems) {
@@ -60,20 +65,22 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
           </li>
         )}
         {sortedItems.map(item => {
-          const isSubmenuOpened = !!(item.children && item.children.length > 0 && item.id === openedSubmenuId);
+          const { id, name, url, children, appearance } = item;
+          const hasChildren = !!(item.children && item.children.length > 0);
+          const isSubmenuOpened = hasChildren && item.id === openedSubmenuId;
           return (
-            <li key={item.id}>
+            <li key={id}>
               <div
-                className={getMenuItemClass(!!item.children && item.children.length > 0)}
-                onClick={(): void => handleMenuItemClick(item.id)}
-                onMouseEnter={(): void => handleMenuItemMouseEnter(item.id)}
+                className={getMenuItemClass(hasChildren)}
+                onClick={(): void => handleMenuItemClick(id)}
+                onMouseEnter={(): void => handleMenuItemMouseEnter(id)}
               >
-                <Link url={item.url} name={item.name} appearance={item.appearance} />
+                <Link url={url} name={name} appearance={appearance} />
               </div>
-              {item.children && isSubmenuOpened && (
+              {children && isSubmenuOpened && (
                 <MenuLevel
                   submenuOpenActionType={submenuOpenActionType}
-                  items={item.children}
+                  items={children}
                   parentItem={item}
                   submenuPosition={submenuPosition}
                   containerElement={containerElement}
