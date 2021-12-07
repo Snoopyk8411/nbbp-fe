@@ -91,7 +91,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
 };
 
 const Menu: React.FC<IMenuProps> = ({ submenuPosition, ...rest }: IMenuProps) => {
-  const menuContainerRef = useRef(null as HTMLDivElement | null);
+  const menuContainerRef = useRef<HTMLElement>(null);
   const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);
   useEffect(() => {
     setContainerElement(menuContainerRef.current);
