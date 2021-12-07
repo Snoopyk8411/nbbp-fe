@@ -95,7 +95,7 @@ const Menu: React.FC<IMenuProps> = ({ submenuPosition, ...rest }: IMenuProps) =>
   const [containerElement, setContainerElement] = useState<HTMLElement | null>(null);
   useEffect(() => {
     setContainerElement(menuContainerRef.current);
-  });
+  }, []);
   const submenuOpenActionType =
     submenuPosition === SubmenuPosition.Alongside ? SubmenuOpenActionType.Hover : SubmenuOpenActionType.Click;
 
