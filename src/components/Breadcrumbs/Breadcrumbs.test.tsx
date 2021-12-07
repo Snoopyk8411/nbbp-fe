@@ -20,8 +20,6 @@ const PATH: IBreadcrumb[] = [
   },
 ];
 
-const SEPARATOR = '/';
-
 describe('Breadcrumbs component', () => {
   it('should render all path names', () => {
     const { getByText } = render(<Breadcrumbs path={PATH} />);
@@ -34,9 +32,5 @@ describe('Breadcrumbs component', () => {
         .map(pathItem => getByText(pathItem.name).closest('a'))
         .every(Boolean),
     ).toBeTruthy();
-  });
-  it('should render separator n-1 times, where n is length of the path', () => {
-    const { getAllByText } = render(<Breadcrumbs path={PATH} separator={SEPARATOR} />);
-    expect(getAllByText(SEPARATOR).length).toBe(PATH.length - 1);
   });
 });

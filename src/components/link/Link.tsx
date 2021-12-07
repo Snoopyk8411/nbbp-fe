@@ -11,10 +11,11 @@ type LinkProps = {
   name: string;
   svgName?: string;
   appearance: Appearance | String;
+  areaCurrent?: 'page' | 'step' | 'location' | 'date' | 'time' | 'false' | 'true';
   className?: string;
 };
 
-export const Link = ({ url, name, svgName, appearance, className }: LinkProps): JSX.Element => {
+export const Link = ({ url, name, svgName, appearance, areaCurrent, className }: LinkProps): JSX.Element => {
   const accentStyle = linkStyles.accent;
   const highlightStyle = linkStyles.highlight;
   const [style, setStyle] = useState<String>();
@@ -31,7 +32,7 @@ export const Link = ({ url, name, svgName, appearance, className }: LinkProps): 
   return (
     <div className={cn(linkStyles.link_container, style, className)}>
       {svgName && <IconComponent name={svgName} className={linkStyles.svg} fill={'currentColor'} />}
-      <a href={url} className={linkStyles.name} role='menuitem'>
+      <a href={url} className={linkStyles.name} role='menuitem' aria-current={areaCurrent}>
         {name}
       </a>
     </div>
