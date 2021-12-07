@@ -13,8 +13,7 @@ export interface IPopupProps {
   children: ReactElement | ReactElement[];
 }
 
-// eslint-disable-next-line react/prop-types
-const Popup: React.FC<IPopupProps> = ({ isVisible, setIsVisible, hideActionType, children }) => {
+const Popup: React.FC<IPopupProps> = ({ isVisible, setIsVisible, hideActionType, children }: IPopupProps) => {
   const handleClickOutside = (): void => {
     hideActionType === HideActionType.ClickOutside && setIsVisible(false);
   };

@@ -13,7 +13,7 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   containerElement,
   submenuPosition,
   onClose,
-}) => {
+}: IMenuLevelProps) => {
   const closedWrapperClassName = menuStyles.menu_level_wrapper;
   const openedWrapperClassName = `${menuStyles.menu_level_wrapper} ${menuStyles.opened}`;
   const [openedSubmenuId, setOpenedSubmenuId] = useState<MenuItemIdType | null>(null);
@@ -58,27 +58,30 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
             {parentItem.name}
           </li>
         )}
-        {sortedItems.map(item => (
-          <li key={item.id}>
-            <div
-              className={getMenuItemClass(!!item.children && item.children.length > 0)}
-              onClick={(): void => handleMenuItemClick(item.id)}
-              onMouseEnter={(): void => handleMenuItemMouseEnter(item.id)}
-            >
-              <Link url={item.url} name={item.name} appearance={item.appearance} />
-            </div>
-            {item.children && item.children.length > 0 && item.id === openedSubmenuId && (
-              <MenuLevel
-                submenuOpenActionType={submenuOpenActionType}
-                items={item.children}
-                parentItem={item}
-                submenuPosition={submenuPosition}
-                containerElement={containerElement}
-                onClose={handleSubmenuClose}
-              />
-            )}
-          </li>
-        ))}
+        {sortedItems.map(item => {
+          const isSubmenuOpened = !!(item.children && item.children.length > 0 && item.id === openedSubmenuId);
+          return (
+            <li key={item.id}>
+              <div
+                className={getMenuItemClass(!!item.children && item.children.length > 0)}
+                onClick={(): void => handleMenuItemClick(item.id)}
+                onMouseEnter={(): void => handleMenuItemMouseEnter(item.id)}
+              >
+                <Link url={item.url} name={item.name} appearance={item.appearance} />
+              </div>
+              {item.children && isSubmenuOpened && (
+                <MenuLevel
+                  submenuOpenActionType={submenuOpenActionType}
+                  items={item.children}
+                  parentItem={item}
+                  submenuPosition={submenuPosition}
+                  containerElement={containerElement}
+                  onClose={handleSubmenuClose}
+                />
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
