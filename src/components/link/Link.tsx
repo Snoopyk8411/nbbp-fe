@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import cn from 'classnames';
 
 import { Appearance } from 'tools/types/api-catalog-items-types';
 import { IconComponent } from 'components/icon/Icon';
@@ -10,9 +11,10 @@ type LinkProps = {
   name: string;
   svgName?: string;
   appearance: Appearance | String;
+  className?: string;
 };
 
-export const Link = ({ url, name, svgName, appearance }: LinkProps): JSX.Element => {
+export const Link = ({ url, name, svgName, appearance, className }: LinkProps): JSX.Element => {
   const accentStyle = linkStyles.accent;
   const highlightStyle = linkStyles.highlight;
   const [style, setStyle] = useState<String>();
@@ -27,7 +29,7 @@ export const Link = ({ url, name, svgName, appearance }: LinkProps): JSX.Element
   }, [appearance]);
 
   return (
-    <div className={`${linkStyles.link_container} ${style}`}>
+    <div className={cn(linkStyles.link_container, style, className)}>
       {svgName && <IconComponent name={svgName} className={linkStyles.svg} fill={'currentColor'} />}
       <a href={url} className={linkStyles.name} role='menuitem'>
         {name}

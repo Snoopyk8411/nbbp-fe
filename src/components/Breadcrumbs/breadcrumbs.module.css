@@ -1,0 +1,16 @@
+.breadcrumbs {
+  display: flex;
+}
+
+.breadcrumb {
+  color: grey;
+}
+
+.breadcrumb:hover {
+  color: black;
+}
+
+.breadcrumb:last-of-type {
+  margin: 0 0.3rem;
+  cursor: default;
+}
