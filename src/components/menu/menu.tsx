@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import classNames from 'classnames/bind';
 import { Link } from 'components/link/Link';
 import menuStyles from './menu.module.css';
 import { SubmenuOpenActionType, SubmenuPosition } from './constants';
 import { IMenuLevelProps, IMenuProps, MenuItemIdType } from './interfaces';
 import { getMenuContainerClass, getMenuItemClass, getMenuLevelClass, getSortedItems } from './utils';
+
+const menuClassNames = classNames.bind(menuStyles);
 
 const MenuLevel: React.FC<IMenuLevelProps> = ({
   items,
@@ -14,15 +17,12 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   submenuPosition,
   onClose,
 }: IMenuLevelProps) => {
-  const closedWrapperClassName = menuStyles.menu_level_wrapper;
-  const openedWrapperClassName = `${menuStyles.menu_level_wrapper} ${menuStyles.opened}`;
   const [openedSubmenuId, setOpenedSubmenuId] = useState<MenuItemIdType | null>(null);
-  const [wrapperClassName, setWrapperClassName] = useState(closedWrapperClassName);
-  const [isClosing, setIsClosing] = useState(false);
-  const sortedItems = useMemo(() => getSortedItems(items), [items]);
 
-  const triggerOpeningAnimation = (): void => setWrapperClassName(openedWrapperClassName);
-  const triggerClosingAnimation = (): void => setWrapperClassName(closedWrapperClassName);
+  const [isOpened, setIsOpened] = useState(false);
+  const sortedItems = useMemo(() => getSortedItems(items), [items]);
+  const triggerOpeningAnimation = (): void => setIsOpened(true);
+  const triggerClosingAnimation = (): void => setIsOpened(false);
   const handleMenuItemClick = (itemId: MenuItemIdType): void => {
     submenuOpenActionType === SubmenuOpenActionType.Click && setOpenedSubmenuId(itemId);
   };
@@ -31,12 +31,10 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
   };
   const handleSubmenuClose = (): void => setOpenedSubmenuId(null);
   const handleWrapperTransitionEnd = (): void => {
-    isClosing && onClose && onClose();
+    const isClosingAnimationEnded = !isOpened;
+    isClosingAnimationEnded && onClose && onClose();
   };
-  const handleCloseClick = (): void => {
-    setIsClosing(true);
-    triggerClosingAnimation();
-  };
+  const handleCloseClick = (): void => triggerClosingAnimation();
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,6 +46,9 @@ const MenuLevel: React.FC<IMenuLevelProps> = ({
     return null;
   }
 
+  const wrapperClassName = menuClassNames(menuStyles.menu_level_wrapper, {
+    opened: isOpened,
+  });
   const showBackToParentLink = submenuPosition === SubmenuPosition.Overlap;
 
   const menuLevel = (

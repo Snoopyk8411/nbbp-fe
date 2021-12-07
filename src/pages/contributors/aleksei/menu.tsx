@@ -1,8 +1,10 @@
-import Menu, { IMenuItemModel, SubmenuPosition } from 'components/menu/menu';
 import { MouseEventHandler, useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import Popup, { HideActionType } from 'components/popup/popup';
 import { ICatalogTree } from 'tools/types/api-catalog-items-types';
+import Menu from 'components/menu/menu';
+import { IMenuItemModel } from 'components/menu/interfaces';
+import { SubmenuPosition } from 'components/menu/constants';
 
 // This is a test page to demonstrate menu component
 const MenuPage: NextPage = () => {
