@@ -1,0 +1,98 @@
+.container {
+    --menu-background: rgb(255, 255, 255);
+    --border-color: rgb(245, 245, 245);
+    --selected-color: var(--border-color);
+    --secondary-font-color: rgb(148, 148, 148);
+    --menu-width: 22rem;
+    --animations-duration: 0.25s;
+    border-radius: 0.5rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    background: var(--menu-background);
+}
+
+.container_submenu_overlap {
+    display: inline-block;
+    position: relative;
+}
+
+.container_submenu_alongside {
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.menu_level {
+    min-width: var(--menu-width);
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    background: var(--menu-background);
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.submenu_wrapper {
+    overflow: hidden;
+}
+
+.container_submenu_overlap .menu_level_nested {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.container_submenu_overlap .menu_level_wrapper + .menu_level_wrapper {
+    position: absolute;
+    top: 0;
+    width: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    transition: width var(--animations-duration);
+}
+
+.container_submenu_overlap .menu_level_wrapper + .menu_level_wrapper.opened {
+    width: var(--menu-width);
+}
+
+.container_submenu_alongside .menu_level_wrapper + .menu_level_wrapper {
+    border-left: 1px solid var(--border-color);
+    overflow: hidden;
+    width: 0px;
+}
+
+.container_submenu_alongside .menu_level_wrapper + .menu_level_wrapper.opened {
+    width: 350px;
+    transition: width var(--animations-duration);
+}
+
+.menu_item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.4em;
+}
+
+.menu_item_back_to_parent {
+    justify-content: start;
+    margin-bottom: 0.5em;
+}
+
+.menu_item_back_to_parent::before {
+    content: "<";
+    color: var(--secondary-font-color);
+}
+
+.menu_item_with_children::after {
+    content: '>';
+    color: var(--secondary-font-color);
+}
+
+.menu_item:hover {
+    background: var(--selected-color);
+}
