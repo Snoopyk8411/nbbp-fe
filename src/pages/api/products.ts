@@ -1,23 +1,16 @@
-import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { products } from 'mock-data/product-data';
 import { IProduct, IProductRepository } from 'tools/types/api-product-types';
 
-const FAKE_API_URL = 'https://fakestoreapi.com/products';
 const DEFAULT_PRODUCTS_LIMIT = 20;
 
-class ApiProductRepo implements IProductRepository {
-  constructor(private repoUrl: string) {}
+class MockProductRepo implements IProductRepository {
   async getProducts(limit: number): Promise<IProduct[]> {
-    const response = await axios.get<IProduct[]>(this.repoUrl, {
-      params: {
-        limit,
-      },
-    });
-    return await response.data;
+    return products.slice(0, limit);
   }
 }
 
-const fakeApiProductRepo = new ApiProductRepo(FAKE_API_URL);
+const fakeApiProductRepo = new MockProductRepo();
 
 const getProductsHandler = async (req: NextApiRequest, res: NextApiResponse<IProduct[]>): Promise<void> => {
   const { limit } = req.query;
