@@ -3,8 +3,8 @@ body {
   padding: 0;
   margin: 0;
   font-size: 10px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
 #error-frame {
@@ -25,9 +25,14 @@ a {
 :root {
   --background-gray: rgb(229, 231, 235);
   --background-blue: rgb(40, 171, 214);
-  --background-lightblue: rgb(108, 188, 214);
   --border-gray: rgb(209, 213, 219);
+  --lightblue: rgb(108, 188, 214);
+  --green: rgb(214, 245, 225);
+  --darkblue: rgb(23, 63, 95);
+  --blue: rgb(32, 99, 155);
+  --darkgreen: rgb(60, 174, 163);
+  --yellow: rgb(246, 213, 92);
+  --red: rgb(237, 85, 59);
+  --black: rgb(27, 27, 27);
   --white: rgb(255, 255, 255);
-  --red: rgb(255,0,0);
-  --green: rgb(214, 245, 225)
 }
