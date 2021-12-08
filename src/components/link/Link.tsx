@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { Appearance } from 'tools/types/api-catalog-items-types';
 import { IconComponent } from 'components/icon/Icon';
 
+import { AreaCurrent } from './constants';
 import linkStyles from './link.module.css';
 
 type LinkProps = {
@@ -11,7 +12,7 @@ type LinkProps = {
   name: string;
   svgName?: string;
   appearance: Appearance | String;
-  areaCurrent?: 'page' | 'step' | 'location' | 'date' | 'time' | 'false' | 'true';
+  areaCurrent?: AreaCurrent;
   className?: string;
 };
 
