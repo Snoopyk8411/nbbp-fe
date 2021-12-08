@@ -1,12 +1,5 @@
 import { Appearance, ICatalogItem } from 'tools/types/api-catalog-items-types';
 
-import Catalog from './svg/catalog.svg';
-import Sale from './svg/sale.svg';
-import Vacancies from './svg/vacancies.svg';
-import Shipping from './svg/shipping.svg';
-import Geo from './svg/geo.svg';
-import Menu from './svg/menu.svg';
-
 export const CATALOG_ITEMS: ICatalogItem[] = [
   {
     id: '0',
@@ -21,7 +14,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.ACCENT,
-    svg: Catalog,
+    svgName: 'Catalog',
   },
   {
     id: '2',
@@ -29,7 +22,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.HIGHLIGHT,
-    svg: Sale,
+    svgName: 'Sale',
   },
   {
     id: '3',
@@ -65,7 +58,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.ACCENT,
-    svg: Vacancies,
+    svgName: 'Vacancies',
   },
   {
     id: '8',
@@ -73,7 +66,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.PLAIN,
-    svg: Shipping,
+    svgName: 'Shipping',
   },
   {
     id: '9',
@@ -81,7 +74,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.PLAIN,
-    svg: Geo,
+    svgName: 'Geo',
   },
   {
     id: '10',
@@ -89,7 +82,7 @@ export const CATALOG_ITEMS: ICatalogItem[] = [
     url: '/',
     groups: ['Header'],
     appearance: Appearance.PLAIN,
-    svg: Menu,
+    svgName: 'Menu',
   },
   {
     id: '11',
