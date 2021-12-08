@@ -11,7 +11,7 @@ export interface ICatalogItem {
   url: string;
   groups: string[];
   appearance: Appearance;
-  svgName?: string;
+  svg?: SVGElement;
 }
 
 export type ICatalogNode = Omit<ICatalogItem, 'groups'> & { order: number };
