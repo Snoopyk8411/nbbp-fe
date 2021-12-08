@@ -36,7 +36,7 @@ export const Breadcrumbs = ({ path }: BreadcrumbsProps): JSX.Element => {
         {path.map((breadcrumb, idx) => {
           const isLast = idx === path.length - 1;
           return (
-            <li key={`bredcrumb-${breadcrumb.name}-${idx}`} className={breadcrumbStyles['breadcrumb-item']}>
+            <li key={`breadcrumb-${breadcrumb.name}-${idx}`} className={breadcrumbStyles['breadcrumb-item']}>
               {drawBreadcrump(breadcrumb, isLast)}
             </li>
           );
