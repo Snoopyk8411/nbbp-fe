@@ -5,8 +5,9 @@ export const useIntersectionObserver = (ref: React.RefObject<HTMLElement>): bool
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry) {
-        setIntersecting(entry.isIntersecting);
+      const isIntersecting = entry?.isIntersecting;
+      if (isIntersecting) {
+        setIntersecting(true);
       }
     });
     if (ref.current) {
