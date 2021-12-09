@@ -11,7 +11,7 @@ const mockStoreConf = configureStore();
 const mockRoutePush = jest.fn();
 
 jest.mock('next/router', () => ({
-  useRouter() {
+  useRouter(): any {
     return {
       route: '/',
       pathname: '',

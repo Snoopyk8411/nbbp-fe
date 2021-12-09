@@ -4,7 +4,7 @@ type ErrorProps = {
   error: boolean;
 };
 
-export const Error: React.FC<ErrorProps> = ({ error }) => {
+export const Error: React.FC<ErrorProps> = ({ error }: ErrorProps) => {
   return (
     <div>
       {error && (
