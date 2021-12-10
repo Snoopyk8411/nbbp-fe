@@ -35,4 +35,7 @@ a {
   --red: rgb(237, 85, 59);
   --black: rgb(27, 27, 27);
   --white: rgb(255, 255, 255);
+  --clr-neutral-400: #949494;
+  --clr-neutral-300: #cccccc;
+  --clr-neutral-100: #dddddd;
 }
