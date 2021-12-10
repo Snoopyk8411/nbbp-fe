@@ -4,12 +4,17 @@ export const useIntersectionObserver = (ref: React.RefObject<HTMLElement>): bool
   const [isIntersecting, setIntersecting] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      const isIntersecting = entry?.isIntersecting;
-      if (isIntersecting) {
-        setIntersecting(true);
-      }
-    });
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const isIntersecting = entry?.isIntersecting;
+        if (isIntersecting) {
+          setIntersecting(true);
+        }
+      },
+      {
+        rootMargin: '50% 50%',
+      },
+    );
     if (ref.current) {
       observer.observe(ref.current);
     }

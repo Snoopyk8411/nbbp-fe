@@ -5,6 +5,7 @@ import { useIntersectionObserver } from 'hooks/use-intersection-observer';
 import { Loader } from 'components/Loader';
 
 import ImageStyles from './image.module.css';
+import { EXTENSION_REGEXP, IMAGE_TYPES } from './constants';
 
 type ImageProps = {
   src: string;
@@ -45,8 +46,8 @@ export const Image = ({ src, alt, width = 'auto', height = 'auto' }: ImageProps)
       setImgSrc('assets/error.png');
     }
   }, [hasError]);
-  console.log(isVisible);
-  console.log(hasError);
+  console.log(Object.values(IMAGE_TYPES));
+  console.log(EXTENSION_REGEXP.exec('assets/error.png'));
   return (
     <div ref={imgWrapperRef} style={dimensionsStyle}>
       {!isLoaded && <Loader />}
