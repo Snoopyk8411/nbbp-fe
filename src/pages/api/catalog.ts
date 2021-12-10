@@ -3,8 +3,8 @@ import { Errors, ICatalogItem, ICatalogNode, ICatalogTree } from 'tools/types/ap
 import { CATALOG_ITEMS } from 'mock-data/catalog-data';
 
 export const getNodeFromItem = (item: ICatalogItem): ICatalogNode => {
-  const { id, name, url, appearance, svg: svg } = { ...item };
-  return { id, name, url, appearance, svg: svg, order: Number(id) };
+  const { id, name, url, appearance, svgName } = { ...item };
+  return { id, name, url, appearance, svgName, order: Number(id) };
 };
 
 export const getChildren = (group: string): string[] => {
@@ -31,8 +31,9 @@ const getCategoriesHandler = (req: NextApiRequest, res: NextApiResponse<ICatalog
     } catch (err) {
       res.status(404).end(Errors.NOT_FOUND);
     }
+  } else {
+    res.status(400).end(Errors.WRONG_TYPE);
   }
-  res.status(400).end(Errors.WRONG_TYPE);
 };
 
 export default getCategoriesHandler;

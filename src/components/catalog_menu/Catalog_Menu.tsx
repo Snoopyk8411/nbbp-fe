@@ -1,13 +1,16 @@
 import { MouseEventHandler, useEffect, useState } from 'react';
-import { NextPage } from 'next';
-import Popup, { HideActionType } from 'components/popup/popup';
-import { ICatalogTree } from 'tools/types/api-catalog-items-types';
+
 import Menu from 'components/menu/menu';
+import Popup, { HideActionType } from 'components/popup/popup';
+import { API, CATALOG } from 'constants/';
+import { IconComponent } from 'components/icon/Icon';
+import { ICatalogTree } from 'tools/types/api-catalog-items-types';
 import { IMenuItemModel } from 'components/menu/interfaces';
 import { SubmenuPosition } from 'components/menu/constants';
 
-// This is a test page to demonstrate menu component
-const MenuPage: NextPage = () => {
+import catalogStyles from './catalog_menu.module.css';
+
+export const Catalog_Menu = (): JSX.Element => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [menuItems, setMenuItems] = useState<IMenuItemModel[] | undefined>(undefined);
   const handleMenuButtonClick: MouseEventHandler = e => {
@@ -18,7 +21,8 @@ const MenuPage: NextPage = () => {
   useEffect(() => {
     (async (): Promise<void> => {
       const requestedCategory = 'Каталог';
-      const response = await fetch('/api/catalog?category=' + requestedCategory);
+      const SEARCH_API = `${API}/${CATALOG}${requestedCategory}`;
+      const response = await fetch(SEARCH_API);
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
@@ -28,20 +32,19 @@ const MenuPage: NextPage = () => {
     })();
   }, []);
 
-  if (!menuItems) {
-    return null;
-  }
-
+  const catalogIcon = 'Catalog';
+  const title = 'Каталог';
   return (
-    <>
-      <Menu items={menuItems} submenuPosition={SubmenuPosition.Overlap}></Menu>
-      <br />
-      <button onClick={handleMenuButtonClick}>Menu</button>
+    <div>
+      <button onClick={handleMenuButtonClick} className={catalogStyles.button}>
+        <IconComponent name={catalogIcon} className={catalogStyles.svg} fill={'currentColor'} />
+        {title}
+      </button>
       <Popup isVisible={isMenuVisible} setIsVisible={setIsMenuVisible} hideActionType={HideActionType.ClickOutside}>
-        <Menu items={menuItems} submenuPosition={SubmenuPosition.Alongside}></Menu>
+        <Menu items={menuItems ?? []} submenuPosition={SubmenuPosition.Alongside} />
         <div></div>
       </Popup>
-    </>
+    </div>
   );
 };
 
@@ -62,5 +65,3 @@ const getMenuItemsFromCategories = (categories: ICatalogTree[]): IMenuItemModel[
   }
   return menuItems;
 };
-
-export default MenuPage;

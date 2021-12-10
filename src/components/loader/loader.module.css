@@ -1,0 +1,24 @@
+.loader {
+  display: inline-block;
+  position: absolute;
+  right: 1.3rem;
+}
+.loader:after {
+  content: ' ';
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.2rem;
+  border-radius: 50%;
+  border: 0.2rem solid var(--darkblue);
+  border-color: var(--darkblue) transparent var(--darkblue) transparent;
+  animation: loader 1.2s linear infinite;
+}
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

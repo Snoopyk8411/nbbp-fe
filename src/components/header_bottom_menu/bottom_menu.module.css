@@ -1,0 +1,19 @@
+/* Component for the development period.
+When the components Catalog, Jobs, Delivery, etc. appear, I will transfer the logic of this component to the Header.. */
+
+.menu {
+  display: flex;
+  padding: 0 1.5rem 0 0.5rem;
+}
+
+.menu_row {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.menu:hover {
+  background: var(--background-lightgray);
+}
