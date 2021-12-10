@@ -8,7 +8,7 @@ export default function useDebounce(value: unknown, delay: number): any {
       setDebouncedValue(value);
     }, delay);
 
-    return () => {
+    return (): void => {
       clearTimeout(handler);
     };
   }, [value]);

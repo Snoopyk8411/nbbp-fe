@@ -6,12 +6,13 @@ import { MAIN_ROUTE, NOTES_ROUTE, GO_TO_PICTURE, GO_TO_NOTES } from './constants
 
 import layoutStyles from './layout.module.css';
 
-export const Layout = ({ children }: { children: ReactNode | NextPage }) => {
+export const Layout = ({ children }: { children: ReactNode | NextPage }): JSX.Element => {
   const router = useRouter();
 
   const isNotesRoute: boolean = router.pathname === NOTES_ROUTE;
 
-  const handleClickNavigation = () => (isNotesRoute ? router.push(MAIN_ROUTE) : router.push(NOTES_ROUTE));
+  const handleClickNavigation = (): Promise<boolean> =>
+    isNotesRoute ? router.push(MAIN_ROUTE) : router.push(NOTES_ROUTE);
 
   return (
     <div>

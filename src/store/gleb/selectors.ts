@@ -1,7 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from 'store/reducers';
+import { IMediaPage } from './interfaces';
 
-const selectMedia = (state: RootState) => state.mediaPage;
+const selectMedia = (state: RootState): IMediaPage => state.mediaPage;
 
 export const mediaSelector = createSelector(selectMedia, state => state.media);
 export const selectDate = createSelector(selectMedia, state => state.media.date);

@@ -9,7 +9,7 @@ export default function* wpLoadInitDataWatcher(): Generator {
   yield takeEvery(welcomePageActions.loadInitData, wpLoadInitDataFlow);
 }
 
-function* wpLoadInitDataFlow() {
+function* wpLoadInitDataFlow(): any {
   try {
     yield put(welcomePageActions.setIsLoading(true));
 
