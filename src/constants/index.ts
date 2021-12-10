@@ -20,3 +20,4 @@ export const CATALOG = 'catalog?category=';
 export const DEPTH = '&depth=';
 export const SEARCH = 'search?value=';
 export const LIMIT = '&limit=5';
+export const EMPTY_URL = '#';

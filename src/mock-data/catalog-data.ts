@@ -1,12 +1,5 @@
 import { Appearance, ICatalogItem } from 'tools/types/api-catalog-items-types';
 
-import Catalog from './svg/catalog.svg';
-import Sale from './svg/sale.svg';
-import Vacancies from './svg/vacancies.svg';
-import Shipping from './svg/shipping.svg';
-import Geo from './svg/geo.svg';
-import Menu from './svg/menu.svg';
-
 export const CATALOG_ITEMS: ICatalogItem[] = [
   {
     id: '0',

@@ -14,7 +14,7 @@ export const withResizeWait = <P extends object>(
   (props: P & WithResizeProps): JSX.Element;
   displayName: string;
 } => {
-  const WithResizeWait = (props: P & WithResizeProps) => {
+  const WithResizeWait = (props: P & WithResizeProps): JSX.Element => {
     useEffect(() => {
       setTimeout(() => {
         window.dispatchEvent(new Event('resize')); // wait for animation

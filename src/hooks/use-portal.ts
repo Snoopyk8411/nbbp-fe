@@ -13,7 +13,7 @@ export function usePortal(id: string): HTMLElement {
         element.appendChild(rootElemRef.current);
       }
       // This function is run on unmount
-      return function removeElement() {
+      return function removeElement(): void {
         rootElemRef.current.remove();
       };
     },

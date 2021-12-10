@@ -1,6 +1,9 @@
 .link_container {
   margin: 0 0.3rem;
+<<<<<<< HEAD
   padding: 0.2rem;
+=======
+>>>>>>> 5980e4d41c62aeec849df9d141435f6e3c0da320
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,4 +25,8 @@
 
 .highlight {
   color: var(--darkgreen);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5980e4d41c62aeec849df9d141435f6e3c0da320

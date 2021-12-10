@@ -11,7 +11,7 @@ export default function* gpFetchPageWatcher(): Generator {
 type PhotosSagaReturn = SagaReturnType<typeof apiGetPhotos>;
 type PageSelectorReturn = SagaReturnType<typeof selectPage>;
 
-function* gpFetchPageFlow() {
+function* gpFetchPageFlow(): any {
   try {
     yield put(galleryPageActions.setIsLoading(true));
     const page: PageSelectorReturn = yield select(selectPage);

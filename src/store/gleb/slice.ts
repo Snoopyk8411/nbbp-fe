@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, Draft } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IMediaPage, IMedia } from './interfaces';
 import { formattedDate, todayTimestamp } from './helpers';
 
