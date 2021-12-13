@@ -1,15 +1,34 @@
 import Fuse from 'fuse.js';
 
+import { IProduct } from 'tools/types/api-product-types';
+
 import { shiftString } from './shiftString';
 import { trimPunctuation } from './trimPunctuation';
 import { SEARCH_DISTANCE } from './constants';
 import { ISearchKeysType, ISearchResult } from './types';
-import { IProduct } from 'tools/types/api-product-types';
+
+const searchWithSplit = (fuse: Fuse<IProduct>, searchString: string): ISearchResult[] => {
+  const searchScores = searchString
+    .split(' ')
+    .map(word => fuse.search(trimPunctuation(word.trim())))
+    .flat()
+    .reduce((scores: Record<number, { result: ISearchResult; score: number }>, searchResult) => {
+      const entry = scores[searchResult.item.id];
+      if (entry) {
+        entry.score += 1;
+      } else {
+        scores[searchResult.item.id] = { result: searchResult, score: 1 };
+      }
+      return scores;
+    }, {});
+  return Object.values(searchScores)
+    .sort((a, b) => b.score - a.score)
+    .map(item => item.result);
+};
 
 export const searchProduct = (value: string, products: IProduct[], searchKeys: ISearchKeysType[]): IProduct[] => {
-  const searchString = trimPunctuation(value.trim());
-  const isEmptySearchString = searchString.length === 0;
-  if (isEmptySearchString) {
+  const isEmptyValue = value.length === 0;
+  if (isEmptyValue) {
     return products;
   }
   const options = {
@@ -27,22 +46,13 @@ export const searchProduct = (value: string, products: IProduct[], searchKeys: I
     },
   };
   const fuse = new Fuse(products, options);
-  let result: ISearchResult[] = searchString
-    .split(' ')
-    .map(word => fuse.search(word))
-    .flat()
-    .reduce((searchResults: ISearchResult[], serachResult) => {
-      if (!searchResults.find((entry: ISearchResult) => entry.item.id === serachResult.item.id)) {
-        searchResults.push(serachResult);
-      }
-      return searchResults;
-    }, []);
+  let result: ISearchResult[] = searchWithSplit(fuse, value);
   const hasResults = !!result.length;
   const isOneCharSearch = value.length === 1;
   if (!hasResults && !isOneCharSearch) {
     const shiftedString: string = shiftString(value);
     if (shiftedString !== value) {
-      result = fuse.search(trimPunctuation(shiftedString.trim()));
+      result = searchWithSplit(fuse, shiftedString);
     }
   }
   return result.map(result => result.item);
