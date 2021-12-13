@@ -4,7 +4,7 @@ export const SEARCH_KEYS: ISearchKeysType[] = ['title'];
 
 export const SEARCH_DISTANCE = 30;
 
-export const SEARCH_THRESHOLD = 0.1;
+export const SEARCH_THRESHOLD = 0.3;
 
 export const KEYS: Record<string, string> = {
   q: 'й',
