@@ -1,0 +1,41 @@
+.theme {
+  --font-color: grey;
+  --font-color-hover: black;
+}
+
+.breadcrumbs {
+  display: flex;
+  list-style: none;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: baseline;
+}
+
+.breadcrumb-link {
+  color: var(--font-color);
+}
+
+.breadcrumb-link:hover {
+  color: var(--font-color-hover);
+}
+
+.breadcrumb-location {
+  margin: 0 0.3rem;
+  cursor: default;
+}
+
+.breadcrumbs li + li::before {
+  display: inline-flex;
+  margin: 0 0.25rem;
+  transform: rotate(15deg);
+  border-right: 0.1rem solid var(--font-color);
+  height: 0.8rem;
+  content: '';
+}
+
+.breadcrumb:last-of-type {
+  margin: 0 0.3rem;
+  cursor: default;
+}

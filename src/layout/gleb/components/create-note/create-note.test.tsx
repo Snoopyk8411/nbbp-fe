@@ -10,7 +10,7 @@ const mockStoreConf = configureStore();
 const mockData = {};
 
 describe('CreateNote Component', () => {
-  let props = {
+  const props = {
     addNote: jest.fn(),
   };
   beforeEach(() => {

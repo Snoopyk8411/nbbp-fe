@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
-import styles from './welcome-page.module.css';
+import styles from './welcome-page.module.scss';
 
 export const WelcomePage: NextPage = () => {
   return (

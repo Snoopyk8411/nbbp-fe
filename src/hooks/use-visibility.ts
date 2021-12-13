@@ -6,7 +6,7 @@ export default function useVisibility<T extends HTMLElement>(offset = BASE_OFFSE
   const [isVisible, setIsVisible] = useState(false);
   const currentElement = useRef<T>(null);
 
-  const onScroll = () => {
+  const onScroll = (): void => {
     if (!currentElement.current) {
       setIsVisible(false);
       return;
@@ -17,7 +17,7 @@ export default function useVisibility<T extends HTMLElement>(offset = BASE_OFFSE
 
   useEffect(() => {
     document.addEventListener('scroll', onScroll, true);
-    return () => document.removeEventListener('scroll', onScroll, true);
+    return (): void => document.removeEventListener('scroll', onScroll, true);
   }, []);
 
   return [isVisible, currentElement];
