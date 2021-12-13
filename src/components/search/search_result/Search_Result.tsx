@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Dispatch, SetStateAction } from 'react';
 import { IRating } from 'tools/types/api-product-types';
 import { IconComponent } from 'components/icon/Icon';
 
@@ -10,7 +10,7 @@ type SearchResultProps = {
   description: string;
   image: string;
   rating: IRating;
-  setIsResultsRendered: any;
+  setIsResultsRendered: Dispatch<SetStateAction<boolean>>;
 };
 
 export const Search_Result = ({

@@ -24,20 +24,23 @@ export const Input = (): JSX.Element => {
 
   const isSearch = useAppSelector(selectIsSearch);
 
-  const debouncedValue = useDebounce(searchValue, 500);
+  const delay = 500;
+
+  const debouncedValue = useDebounce(searchValue, delay);
   const searchIcon = 'Search';
   const placeholder = 'Начните поиск';
   const inputAriaLabel = 'Search through site content.';
   const showAllbuttonTitle = 'Показать всё';
 
   const SEARCH_API = `${API}/${SEARCH}${searchValue}${LIMIT}`;
+  const successfulResponses = 200;
 
   useEffect(() => {
     (async (): Promise<void> => {
       if (debouncedValue) {
         setIsLoading(true);
         const res = await axios.get(SEARCH_API);
-        if (res.status !== 200) {
+        if (res.status !== successfulResponses) {
           throw new Error(`Error: ${res.status}`);
         }
         setSearchResult(res.data);
@@ -47,7 +50,7 @@ export const Input = (): JSX.Element => {
   }, [debouncedValue]);
 
   const handleChange = (event: { target: { value: SetStateAction<string> } }): void => {
-    const res = event.target.value;
+    const res = event?.target?.value ?? '';
     dispatch(setIsSearch(true));
     setSearchValue(res);
   };
