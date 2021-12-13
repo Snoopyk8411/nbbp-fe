@@ -1,0 +1,40 @@
+.modal {
+  height: 100vh;
+  z-index: 1;
+}
+
+.arrow {
+  border: solid var(--darkgreen);
+  border-width: 0 0.3rem 0.3rem 0;
+  display: inline-block;
+  padding: 0.5rem;
+  transform: rotate(135deg);
+}
+
+.header {
+  margin: 2rem 2rem 2.5rem 2rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.header_text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  font-weight: 600;
+}
+
+.search_container {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem 0 3rem;
+}
+
+.button {
+  border: none;
+  outline: none;
+  background: none;
+  position: absolute;
+}

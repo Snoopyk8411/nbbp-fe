@@ -6,10 +6,6 @@ When the components Catalog, Jobs, Delivery, etc. appear, I will transfer the lo
   padding: 0 1.5rem 0 0.5rem;
 }
 
-.menu:hover {
-  background: var(--background-gray);
-}
-
 .menu_row {
   display: flex;
   align-items: center;
@@ -18,7 +14,6 @@ When the components Catalog, Jobs, Delivery, etc. appear, I will transfer the lo
   justify-content: space-between;
 }
 
-.menu:first-child {
-  border-right: 0.2rem solid var(--border-gray);
-  opacity: 0.7;
+.menu:hover {
+  background: var(--background-lightgray);
 }

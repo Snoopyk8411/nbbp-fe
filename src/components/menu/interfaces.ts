@@ -24,4 +24,5 @@ export interface IMenuItemModel {
   url: string;
   appearance: Appearance | String;
   children?: IMenuItemModel[];
+  svgName: string | undefined;
 }

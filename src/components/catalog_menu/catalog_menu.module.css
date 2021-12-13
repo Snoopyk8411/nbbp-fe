@@ -1,0 +1,23 @@
+.button {
+  border: none;
+  outline: none;
+  background: none;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--darkgreen);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-right: 0.2rem solid var(--border-lightgray);
+  padding: 0 1.5rem 0 0.5rem;
+}
+
+.button:hover {
+  background: var(--background-lightgray);
+}
+
+.svg {
+  margin-right: 0.3rem;
+  width: 2.3rem;
+  height: 2.3rem;
+}
