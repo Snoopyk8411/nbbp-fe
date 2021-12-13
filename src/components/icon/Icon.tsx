@@ -5,6 +5,7 @@ import Shipping from 'mock-data/svg/shipping.svg';
 import Geo from 'mock-data/svg/geo.svg';
 import Menu from 'mock-data/svg/menu.svg';
 import Shop from 'assets/shop.svg';
+import Star from 'assets/star.svg';
 import Search from 'mock-data/svg/search.svg';
 import Cart from 'mock-data/svg/cart.svg';
 
@@ -18,6 +19,7 @@ interface IIconNames {
   Shop: string;
   Search: string;
   Cart: string;
+  Star: string;
 }
 
 const iconNames: IIconNames = {
@@ -30,6 +32,7 @@ const iconNames: IIconNames = {
   Shop: Shop,
   Search: Search,
   Cart: Cart,
+  Star: Star,
 };
 
 type IName = keyof typeof iconNames;
