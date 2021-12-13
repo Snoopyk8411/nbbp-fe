@@ -20,7 +20,7 @@ export const Input = (): JSX.Element => {
   const [searchValue, setSearchValue] = useState(EMPTY_STRING);
   const [searchResult, setSearchResult] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isResultsRendered, setIsResultsRendered] = useState(false); // нужен, чтобы кнопка "Показать всё" в выдаче результатов поиска не появлялась раньше результатов
+  const [isResultsRendered, setIsResultsRendered] = useState(false); // the state is needed so that the "Show All" button in the search results does not appear before the results
 
   const isSearch = useAppSelector(selectIsSearch);
 
