@@ -4,7 +4,7 @@ import { IProduct } from 'tools/types/api-product-types';
 
 import { shiftString } from './shiftString';
 import { trimPunctuation } from './trimPunctuation';
-import { SEARCH_DISTANCE } from './constants';
+import { SEARCH_DISTANCE, SEARCH_DISTANCE_LOOSE, SEARCH_THRESHOLD, SEARCH_THRESHOLD_LOOSE } from './constants';
 import { ISearchKeysType, ISearchResult } from './types';
 
 const searchWithSplit = (fuse: Fuse<IProduct>, searchString: string): ISearchResult[] => {
@@ -31,10 +31,8 @@ export const searchProduct = (value: string, products: IProduct[], searchKeys: I
   if (isEmptyValue) {
     return products;
   }
-  const options = {
+  const commonOptions = {
     keys: searchKeys,
-    threshold: 0.3,
-    distance: SEARCH_DISTANCE,
     getFn: (product: IProduct, path: string | string[]): string[] | string => {
       const searchKey = Array.isArray(path) ? path[0] : path;
       const value = product[searchKey as keyof IProduct];
@@ -45,10 +43,26 @@ export const searchProduct = (value: string, products: IProduct[], searchKeys: I
         .map(trimPunctuation);
     },
   };
-  const fuse = new Fuse(products, options);
+  const preciseOptions = {
+    ...commonOptions,
+    threshold: SEARCH_THRESHOLD,
+    distance: SEARCH_DISTANCE,
+  };
+  const fuse = new Fuse(products, preciseOptions);
   let result: ISearchResult[] = searchWithSplit(fuse, value);
-  const hasResults = !!result.length;
-  const isOneCharSearch = value.length === 1;
+  let hasResults: Boolean;
+  hasResults = !!result.length;
+  const isOneCharSearch = value.trim().length === 1;
+  if (!hasResults && !isOneCharSearch) {
+    const looseOptions = {
+      ...commonOptions,
+      threshold: SEARCH_THRESHOLD_LOOSE,
+      distance: SEARCH_DISTANCE_LOOSE,
+    };
+    const looseFuse = new Fuse(products, looseOptions);
+    result = searchWithSplit(looseFuse, value);
+  }
+  hasResults = !!result.length;
   if (!hasResults && !isOneCharSearch) {
     const shiftedString: string = shiftString(value);
     if (shiftedString !== value) {
