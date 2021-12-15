@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Input } from 'components/search/input/Input';
-import { setIsModal } from 'store/shop/slice';
+import { setIsModalOpen } from 'store/shop/slice';
 import { TITLE } from './constants';
 
 import searchModalStyles from './search_modal.module.css';
@@ -8,7 +8,7 @@ import searchModalStyles from './search_modal.module.css';
 export const Search_Modal = (): JSX.Element => {
   const dispatch = useDispatch();
   const handleClose = (): void => {
-    dispatch(setIsModal(false));
+    dispatch(setIsModalOpen(false));
   };
 
   return (

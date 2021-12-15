@@ -3,20 +3,20 @@ import { IShop } from './interfaces';
 
 const initialState: IShop = {
   isSearch: false,
-  isModal: false,
+  isModalOpen: false,
 };
 
 export const shopSlice = createSlice({
   name: 'Shop',
   initialState: initialState,
   reducers: {
-    setIsSearch: (state, action: PayloadAction<boolean>) => {
+    setIsSearchUsed: (state, action: PayloadAction<boolean>) => {
       state.isSearch = action.payload;
     },
-    setIsModal: (state, action: PayloadAction<boolean>) => {
-      state.isModal = action.payload;
+    setIsModalOpen: (state, action: PayloadAction<boolean>) => {
+      state.isModalOpen = action.payload;
     },
   },
 });
-export const { setIsSearch, setIsModal } = shopSlice.actions;
+export const { setIsSearchUsed, setIsModalOpen } = shopSlice.actions;
 export default shopSlice.reducer;
