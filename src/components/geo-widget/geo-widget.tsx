@@ -17,9 +17,9 @@ import GeoIcon from 'assets/geo.svg';
 import { setGeo } from 'store/shop/slice';
 import { selectGeo } from 'store/shop/selectors';
 import { GEO_POINTS, INITIAL_MAP_STATE, NO_LOCATION_TAG, YMAP_CONFIG } from './constants';
-import geoStyles from './geo.module.css';
+import geoStyles from './geo-widget.module.css';
 
-export const Geo = (): JSX.Element => {
+export const GeoWidget = (): JSX.Element => {
   const [isDropDownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [ymaps, setYmaps] = useState<YMapsApi>();
   const dropDownStyles = geoStyles.open || '';
@@ -52,15 +52,24 @@ export const Geo = (): JSX.Element => {
     }
   }, []);
 
+  const toggleDropdown = useCallback(() => {
+    setIsDropdownOpen(!isDropDownOpen);
+  }, []);
+
   return (
     <div className={cn(geoStyles.geo, { [dropDownStyles]: isDropDownOpen })}>
-      <button className={geoStyles.geo__toggle} onClick={(): void => setIsDropdownOpen(!isDropDownOpen)} type='button'>
+      <button className={geoStyles.geo__toggle} onClick={toggleDropdown} type='button'>
         <GeoIcon />
         <span className={geoStyles.geo__value}>{location?.tag || NO_LOCATION_TAG}</span>
       </button>
       <div className={geoStyles.geo__dropdown}>
         <YMaps query={{ lang: YMAP_CONFIG.LANG, load: YMAP_CONFIG.PACKAGE }}>
-          <Map defaultState={INITIAL_MAP_STATE} width={'100%'} height={'100%'} onLoad={(ymaps): any => setYmaps(ymaps)}>
+          <Map
+            defaultState={INITIAL_MAP_STATE}
+            width={'100%'}
+            height={'100%'}
+            onLoad={(ymaps): void => setYmaps(ymaps)}
+          >
             <Clusterer
               options={{
                 preset: YMAP_CONFIG.CLUSTERER_PRESET,
@@ -69,10 +78,10 @@ export const Geo = (): JSX.Element => {
               }}
             >
               {ymaps &&
-                GEO_POINTS.map((point, index) => (
+                GEO_POINTS.map(point => (
                   <Placemark
                     modules={[YMAP_CONFIG.MODULE_BALLOON, YMAP_CONFIG.MODULE_HINT]}
-                    key={index}
+                    key={point.id}
                     geometry={point.coords}
                     onBalloonOpen={(): void => {
                       ReactDOM.hydrate(

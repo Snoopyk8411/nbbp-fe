@@ -1,4 +1,4 @@
-import { GEO_POINTS } from 'components/geo/constants';
+import { GEO_POINTS } from 'components/geo-widget/constants';
 import { ICoords, IGeoPoint } from 'tools/types/geolocation-types';
 import { getDistance, getNearest } from './geolocation';
 
