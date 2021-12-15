@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Geo component should get valid snapshot 1`] = `
+<div
+  className="geo"
+>
+  <button
+    className="geo__toggle"
+    onClick={[Function]}
+    type="button"
+  >
+    <test-file-stub />
+    <span
+      className="geo__value"
+    >
+      N/A
+    </span>
+  </button>
+  <div
+    className="geo__dropdown"
+  />
+</div>
+`;
