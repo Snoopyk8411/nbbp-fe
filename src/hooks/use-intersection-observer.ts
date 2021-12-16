@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { ROOT_MARGIN } from 'constants/index';
+
 export const useIntersectionObserver = (ref: React.RefObject<HTMLElement>): boolean => {
   const [isIntersecting, setIntersecting] = useState(false);
 
@@ -12,7 +14,7 @@ export const useIntersectionObserver = (ref: React.RefObject<HTMLElement>): bool
         }
       },
       {
-        rootMargin: '50% 50%',
+        rootMargin: ROOT_MARGIN,
       },
     );
     if (ref.current) {

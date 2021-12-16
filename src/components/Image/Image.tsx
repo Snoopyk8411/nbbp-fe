@@ -3,10 +3,10 @@ import cn from 'classnames';
 
 import { useIntersectionObserver } from 'hooks/use-intersection-observer';
 
-import { FALLBACK_URL, IMAGE_TYPES, THUMBNAIL_SUFFIX } from './constants';
-import { changeImageExtension } from './changeImageExtension';
+import { DEFAULT_DIMENSION, FALLBACK_URL, IMAGE_TYPES, ITEM_PROP, ITEM_TYPE, THUMBNAIL_SUFFIX } from './constants';
 import { addImageSuffix } from './addImageSuffix';
 import ImageStyles from './image.module.css';
+import { Source } from './Source';
 
 type ImageProps = {
   className?: string;
@@ -19,10 +19,6 @@ type ImageProps = {
   useThumbnail?: boolean;
   useLazyLoading?: boolean;
 };
-
-const DEFAULT_DIMENSION = 'auto';
-const ITEM_PROP = 'image';
-const ITEM_TYPE = 'http://schema.org/ImageObject';
 
 export const Image = ({
   className,
@@ -38,9 +34,9 @@ export const Image = ({
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [imgSrc, setImgSrc] = useState(src);
-  const imgWrapperRef = useRef() as React.MutableRefObject<HTMLDivElement>;
-  const imgRef = useRef() as React.MutableRefObject<HTMLImageElement>;
-  const isIntersecting = useIntersectionObserver(imgWrapperRef);
+  const imgWrapperRef = useRef<HTMLPictureElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const isIntersecting = imgWrapperRef ? useIntersectionObserver(imgWrapperRef) : false;
   const dimensionsStyle = {
     width,
     height,
@@ -65,10 +61,12 @@ export const Image = ({
     }
     // if main source couldn't load, show fallback
     if (needsFallback) {
-      imgRef.current.onerror = (): void => {
-        return;
-      };
-      setImgSrc(FALLBACK_URL);
+      if (imgRef.current) {
+        imgRef.current.onerror = (): void => {
+          return;
+        };
+        setImgSrc(FALLBACK_URL);
+      }
     }
   }, [hasError]);
 
@@ -84,20 +82,8 @@ export const Image = ({
       style={dimensionsStyle}
       className={cn(ImageStyles.wrapper, { [ImageStyles.loading as string]: !isLoaded })}
     >
-      {useWebp && isVisible && (
-        <source
-          data-srcset={changeImageExtension(imgSrc, IMAGE_TYPES.WEBP)}
-          srcSet={changeImageExtension(imgSrc, IMAGE_TYPES.WEBP)}
-          type={String(IMAGE_TYPES.WEBP)}
-        />
-      )}
-      {useAvif && isVisible && (
-        <source
-          data-srcset={changeImageExtension(imgSrc, IMAGE_TYPES.AVIF)}
-          srcSet={changeImageExtension(imgSrc, IMAGE_TYPES.AVIF)}
-          type={String(IMAGE_TYPES.AVIF)}
-        />
-      )}
+      {useWebp && isVisible && <Source src={imgSrc} type={IMAGE_TYPES.WEBP} />}
+      {useAvif && isVisible && <Source src={imgSrc} type={IMAGE_TYPES.AVIF} />}
       {isVisible && (
         <img
           className={cn(className, { [ImageStyles.error as string]: hasError })}

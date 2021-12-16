@@ -10,9 +10,9 @@ export enum IMAGE_TYPES {
   WEBP = 'webp',
   AVIF = 'avif',
 }
-
 export const EXTENSION_REGEXP = new RegExp(`\\.(${enumToList(IMAGE_TYPES).join('|')})`, 'i');
-
 export const FALLBACK_URL = 'assets/error.png';
-
 export const THUMBNAIL_SUFFIX = '_thumb';
+export const DEFAULT_DIMENSION = 'auto';
+export const ITEM_PROP = 'image';
+export const ITEM_TYPE = 'http://schema.org/ImageObject';
