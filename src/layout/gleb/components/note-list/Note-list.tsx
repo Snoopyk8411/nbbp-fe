@@ -13,7 +13,7 @@ export type INoteListType = FunctionComponent & {
 export const NoteList: INoteListType = (): JSX.Element => {
   const [noteList, setNoteList] = useState<string[]>([]);
 
-  const addNote = (note: string) => {
+  const addNote = (note: string): void => {
     const updatedNoteList = [note, ...noteList];
     setNoteList(updatedNoteList);
   };
@@ -33,4 +33,4 @@ export const NoteList: INoteListType = (): JSX.Element => {
   );
 };
 
-NoteList.getLayout = (page: ReactNode) => <Layout>{page}</Layout>;
+NoteList.getLayout = (page: ReactNode): JSX.Element => <Layout>{page}</Layout>;

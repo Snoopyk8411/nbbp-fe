@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Geo balloon component should get valid snapshot 1`] = `
+<div
+  className="wrapper"
+>
+  <h4
+    className="heading"
+  >
+    Title
+  </h4>
+  <div>
+    Description
+  </div>
+  <button
+    className="button"
+    type="button"
+  >
+    Выбрать
+  </button>
+</div>
+`;

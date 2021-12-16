@@ -6,6 +6,7 @@ import { galleryPageSlice } from './contributors/ivanefimov/slice';
 import { welcomePageSlice } from './welcome/slice';
 import { mediaSlice } from './gleb/slice';
 import { todosPageSlice } from './aleksei/todos/slice';
+import { shopPageSlice } from './shop/slice';
 
 const rootReducer = combineReducers({
   welcomePage: welcomePageSlice.reducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   todosPage: todosPageSlice.reducer,
   galleryPage: galleryPageSlice.reducer,
   mediaPage: mediaSlice.reducer,
+  shopPage: shopPageSlice.reducer,
 });
 
 export default rootReducer;

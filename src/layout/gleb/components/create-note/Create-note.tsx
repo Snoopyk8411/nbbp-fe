@@ -2,7 +2,7 @@ import { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 import { Error } from 'layout/gleb/components/error/Error';
 import { MAX_TITLE_LENGTH, MIN_TITLE_LENGTH, TEXTAREA_ROWS, PLACEHOLDER, ADD_NOTE_BTN_TEXT } from './constants';
-import { ENTER_BUTTON, EMPTY_STRING } from 'constants/index';
+import { ENTER_BUTTON, EMPTY_STRING } from 'constants/';
 
 import createNoteStyles from './create-note.module.css';
 
@@ -10,11 +10,11 @@ type CreateNoteProps = {
   addNote: (note: string) => void;
 };
 
-export const CreateNote: React.FC<CreateNoteProps> = ({ addNote }): JSX.Element => {
+export const CreateNote: React.FC<CreateNoteProps> = ({ addNote }: CreateNoteProps): JSX.Element => {
   const [title, setTitle] = useState(EMPTY_STRING);
   const [isError, setIsError] = useState(false);
 
-  const handleChangeNote = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangeNote = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e?.target?.value ?? '';
     setTitle(value);
     if (isError) setIsError(false);
@@ -23,7 +23,7 @@ export const CreateNote: React.FC<CreateNoteProps> = ({ addNote }): JSX.Element 
   const titleLength = title.length;
   const isTitleLengthValid = titleLength <= MAX_TITLE_LENGTH && titleLength >= MIN_TITLE_LENGTH;
 
-  const handleClickAddNote = () => {
+  const handleClickAddNote = (): void => {
     if (isTitleLengthValid) {
       addNote(title);
       setTitle(EMPTY_STRING);

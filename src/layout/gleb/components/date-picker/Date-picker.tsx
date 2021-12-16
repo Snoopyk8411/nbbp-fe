@@ -17,7 +17,7 @@ export function DatePicker({ onChange }: DateProps): JSX.Element {
 
   const [dateValue, setDateValue] = useState('');
 
-  const setDateToInput = (timestamp: string) => {
+  const setDateToInput = (timestamp: string): void => {
     const dateString = getDateStringFromTimestamp(timestamp);
     setDateValue(dateString);
   };
@@ -26,13 +26,13 @@ export function DatePicker({ onChange }: DateProps): JSX.Element {
     setDateToInput(date);
   }, []);
 
-  const updateDate = (dateValue: string) => {
+  const updateDate = (dateValue: string): void => {
     dispatch(setData(dateValue));
     /** Pass data to parent */
     onChange(dateValue);
   };
 
-  const updateDateFromInput = (e: ChangeEvent<HTMLInputElement>) => {
+  const updateDateFromInput = (e: ChangeEvent<HTMLInputElement>): void => {
     const dateValue = e.target.value;
     if (dateValue && dateValue !== null) {
       updateDate(dateValue);

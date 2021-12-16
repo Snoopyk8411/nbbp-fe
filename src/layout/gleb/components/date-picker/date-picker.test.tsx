@@ -4,7 +4,6 @@ import createSagaMiddleware from 'redux-saga';
 import { Provider } from 'react-redux';
 import { DatePicker } from 'layout/gleb/components/date-picker/Date-picker';
 import { IMockStore, IMockData } from 'layout/gleb/components/interfaces';
-import { IMediaPage, IMedia } from 'store/gleb/interfaces';
 
 let mockStore: IMockStore;
 const sagaMiddleware = createSagaMiddleware();
