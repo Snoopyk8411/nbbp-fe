@@ -4,6 +4,7 @@ import { useAppSelector } from 'hooks/use-app-selector';
 import { useOutsideClick } from 'hooks/use-outside-click';
 
 import { Bottom_Menu } from 'components/header_bottom_menu/Bottom_Menu';
+import { GeoWidget } from 'components/geo-widget/geo-widget';
 import { IconComponent } from 'components/icon/Icon';
 import { Search } from 'components/search/Search';
 import { Search_Modal } from 'components/search/search_modal/Search_Modal';
@@ -38,7 +39,9 @@ export const Header = (): JSX.Element => {
           <div ref={ref}>
             <Search />
           </div>
-          <div>GEO</div>
+          <div>
+            <GeoWidget />
+          </div>
           <div>{mockHeaderTitle}</div>
         </div>
         <div className={headerStyles.header_level_bottom}>
