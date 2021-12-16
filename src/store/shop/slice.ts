@@ -6,7 +6,7 @@ const initialState: IShop = {
   isModalOpen: false,
 };
 
-export const shopSlice = createSlice({
+export const shopPageSlice = createSlice({
   name: 'Shop',
   initialState: initialState,
   reducers: {
@@ -18,5 +18,5 @@ export const shopSlice = createSlice({
     },
   },
 });
-export const { setIsSearchUsed, setIsModalOpen } = shopSlice.actions;
-export default shopSlice.reducer;
+export const { setIsSearchUsed, setIsModalOpen } = shopPageSlice.actions;
+export default shopPageSlice.reducer;

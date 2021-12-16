@@ -1,3 +1,3 @@
-import { shopSlice } from './slice';
+import { shopPageSlice } from './slice';
 
-export const MediaPageActions = { ...shopSlice.actions };
+export const MediaPageActions = { ...shopPageSlice.actions };
