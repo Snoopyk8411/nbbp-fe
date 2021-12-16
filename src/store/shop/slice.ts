@@ -1,15 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IShop } from './interfaces';
+import { IGeoPoint } from 'tools/types/geolocation-types';
 
-const initialState: IShop = {
+export interface IShopPageData {
+  geo: IGeoPoint | null;
+  isSearch: boolean;
+  isModalOpen: boolean;
+}
+
+const initialState: IShopPageData = {
+  geo: null,
   isSearch: false,
   isModalOpen: false,
 };
 
 export const shopPageSlice = createSlice({
-  name: 'Shop',
+  name: 'shopPage',
   initialState: initialState,
   reducers: {
+    setGeo: (state, action: PayloadAction<IGeoPoint>) => {
+      state.geo = action.payload;
+    },
     setIsSearchUsed: (state, action: PayloadAction<boolean>) => {
       state.isSearch = action.payload;
     },
@@ -18,5 +28,5 @@ export const shopPageSlice = createSlice({
     },
   },
 });
-export const { setIsSearchUsed, setIsModalOpen } = shopPageSlice.actions;
-export default shopPageSlice.reducer;
+
+export const { setGeo, setIsSearchUsed, setIsModalOpen } = shopPageSlice.actions;

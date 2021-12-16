@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   todosPage: todosPageSlice.reducer,
   galleryPage: galleryPageSlice.reducer,
   mediaPage: mediaSlice.reducer,
-  shop: shopPageSlice.reducer,
+  shopPage: shopPageSlice.reducer,
 });
 
 export default rootReducer;

@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.heading {
+  color: var(--clr-neutral-700);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.description {
+  color: var(--clr-neutral-700);
+}
+
+.button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1rem;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  color: var(--clr-neutral-700);
+  background-color: var(--clr-neutral-100);
+  align-self: flex-end;
+}

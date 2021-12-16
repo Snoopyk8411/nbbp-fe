@@ -1,8 +1,9 @@
-import { createSelector } from '@reduxjs/toolkit';
+import { createSelector } from 'reselect';
 import { RootState } from 'store/reducers';
-import { IShop } from './interfaces';
+import { IShopPageData } from './slice';
 
-const selectShop = (state: RootState): IShop => state.shop;
+const selectShopPage = (state: RootState): IShopPageData => state.shopPage;
 
-export const selectIsSearch = createSelector(selectShop, state => state.isSearch);
-export const selectIsModal = createSelector(selectShop, state => state.isModalOpen);
+export const selectGeo = createSelector(selectShopPage, shopPage => shopPage.geo);
+export const selectIsSearch = createSelector(selectShopPage, state => state.isSearch);
+export const selectIsModal = createSelector(selectShopPage, state => state.isModalOpen);
