@@ -1,12 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { products } from 'mock-data/product-data';
+import { PRODUCTS } from 'mock-data/product-data';
 import { IProduct, IProductRepository } from 'tools/types/api-product-types';
 
 const DEFAULT_PRODUCTS_LIMIT = 20;
 
 class MockProductRepo implements IProductRepository {
   async getProducts(limit: number): Promise<IProduct[]> {
-    return products.slice(0, limit);
+    return PRODUCTS.slice(0, limit);
   }
 }
 

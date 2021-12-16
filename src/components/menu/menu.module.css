@@ -1,15 +1,17 @@
 .container {
-  --menu-background: rgb(255, 255, 255);
-  --border-color: rgb(245, 245, 245);
-  --selected-color: var(--border-color);
-  --secondary-font-color: rgb(148, 148, 148);
+  --selected-color: var(--border-lightgray);
   --menu-width: 22rem;
   --animations-duration: 0.25s;
   border-radius: 0.5rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  font-size: 1rem;
+  font-size: 1.3rem;
   box-sizing: border-box;
-  background: var(--menu-background);
+  background: var(--white);
+  margin-top: 1rem;
+}
+
+.container::-webkit-scrollbar {
+  width: 0.1rem;
 }
 
 .container_submenu_overlap {
@@ -27,9 +29,25 @@
   list-style: none;
   padding: 1rem 0;
   margin: 0;
-  background: var(--menu-background);
+  background: var(--white);
   overflow-y: auto;
   max-height: 200px;
+}
+
+.menu_level::-webkit-scrollbar {
+  width: 1rem;
+}
+
+.menu_level::-webkit-scrollbar-track {
+  border: 0.1rem solid var(--border-lightgray);
+  padding: 0.1rem 0;
+  background-color: var(--background-lightgray);
+}
+
+.menu_level::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: var(--background-gray);
+  border: 0.1rem solid var(--border-lightgray);
 }
 
 .submenu_wrapper {
@@ -59,7 +77,7 @@
 }
 
 .container_submenu_alongside .menu_level_wrapper + .menu_level_wrapper {
-  border-left: 1px solid var(--border-color);
+  border-left: 1px solid var(--border-lightgray);
   overflow: hidden;
   width: 0px;
 }

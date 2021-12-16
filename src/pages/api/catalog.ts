@@ -31,8 +31,9 @@ const getCategoriesHandler = (req: NextApiRequest, res: NextApiResponse<ICatalog
     } catch (err) {
       res.status(404).end(Errors.NOT_FOUND);
     }
+  } else {
+    res.status(400).end(Errors.WRONG_TYPE);
   }
-  res.status(400).end(Errors.WRONG_TYPE);
 };
 
 export default getCategoriesHandler;
