@@ -15,6 +15,8 @@ export const ENTER_BUTTON = 'Enter';
 export const BACKSPACE_BUTTON = 'Backspace';
 export const EMPTY_STRING = '';
 
+//margin for lazy loading
+export const ROOT_MARGIN = '50% 50%';
 export const API = 'http://localhost:3000/api';
 export const CATALOG = 'catalog?category=';
 export const DEPTH = '&depth=';
