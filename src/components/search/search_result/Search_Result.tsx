@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import { IRating } from 'tools/types/api-product-types';
 import { IconComponent } from 'components/icon/Icon';
+import { CART_ICON } from './constants';
 
 import searchResultStyles from './search_result.module.css';
 
@@ -10,25 +10,9 @@ type SearchResultProps = {
   description: string;
   image: string;
   rating: IRating;
-  setIsResultsRendered: any;
 };
 
-export const Search_Result = ({
-  title,
-  price,
-  description,
-  image,
-  rating,
-  setIsResultsRendered,
-}: SearchResultProps): JSX.Element => {
-  useEffect(() => {
-    if (title) {
-      setIsResultsRendered(true);
-    }
-  }, []);
-
-  const cartIcon = 'Cart';
-
+export const Search_Result = ({ title, price, description, image, rating }: SearchResultProps): JSX.Element => {
   return (
     <div className={searchResultStyles.found_products}>
       <div className={searchResultStyles.product_img_rating}>
@@ -41,7 +25,7 @@ export const Search_Result = ({
           <div>{`${price}$`}</div>
         </div>
         <button className={searchResultStyles.button_cart}>
-          <IconComponent name={cartIcon} className={searchResultStyles.cart_icon} />
+          <IconComponent name={CART_ICON} className={searchResultStyles.cart_icon} />
         </button>
       </div>
     </div>
