@@ -64,12 +64,6 @@
   font-weight: 600;
 }
 
-@media (min-height: 755px) and (max-height: 1060px) {
-  .search_result_block {
-    margin-top: 0rem;
-  }
-}
-
 @media (max-width: 640px) {
   .search_block {
     width: 100vh;
