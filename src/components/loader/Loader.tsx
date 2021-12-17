@@ -1,5 +1,5 @@
-import styles from './loader.module.css';
+import cn from 'classnames';
 
-export const Loader = (): JSX.Element => {
-  return <div className={styles.loader}></div>;
-};
+import loaderStyles from './loader.module.css';
+
+export const Loader = (): JSX.Element => <div className={cn(loaderStyles.loader, loaderStyles.theme)}></div>;
