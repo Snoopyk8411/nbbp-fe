@@ -14,18 +14,18 @@ import {
 import { GeoBalloon } from 'components/geo-balloon/geo-balloon';
 import { ICoords } from 'tools/types/geolocation-types';
 import GeoIcon from 'assets/geo.svg';
-import { setGeo } from 'store/shop/slice';
-import { selectGeo } from 'store/shop/selectors';
+import { setGeo, setIsGeoOpen } from 'store/shop/slice';
+import { selectGeo, selectIsGeoOpen } from 'store/shop/selectors';
 import { GEO_POINTS, INITIAL_MAP_STATE, NO_LOCATION_TAG, YMAP_CONFIG } from './constants';
 import geoStyles from './geo-widget.module.css';
 
 export const GeoWidget = (): JSX.Element => {
-  const [isDropDownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [ymaps, setYmaps] = useState<YMapsApi>();
   const dropDownStyles = geoStyles.open || '';
 
   const dispatch = useDispatch();
   const location = useSelector(selectGeo);
+  const isDropDownOpen = useSelector(selectIsGeoOpen);
 
   const updateLocation = useCallback((coords: ICoords): void => {
     const nearest = getNearest(coords, GEO_POINTS);
@@ -33,7 +33,7 @@ export const GeoWidget = (): JSX.Element => {
       saveCoordsToLocalStorage(nearest.coords);
       dispatch(setGeo(nearest));
     }
-    setIsDropdownOpen(false);
+    dispatch(setIsGeoOpen(false));
   }, []);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export const GeoWidget = (): JSX.Element => {
   }, []);
 
   const toggleDropdown = useCallback(() => {
-    setIsDropdownOpen(!isDropDownOpen);
+    dispatch(setIsGeoOpen(true));
   }, []);
 
   return (
