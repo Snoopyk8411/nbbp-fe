@@ -1,5 +1,6 @@
 import { IRating } from 'tools/types/api-product-types';
 import { IconComponent } from 'components/icon/Icon';
+import { Rating } from 'components/rating/Rating';
 import { CART_ICON } from './constants';
 
 import searchResultStyles from './search_result.module.css';
@@ -17,7 +18,7 @@ export const Search_Result = ({ title, price, description, image, rating }: Sear
     <div className={searchResultStyles.found_products}>
       <div className={searchResultStyles.product_img_rating}>
         <img src={image} className={searchResultStyles.product_img} alt={description} />
-        <div>{rating.rate}</div>
+        <Rating rating={rating} />
       </div>
       <div className={searchResultStyles.product_container}>
         <div className={searchResultStyles.product_title_price}>

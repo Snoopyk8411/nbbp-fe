@@ -1,6 +1,7 @@
 .found_products {
   padding: 0.3rem 0 0;
   display: flex;
+  margin-bottom: 0.8rem;
 }
 
 .product_img_rating {
