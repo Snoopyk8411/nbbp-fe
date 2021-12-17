@@ -18,7 +18,7 @@
   outline: none;
   border: none;
   color: var(--clr-neutral-400);
-  background-color: var(--clr-neutral-100);
+  background-color: var(--white);
   position: relative;
 }
 
