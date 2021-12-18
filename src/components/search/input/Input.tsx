@@ -8,7 +8,7 @@ import { Loader } from 'components/Loader/Loader';
 import { Search_Result } from 'components/search/search_result/Search_Result';
 import { IProduct } from 'tools/types/api-product-types';
 import { setIsSearchUsed } from 'store/shop/slice';
-import { selectIsSearch } from 'store/shop/selectors';
+import { selectIsSearchUsed } from 'store/shop/selectors';
 
 import { EMPTY_STRING } from 'constants/';
 import { SEARCH_ICON, PLACEHOLDER, INPUT_AREA_LABEL, SHOW_ALL_BUTTON_TITLE, DELAY } from './constants';
@@ -24,7 +24,7 @@ export const Input = (): JSX.Element => {
     DELAY,
   );
 
-  const isSearchUsed = useAppSelector(selectIsSearch);
+  const isSearchUsed = useAppSelector(selectIsSearchUsed);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const nextSearchValue = event?.target?.value ?? '';
