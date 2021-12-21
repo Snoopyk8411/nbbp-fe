@@ -4,7 +4,7 @@ import { useAppSelector } from 'hooks/use-app-selector';
 import useSearchResult from 'hooks/use-search-result';
 
 import { IconComponent } from 'components/icon/Icon';
-import { Loader } from 'components/Loader/Loader';
+import { Loader } from 'components/loader/Loader';
 import { Search_Result } from 'components/search/search_result/Search_Result';
 import { IProduct } from 'tools/types/api-product-types';
 import { setIsSearchUsed } from 'store/shop/slice';
@@ -46,7 +46,11 @@ export const Input = (): JSX.Element => {
           onChange={handleChange}
           value={searchValue}
         />
-        {isLoading && <Loader />}
+        {isLoading && (
+          <div className={inputStyles.loader}>
+            <Loader />
+          </div>
+        )}
       </div>
       {isSearchUsed && (
         <ul className={inputStyles.search_result_block}>

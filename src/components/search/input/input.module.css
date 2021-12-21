@@ -64,6 +64,12 @@
   font-weight: 600;
 }
 
+.loader {
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+}
+
 @media (max-width: 640px) {
   .search_block {
     width: 100vh;
