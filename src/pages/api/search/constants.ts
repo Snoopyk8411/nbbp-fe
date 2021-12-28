@@ -2,7 +2,13 @@ import { ISearchKeysType } from './types';
 
 export const SEARCH_KEYS: ISearchKeysType[] = ['title'];
 
-export const SEARCH_DISTANCE = 30;
+export const SEARCH_DISTANCE = 20;
+
+export const SEARCH_THRESHOLD = 0.3;
+
+export const SEARCH_DISTANCE_LOOSE = 30;
+
+export const SEARCH_THRESHOLD_LOOSE = 0.5;
 
 export const KEYS: Record<string, string> = {
   q: 'й',
